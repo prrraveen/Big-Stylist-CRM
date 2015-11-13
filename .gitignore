@@ -1,0 +1,3 @@
+*.pyc
+/frontend/assets/libs
+myprojectenv

@@ -1,0 +1,24 @@
+{
+  "name": "build",
+  "authors": [
+    "Praveen Singh <prrraveen@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "../assets/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "backbone": "~1.2.3",
+    "bootstrap": "~3.3.5",
+    "jquery": "~2.1.4"
+  }
+}
