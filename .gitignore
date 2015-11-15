@@ -1,3 +1,4 @@
 *.pyc
 /frontend/assets/libs
 myprojectenv
+frontend/build/node_modules
