@@ -7,6 +7,6 @@ function(
         Backbone
 ) {
     Marionette.Renderer.render = function(template, data){
-      return template(data);
+        return template(data);
     };
 });

@@ -1,10 +1,12 @@
 define([
         'marionette',
+        'apps/user/models/session',
         'apps/user/models/user',
 
 ],
 function(
         Mn,
+        Session,
         User
 ) {
     var Login = Mn.ItemView.extend({
@@ -30,7 +32,9 @@ function(
                 password: this.ui.password.val()
             })
             .done(function(response){
-                _this.model.set(response.payload)
+                var session = new Session().set_token(access_token = response.access_token )
+                _this.model.set_profile(profile = response.profile)
+
                 app.router.navigate('dashboard', { trigger : true})
             })
             .fail(function(response){

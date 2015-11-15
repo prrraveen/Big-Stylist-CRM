@@ -5,7 +5,7 @@ function(
         Mn
 ) {
     var Layout = Mn.LayoutView.extend({
-        template: JST['home'],
+        template: JST['layout'],
         // These are my visual regions: the "navigation" or
         // left hand list of categories, and the "main"
         // content area where the email list or contact list

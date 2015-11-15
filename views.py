@@ -42,9 +42,21 @@ def login():
         user = User.query.filter(User.email == request.form['email'] ,
                                 User.password == request.form['password']).first()
         if user:
-            return jsonify(data=user.to_dict(show=['name']))
+            return jsonify({'profile' : user.to_dict(show=['name']),
+                            'access_token' : 1234})
         else:
             response = abort(503)
+    except Exception,e:
+        print e
+        return abort(500)
+
+@application.route('/logout/')
+def logout():
+    '''
+        logout
+    '''
+    try:
+        return jsonify(''),200
     except Exception,e:
         print e
         return abort(500)

@@ -1,6 +1,16 @@
 this["JST"] = this["JST"] || {};
 
-this["JST"]["home"] = function(obj) {
+this["JST"]["dashboard"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape;
+with (obj) {
+__p += 'hey\n';
+
+}
+return __p
+};
+
+this["JST"]["layout"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
@@ -10,11 +20,13 @@ __p += '<section id=\'navigation\'></section>\n\n<div class=\'row\'>\n    <div c
 return __p
 };
 
-this["JST"]["navbar"] = function(obj) {
+this["JST"]["navigation"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<nav class="navbar navbar-default">\n</nav>\n';
+__p += '<nav class="navbar navbar-default">\n  <div class="container-fluid">\n    <!-- Brand and toggle get grouped for better mobile display -->\n    <div class="navbar-header">\n      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">\n        <span class="sr-only">Toggle navigation</span>\n        <span class="icon-bar"></span>\n        <span class="icon-bar"></span>\n        <span class="icon-bar"></span>\n      </button>\n      <a class="navbar-brand" href="#">\n          <img src="frontend/assets/images/logo.png" id=\'brand-logo\' alt="Responsive image" class=\'img img-responsive\'/></a>\n    </div>\n\n    <!-- Collect the nav links, forms, and other content for toggling -->\n    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">\n      <ul class="nav navbar-nav navbar-right">\n        <li class="dropdown">\n          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"\n            aria-expanded="false">' +
+((__t = ( user.get_name() )) == null ? '' : __t) +
+'<span class="caret"></span></a>\n          <ul class="dropdown-menu">\n            <li><a href="#logout">logout</a></li>\n          </ul>\n        </li>\n      </ul>\n    </div><!-- /.navbar-collapse -->\n  </div><!-- /.container-fluid -->\n</nav>\n';
 
 }
 return __p
