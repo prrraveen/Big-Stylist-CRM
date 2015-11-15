@@ -1,14 +1,11 @@
 define([
         'marionette',
-        'apps/user/models/user'
 ],
 function(
-        Mn,
-        User
+        Mn
 ) {
     var Regi = Mn.ItemView.extend({
         template: JST['regi'],
-        model: new User(),
         ui: {
             name : '#name',
             email: '#email',
@@ -16,10 +13,10 @@ function(
             submit: '#create',
         },
         events: {
-            'click @ui.submit': 'create_user',
+            'click @ui.submit': 'submit',
         },
 
-        create_user: function(e){
+        submit: function(e){
             if(this.ui.name.val() == ''
                 || this.ui.email.val() == ''
                 || this.ui.password.val() == '')
@@ -35,8 +32,7 @@ function(
                 alert('Added')
                 app.router.navigate('login', { trigger : true})
             })
-            .fail(function(data){
-                debugger
+            .fail(function(response){
                 if(response.status == 503)
                 {
                     alert('user already exists')
