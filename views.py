@@ -9,11 +9,7 @@ def main():
 
 @application.route('/user/create/' , methods = ['POST'])
 def create_agent():
-    '''
-        User registeration
-    '''
     try:
-        # import pdb; pdb.set_trace()
         user = User.query.filter(User.email == request.form['email']).first()
         if not user:
             user = User(name= request.form['name'],
@@ -34,9 +30,6 @@ def create_agent():
 
 @application.route('/user/login/' , methods = ['POST'])
 def login():
-    '''
-        login
-    '''
     try:
         # import pdb; pdb.set_trace()
         user = User.query.filter(User.email == request.form['email'] ,
@@ -50,13 +43,25 @@ def login():
         print e
         return abort(500)
 
+
 @application.route('/logout/')
 def logout():
-    '''
-        logout
-    '''
     try:
         return jsonify(''),200
+    except Exception,e:
+        print e
+        return abort(500)
+
+@application.route('/orders/new/')
+def new_orders():
+    try:
+        payload = [ {'no':1 },
+        #             {'no':2},
+        #              {'no':3} ,
+        #              {'no':4}
+                 ]
+        # import pdb; pdb.set_trace()
+        return make_response(simplejson.dumps(payload),200)
     except Exception,e:
         print e
         return abort(500)

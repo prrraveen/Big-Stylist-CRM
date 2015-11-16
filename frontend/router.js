@@ -6,6 +6,8 @@ define([
         'apps/home/views/navigation',
         'apps/home/views/dashboard',
         'apps/user/models/user',
+        'apps/orders/views/new',
+        'apps/orders/collections/orders',
 
         'assets/templates',
         'bootstrap'
@@ -17,7 +19,9 @@ function(
         Login,
         Navigation,
         Dashboard,
-        User
+        User,
+        New_orders,
+        Orders
 ) {
     var Router = Marionette.AppRouter.extend({
     // "someMethod" must exist at controller.someMethod
@@ -27,6 +31,7 @@ function(
             'login': 'login',
             'dashboard': 'dashboard',
             'logout': 'logout',
+            'new': 'new_orders',
         },
 
         regi : function(){
@@ -46,9 +51,13 @@ function(
 
         logout : function(){
             new User().logout();
-            // app.layout.navigation.empty();
-            // app.layout.main_region.empty();
-            // app.router.navigate('login', { trigger : true});
+            app.layout.navigation.empty();
+            app.layout.main_region.empty();
+            app.router.navigate('login', { trigger : true});
+        },
+        new_orders : function(){
+            app.layout.navigation.show(new Navigation());
+            app.layout.main_region.show(new New_orders());
         }
     })
     return Router;

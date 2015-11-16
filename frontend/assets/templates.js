@@ -4,7 +4,7 @@ this["JST"]["dashboard"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += 'hey\n';
+__p += '<div class="container">\n    <div class="row">\n        <div class=\'col-sm-6 col-sm-offset-3\'>\n            <div class="list-group">\n              <a href="#new" class="list-group-item">New</a>\n              <a href="#confirmed" class="list-group-item">Confirmed</a>\n              <a href="#Allocated" class="list-group-item">Allocated</a>\n              <a href="#Completed" class="list-group-item">Completed</a>\n              <a href="#All" class="list-group-item">All</a>\n              <a href="#lead" class="list-group-item">Lead Data Table</a>\n              <a href="#beauticians" class="list-group-item">Beauticians</a>\n              <a href="#services" class="list-group-item">Services</a>\n            </div>\n        </div>\n    </div>\n</div>\n';
 
 }
 return __p
@@ -24,9 +24,56 @@ this["JST"]["navigation"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<nav class="navbar navbar-default">\n  <div class="container-fluid">\n    <!-- Brand and toggle get grouped for better mobile display -->\n    <div class="navbar-header">\n      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">\n        <span class="sr-only">Toggle navigation</span>\n        <span class="icon-bar"></span>\n        <span class="icon-bar"></span>\n        <span class="icon-bar"></span>\n      </button>\n      <a class="navbar-brand" href="#">\n          <img src="frontend/assets/images/logo.png" id=\'brand-logo\' alt="Responsive image" class=\'img img-responsive\'/></a>\n    </div>\n\n    <!-- Collect the nav links, forms, and other content for toggling -->\n    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">\n      <ul class="nav navbar-nav navbar-right">\n        <li class="dropdown">\n          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"\n            aria-expanded="false">' +
+__p += '<nav class="navbar navbar-default">\n  <div class="container-fluid">\n    <!-- Brand and toggle get grouped for better mobile display -->\n    <div class="navbar-header">\n      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">\n        <span class="sr-only">Toggle navigation</span>\n        <span class="icon-bar"></span>\n        <span class="icon-bar"></span>\n        <span class="icon-bar"></span>\n      </button>\n      <a class="navbar-brand" href="#dashboard">\n          <img src="frontend/assets/images/logo.png" id=\'brand-logo\' alt="Responsive image" class=\'img img-responsive\'/></a>\n    </div>\n\n    <!-- Collect the nav links, forms, and other content for toggling -->\n    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">\n      <ul class="nav navbar-nav navbar-right">\n        <li class="dropdown">\n          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"\n            aria-expanded="false">' +
 ((__t = ( user.get_name() )) == null ? '' : __t) +
 '<span class="caret"></span></a>\n          <ul class="dropdown-menu">\n            <li><a href="#logout">logout</a></li>\n          </ul>\n        </li>\n      </ul>\n    </div><!-- /.navbar-collapse -->\n  </div><!-- /.container-fluid -->\n</nav>\n';
+
+}
+return __p
+};
+
+this["JST"]["new_orders"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape;
+with (obj) {
+__p += '<div class="container">\n    <div class="row">\n        <div class=\'col-sm-12\'>\n            <table>\n                <thead>\n                    <tr>\n                        <td>\n                            Customer\n                        </td>\n                        <td>\n                            Contact\n                        </td>\n                        <td>\n                            Date\n                        </td>\n                        <td>\n                            Time\n                        </td>\n                        <td>\n                            Beautician\n                        </td>\n                        <td>\n                            Status\n                        </td>\n                        <td>\n                            Details\n                        </td>\n                    </tr>\n                </thead>\n                <tbody>\n\n                </tbody>\n            </table>\n        </div>\n    </div>\n</div>\n';
+
+}
+return __p
+};
+
+this["JST"]["no-order-for-now"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape;
+with (obj) {
+__p += '<div class="container">\n    <div class="row">\n        <div class=\'col-sm-12\'>\n            <h3>No Orders found in this category.</h3>\n        </div>\n    </div>\n</div>\n';
+
+}
+return __p
+};
+
+this["JST"]["order_itemView"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape, __j = Array.prototype.join;
+function print() { __p += __j.call(arguments, '') }
+with (obj) {
+__p += '<tr>\n    <td>\n        ' +
+((__t = ( name )) == null ? '' : __t) +
+'\n    </td>\n    <td>\n        ' +
+((__t = ( mobile )) == null ? '' : __t) +
+'\n    </td>\n    <td>\n        ' +
+((__t = ( date )) == null ? '' : __t) +
+'\n    </td>\n    <td>\n        ' +
+((__t = ( time )) == null ? '' : __t) +
+'\n    </td>\n    <td>\n        ';
+ if (beautician != ''){  ;
+__p +=
+((__t = ( beautician )) == null ? '' : __t) +
+' ';
+ } ;
+__p += '\n    </td>\n    <td>\n        ' +
+((__t = ( status )) == null ? '' : __t) +
+'\n    </td>\n    <td>\n        <button type="button" id="details">Details</button>\n    </td>\n</tr>\n';
 
 }
 return __p

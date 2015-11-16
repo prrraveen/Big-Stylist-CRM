@@ -267,3 +267,24 @@ class User(Model):
 
     def __repr__(self):
         return '<User %r>' % self.name
+
+class Beautician(Model):
+    id =                db.Column(db.Integer, primary_key=True)
+    name =              db.Column(db.String(80))
+    gender =            db.Column(db.String(1))
+    marital_status =    db.Column(db.String(1))
+    family_members =    db.Column(db.String(100))
+    age =               db.Column(db.Integer)
+    customer_rating =   db.Column(db.String(2))
+    bs_rating =         db.Column(db.String(2))
+    phone_number =      db.Column(db.String(10))
+    alternate_number =  db.Column(db.String(10))
+    address =           db.Column(db.String(1000))
+    locality =          db.Column(db.String(100))
+    service_available = db.Column(db.String(1000))
+    rating_by_service = db.Column(db.String(100))
+    employment_status = db.Column(db.String(1000))
+    availability =      db.Column(db.Integer)
+    default_fields = []
+    hidden_fields = []
+    readonly_fields = []
