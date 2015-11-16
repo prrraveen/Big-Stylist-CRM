@@ -32,6 +32,7 @@ function(
                 password: this.ui.password.val()
             })
             .done(function(response){
+                response = JSON.parse(response)
                 var session = new Session().set_token(access_token = response.access_token )
                 _this.model.set_profile(profile = response.profile)
 
