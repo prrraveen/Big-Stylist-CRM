@@ -47,12 +47,7 @@ def logout(request):
 
 def new_orders(request):
     try:
-        payload = [ {'no':1 },
-        #             {'no':2},
-        #              {'no':3} ,
-        #              {'no':4}
-                 ]
-        # import pdb; pdb.set_trace()
+        payload = [ {'no':1 } ]
         return HttpResponse(simplejson.dumps(payload))
     except Exception,e:
         print e
