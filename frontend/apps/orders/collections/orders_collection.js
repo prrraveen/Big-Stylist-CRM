@@ -6,11 +6,11 @@ function(
         Backbone,
         Order
 ) {
-    var Orders = Backbone.Collection.extend({
+    var Orders_collection = Backbone.Collection.extend({
         model: Order,
         set_url : function(suffix){
             this.url = '/orders/' + suffix + '/';
         }
     })
-    return Orders;
+    return Orders_collection;
 });

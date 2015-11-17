@@ -6,8 +6,7 @@ define([
         'apps/home/views/navigation',
         'apps/home/views/dashboard',
         'apps/user/models/user',
-        'apps/orders/views/new',
-        'apps/orders/collections/orders',
+        'apps/orders/views/orders',
 
         'assets/templates',
         'bootstrap'
@@ -20,7 +19,6 @@ function(
         Navigation,
         Dashboard,
         User,
-        New_orders,
         Orders
 ) {
     var Router = Marionette.AppRouter.extend({
@@ -57,7 +55,7 @@ function(
         },
         new_orders : function(){
             app.layout.navigation.show(new Navigation());
-            app.layout.main_region.show(new New_orders());
+            app.layout.main_region.show(new Orders({suffix : 'new'}));
         }
     })
     return Router;

@@ -32,16 +32,6 @@ __p += '<nav class="navbar navbar-default">\n  <div class="container-fluid">\n  
 return __p
 };
 
-this["JST"]["new_orders"] = function(obj) {
-obj || (obj = {});
-var __t, __p = '', __e = _.escape;
-with (obj) {
-__p += '<div class="container">\n    <div class="row">\n        <div class=\'col-sm-12\'>\n            <table class=\'table table-hover table-bordered\'>\n                <thead>\n                    <tr>\n                        <td>\n                            Customer\n                        </td>\n                        <td>\n                            Contact\n                        </td>\n                        <td>\n                            Date\n                        </td>\n                        <td>\n                            Time\n                        </td>\n                        <td>\n                            Beautician\n                        </td>\n                        <td>\n                            Status\n                        </td>\n                    </tr>\n                </thead>\n                <tbody>\n\n                </tbody>\n            </table>\n        </div>\n    </div>\n</div>\n';
-
-}
-return __p
-};
-
 this["JST"]["no-order-for-now"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
@@ -74,6 +64,16 @@ __p += ' ' +
 __p += '\n    </td>\n    <td>\n        ' +
 ((__t = ( status )) == null ? '' : __t) +
 '\n    </td>\n';
+
+}
+return __p
+};
+
+this["JST"]["orders"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape;
+with (obj) {
+__p += '<div class="container">\n    <div class="row">\n        <div class=\'col-sm-12\'>\n            <table class=\'table table-hover table-bordered\'>\n                <thead>\n                    <tr>\n                        <td>\n                            Customer\n                        </td>\n                        <td>\n                            Contact\n                        </td>\n                        <td>\n                            Date\n                        </td>\n                        <td>\n                            Time\n                        </td>\n                        <td>\n                            Beautician\n                        </td>\n                        <td>\n                            Status\n                        </td>\n                    </tr>\n                </thead>\n                <tbody>\n\n                </tbody>\n            </table>\n        </div>\n    </div>\n</div>\n';
 
 }
 return __p
