@@ -14,9 +14,9 @@ from agent.models import Order , ORDER_STATUS
 from agent.serializers import OrderSerializer
 
 @api_view(['GET', 'POST'])
-def new_orders(request):
+def orders(request , typ):
     try:
-        orders = Order.objects.filter(status = get_status_key(val ='Received') )
+        orders = Order.objects.filter(status = get_status_key(val =typ) )
         payload = OrderSerializer(orders, many=True)
         return Response(payload.data)
     except Exception,e:

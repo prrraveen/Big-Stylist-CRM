@@ -29,7 +29,7 @@ function(
             'login': 'login',
             'dashboard': 'dashboard',
             'logout': 'logout',
-            'new': 'new_orders',
+            'orders/:type': 'orders',
         },
 
         regi : function(){
@@ -53,9 +53,9 @@ function(
             app.layout.main_region.empty();
             app.router.navigate('login', { trigger : true});
         },
-        new_orders : function(){
+        orders : function(type){
             app.layout.navigation.show(new Navigation());
-            app.layout.main_region.show(new Orders({suffix : 'new'}));
+            app.layout.main_region.show(new Orders({suffix : type}));
         }
     })
     return Router;
