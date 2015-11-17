@@ -15,7 +15,18 @@ function(
              id : this.model.get('id'),
              class: 'pointer'
            };
-         }
+       },
+       ui: {
+           col: 'td'
+       },
+       events:{
+           'click @ui.col': 'navigate_to_detail'
+       },
+       navigate_to_detail: function(){
+           var fragment = 'detail/' + this.ui.col.parent()[0].id
+           app.router.navigate(fragment , {trigger : true})
+       }
+
     })
     return Order_itemView;
 });

@@ -71,7 +71,7 @@ ORDER_STATUS = (
     (4, 'Cancelled'),
     (5, 'Rescheduled'),
     (6, 'Delievered'),
-    (7, 'Feedback and closed'),
+    (7, 'Feed back and closed'),
     (8, 'Feedback and closed'),
     (9, 'Invoice Sent'),
     (10,'Money homeward'),

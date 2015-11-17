@@ -1,0 +1,112 @@
+<div class="container">
+    <div class="row">
+        <div class='col-sm-5 well'>
+            <h4>Customer Detail</h4>
+            <div class="row">
+                <div class='col-sm-3'>
+                    <label for="Name">Name</label>
+                </div>
+                <div class='col-sm-9'>
+                    <%= customer.name %>
+                </div>
+            </div>
+            <div class="row">
+                <div class='col-sm-3'>
+                    <label for="Name">Contact</label>
+                </div>
+                <div class='col-sm-9'>
+                    <%= customer.contact %>
+                </div>
+            </div>
+            <div class="row">
+                <div class='col-sm-3'>
+                    <label for="Name">Locality</label>
+                </div>
+                <div class='col-sm-9'>
+                    <%= customer.locality %>
+                </div>
+            </div>
+            <div class="row">
+                <div class='col-sm-3'>
+                    <label for="Name">Address</label>
+                </div>
+                <div class='col-sm-9'>
+                    <%= customer.address %>
+                </div>
+            </div>
+            <div class="row">
+                <div class='col-sm-12'>
+                    <a href="/admin/agent/customer/<%= customer.id %>/">Edit customer details</a>
+                </div>
+            </div>
+        </div>
+        <div class='col-sm-6 col-sm-offset-1 well'>
+            <h4>Order Detail</h4>
+            <div class="row">
+                <div class='col-sm-12'>
+                <label for="">Services</label>
+                </div>
+                <ul>
+                    <% _.each(services, function(service){ %>
+                        <a href="<%= service.lp %>"><%= service.name %></a>
+                    <% }) %>
+                </ul>
+            </div>
+            <div class="row">
+                <div class='col-sm-3'>
+                    <label for="">Amount</label>
+                </div>
+                <div class='col-sm-9'>
+                    <%= amount %>
+                </div>
+            </div>
+            <div class="row">
+                <div class='col-sm-3'>
+                    <label for="">Discount</label>
+                </div>
+                <div class='col-sm-9'>
+                    <%= discount %>
+                </div>
+            </div>
+            <div class="row">
+                <div class='col-sm-3'>
+                    <label for="">Placed On</label>
+                </div>
+                <div class='col-sm-9'>
+                    <% if(placedat != null) %>
+                        <%= placedat %>
+                </div>
+            </div>
+            <div class="row">
+                <div class='col-sm-3'>
+                    <label for="">Scheduled On</label>
+                </div>
+                <div class='col-sm-9'>
+                    <% if(on != null) %>
+                        <%= on %>
+                </div>
+            </div>
+            <div class="row">
+                <div class='col-sm-3'>
+                    <label for="">Scheduled at</label>
+                </div>
+                <div class='col-sm-9'>
+                    <% if(at != null) %>
+                        <%= at %>
+                </div>
+            </div>
+            <div class="row">
+                <div class='col-sm-12'>
+                    <a href="/admin/agent/order/<%= id %>/">Edit Order Details</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class='col-sm-12 well'>
+            <h4>Allocation</h4>
+        </div>
+    </div>
+
+</div>

@@ -1,5 +1,52 @@
 this["JST"] = this["JST"] || {};
 
+this["JST"]["detail"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape, __j = Array.prototype.join;
+function print() { __p += __j.call(arguments, '') }
+with (obj) {
+__p += '<div class="container">\n    <div class="row">\n        <div class=\'col-sm-5 well\'>\n            <h4>Customer Detail</h4>\n            <div class="row">\n                <div class=\'col-sm-3\'>\n                    <label for="Name">Name</label>\n                </div>\n                <div class=\'col-sm-9\'>\n                    ' +
+((__t = ( customer.name )) == null ? '' : __t) +
+'\n                </div>\n            </div>\n            <div class="row">\n                <div class=\'col-sm-3\'>\n                    <label for="Name">Contact</label>\n                </div>\n                <div class=\'col-sm-9\'>\n                    ' +
+((__t = ( customer.contact )) == null ? '' : __t) +
+'\n                </div>\n            </div>\n            <div class="row">\n                <div class=\'col-sm-3\'>\n                    <label for="Name">Locality</label>\n                </div>\n                <div class=\'col-sm-9\'>\n                    ' +
+((__t = ( customer.locality )) == null ? '' : __t) +
+'\n                </div>\n            </div>\n            <div class="row">\n                <div class=\'col-sm-3\'>\n                    <label for="Name">Address</label>\n                </div>\n                <div class=\'col-sm-9\'>\n                    ' +
+((__t = ( customer.address )) == null ? '' : __t) +
+'\n                </div>\n            </div>\n            <div class="row">\n                <div class=\'col-sm-12\'>\n                    <a href="/admin/agent/customer/' +
+((__t = ( customer.id )) == null ? '' : __t) +
+'/">Edit customer details</a>\n                </div>\n            </div>\n        </div>\n        <div class=\'col-sm-6 col-sm-offset-1 well\'>\n            <h4>Order Detail</h4>\n            <div class="row">\n                <div class=\'col-sm-12\'>\n                <label for="">Services</label>\n                </div>\n                <ul>\n                    ';
+ _.each(services, function(service){ ;
+__p += '\n                        <a href="' +
+((__t = ( service.lp )) == null ? '' : __t) +
+'">' +
+((__t = ( service.name )) == null ? '' : __t) +
+'</a>\n                    ';
+ }) ;
+__p += '\n                </ul>\n            </div>\n            <div class="row">\n                <div class=\'col-sm-3\'>\n                    <label for="">Amount</label>\n                </div>\n                <div class=\'col-sm-9\'>\n                    ' +
+((__t = ( amount )) == null ? '' : __t) +
+'\n                </div>\n            </div>\n            <div class="row">\n                <div class=\'col-sm-3\'>\n                    <label for="">Discount</label>\n                </div>\n                <div class=\'col-sm-9\'>\n                    ' +
+((__t = ( discount )) == null ? '' : __t) +
+'\n                </div>\n            </div>\n            <div class="row">\n                <div class=\'col-sm-3\'>\n                    <label for="">Placed On</label>\n                </div>\n                <div class=\'col-sm-9\'>\n                    ';
+ if(placedat != null) ;
+__p += '\n                        ' +
+((__t = ( placedat )) == null ? '' : __t) +
+'\n                </div>\n            </div>\n            <div class="row">\n                <div class=\'col-sm-3\'>\n                    <label for="">Scheduled On</label>\n                </div>\n                <div class=\'col-sm-9\'>\n                    ';
+ if(on != null) ;
+__p += '\n                        ' +
+((__t = ( on )) == null ? '' : __t) +
+'\n                </div>\n            </div>\n            <div class="row">\n                <div class=\'col-sm-3\'>\n                    <label for="">Scheduled at</label>\n                </div>\n                <div class=\'col-sm-9\'>\n                    ';
+ if(at != null) ;
+__p += '\n                        ' +
+((__t = ( at )) == null ? '' : __t) +
+'\n                </div>\n            </div>\n            <div class="row">\n                <div class=\'col-sm-12\'>\n                    <a href="/admin/agent/order/' +
+((__t = ( id )) == null ? '' : __t) +
+'/">Edit Order Details</a>\n                </div>\n            </div>\n        </div>\n    </div>\n\n    <div class="row">\n        <div class=\'col-sm-12 well\'>\n            <h4>Allocation</h4>\n        </div>\n    </div>\n\n</div>\n';
+
+}
+return __p
+};
+
 this["JST"]["dashboard"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;

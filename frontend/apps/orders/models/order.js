@@ -4,6 +4,8 @@ define([
 function(
         Backbone
 ) {
-    var Order = Backbone.Model.extend({});
+    var Order = Backbone.Model.extend({
+        urlRoot: '/order/',
+    });
     return Order;
 });
