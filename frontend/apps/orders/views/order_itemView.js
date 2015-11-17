@@ -8,7 +8,14 @@ function(
 ) {
     var Order_itemView = Mn.ItemView.extend({
         template: JST['order_itemView'],
-        tagName: 'tr'
+        tagName: 'tr',
+        attributes : function () {
+           // Return model data
+           return {
+             id : this.model.get('id'),
+             class: 'pointer'
+           };
+         }
     })
     return Order_itemView;
 });

@@ -1,23 +1,18 @@
-<tr>
     <td>
-        <%= name %>
+        <%= customer.name %>
     </td>
     <td>
-        <%= mobile %>
+        <%= customer.contact %>
     </td>
     <td>
-        <%= date %>
+        <%= on %>
     </td>
     <td>
-        <%= time %>
+        <%= at %>
     </td>
     <td>
-        <% if (beautician != ''){  %><%= beautician %> <% } %>
+        <% if (beautician != null) {  %> <%= beautician.name %> <%}%>
     </td>
     <td>
         <%= status %>
     </td>
-    <td>
-        <button type="button" id="details">Details</button>
-    </td>
-</tr>

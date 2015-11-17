@@ -4,7 +4,7 @@ this["JST"]["dashboard"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<div class="container">\n    <div class="row">\n        <div class=\'col-sm-6 col-sm-offset-3\'>\n            <div class="list-group">\n              <a href="#new" class="list-group-item">New</a>\n              <a href="#confirmed" class="list-group-item">Confirmed</a>\n              <a href="#Allocated" class="list-group-item">Allocated</a>\n              <a href="#Completed" class="list-group-item">Completed</a>\n              <a href="#All" class="list-group-item">All</a>\n              <a href="#lead" class="list-group-item">Lead Data Table</a>\n              <a href="#beauticians" class="list-group-item">Beauticians</a>\n              <a href="#services" class="list-group-item">Services</a>\n            </div>\n        </div>\n    </div>\n</div>\n';
+__p += '<div class="container">\n    <div class="row">\n        <div class=\'col-sm-6 col-sm-offset-3\'>\n            <div class="list-group">\n              <a href="#new" class="list-group-item">New</a>\n              <a href="#confirmed" class="list-group-item">Confirmed</a>\n              <a href="#Allocated" class="list-group-item">Allocated</a>\n              <a href="#Completed" class="list-group-item">Completed</a>\n              <a href="#All" class="list-group-item">All</a>\n              <a href="#lead" class="list-group-item">Lead Data Table</a>\n              <a href="/admin/agent/order/" class="list-group-item">Edit Order Details</a>\n              <a href="/admin/agent/beautician/" class="list-group-item">Beauticians</a>\n              <a href="/admin/agent/service/" class="list-group-item">Services</a>\n            </div>\n        </div>\n    </div>\n</div>\n';
 
 }
 return __p
@@ -36,7 +36,7 @@ this["JST"]["new_orders"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<div class="container">\n    <div class="row">\n        <div class=\'col-sm-12\'>\n            <table>\n                <thead>\n                    <tr>\n                        <td>\n                            Customer\n                        </td>\n                        <td>\n                            Contact\n                        </td>\n                        <td>\n                            Date\n                        </td>\n                        <td>\n                            Time\n                        </td>\n                        <td>\n                            Beautician\n                        </td>\n                        <td>\n                            Status\n                        </td>\n                        <td>\n                            Details\n                        </td>\n                    </tr>\n                </thead>\n                <tbody>\n\n                </tbody>\n            </table>\n        </div>\n    </div>\n</div>\n';
+__p += '<div class="container">\n    <div class="row">\n        <div class=\'col-sm-12\'>\n            <table class=\'table table-hover table-bordered\'>\n                <thead>\n                    <tr>\n                        <td>\n                            Customer\n                        </td>\n                        <td>\n                            Contact\n                        </td>\n                        <td>\n                            Date\n                        </td>\n                        <td>\n                            Time\n                        </td>\n                        <td>\n                            Beautician\n                        </td>\n                        <td>\n                            Status\n                        </td>\n                    </tr>\n                </thead>\n                <tbody>\n\n                </tbody>\n            </table>\n        </div>\n    </div>\n</div>\n';
 
 }
 return __p
@@ -57,23 +57,23 @@ obj || (obj = {});
 var __t, __p = '', __e = _.escape, __j = Array.prototype.join;
 function print() { __p += __j.call(arguments, '') }
 with (obj) {
-__p += '<tr>\n    <td>\n        ' +
-((__t = ( name )) == null ? '' : __t) +
+__p += '    <td>\n        ' +
+((__t = ( customer.name )) == null ? '' : __t) +
 '\n    </td>\n    <td>\n        ' +
-((__t = ( mobile )) == null ? '' : __t) +
+((__t = ( customer.contact )) == null ? '' : __t) +
 '\n    </td>\n    <td>\n        ' +
-((__t = ( date )) == null ? '' : __t) +
+((__t = ( on )) == null ? '' : __t) +
 '\n    </td>\n    <td>\n        ' +
-((__t = ( time )) == null ? '' : __t) +
+((__t = ( at )) == null ? '' : __t) +
 '\n    </td>\n    <td>\n        ';
- if (beautician != ''){  ;
-__p +=
-((__t = ( beautician )) == null ? '' : __t) +
+ if (beautician != null) {  ;
+__p += ' ' +
+((__t = ( beautician.name )) == null ? '' : __t) +
 ' ';
- } ;
+};
 __p += '\n    </td>\n    <td>\n        ' +
 ((__t = ( status )) == null ? '' : __t) +
-'\n    </td>\n    <td>\n        <button type="button" id="details">Details</button>\n    </td>\n</tr>\n';
+'\n    </td>\n';
 
 }
 return __p

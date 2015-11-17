@@ -6,10 +6,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.core import serializers
 from django.utils.html import escape
 import json
-from django.core.serializers.json import DjangoJSONEncoder
-
 from agent.models import User
-import simplejson
 
 
 def main(request):
@@ -43,12 +40,3 @@ def logout(request):
         return HttpResponse(status=200)
     except Exception,e:
         return HttpResponse(status=500)
-
-
-def new_orders(request):
-    try:
-        payload = [ {'no':1 } ]
-        return HttpResponse(simplejson.dumps(payload))
-    except Exception,e:
-        print e
-        return HttpResponse(status= 500)

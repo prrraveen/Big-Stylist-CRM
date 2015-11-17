@@ -17,8 +17,10 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
 
-    'agent'
+    'agent',
+    'orders'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -94,9 +96,11 @@ STATICFILES_DIRS = (
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
 )
-
-
-#
-# TEMPLATE_DIRS = (
-#     os.path.join(BASE_DIR , "../frontend"),
-# )
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        # 'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+        # 'rest_framework.renderers.<corresponding_renderer>',
+    ]
+}

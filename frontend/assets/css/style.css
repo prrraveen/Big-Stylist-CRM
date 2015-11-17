@@ -1,3 +1,7 @@
 #brand-logo{
     width: 40%;
 }
+
+.pointer {
+    cursor: pointer;
+}
