@@ -5,6 +5,7 @@ require.config({
         backbone:   'assets/libs/backbone/backbone',
         marionette: 'assets/libs/backbone.marionette/lib/backbone.marionette',
         bootstrap:  'assets/libs/bootstrap/dist/js/bootstrap',
+        select2:    'assets/libs/select2/dist/js/select2.min',
         templates:  'assets/js/templates',
 
     },
@@ -24,6 +25,11 @@ require.config({
         'bootstrap': {
             deps: ['jquery'],
             exports: 'bootstrap',
+        },
+        'select2':{
+            deps: ['jquery'],
+            exports: 'select2'
+
         }
     },
 
@@ -57,6 +63,17 @@ function (  Mn,
         Backbone.history.start();
     })
 
-
+    var get_static_data = function(){
+        if(!window.localStorage.getItem('static_data'))
+        {
+            $.get('/static_data/')
+            .done(function(data){
+                window.localStorage.setItem('static_data', JSON.stringify(data))
+            })
+            .always(function(){
+            })
+        }
+    }
+    get_static_data();
     app.start();
 });

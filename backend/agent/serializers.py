@@ -14,7 +14,7 @@ class ServiceSerializer(serializers.ModelSerializer):
 class BeauticianSerializer(serializers.ModelSerializer):
     class Meta:
         model = Beautician
-        fields = ('name' ,'locality')
+        fields = ('id' , 'name' ,'locality', 'phone_number' ,'alternate_number')
 
 class OrderSerializer(serializers.ModelSerializer):
     customer = CustomerSerializer(read_only = True)
@@ -23,6 +23,27 @@ class OrderSerializer(serializers.ModelSerializer):
     status = serializers.SerializerMethodField()
     class Meta:
         model = Order
-        fields = ('customer', 'status', 'services','amount' ,'discount','id' , 'placedat' , 'on' , 'at' , 'beautician')
+        fields = ('customer',
+                  'status',
+                  'services',
+                  'amount',
+                  'discount',
+                  'id',
+                  'placedat',
+                  'on',
+                  'at',
+                  'beautician',
+                  'allocation_status'
+                  )
     def get_status(self,obj):
         return obj.get_status_display()
+
+class BeauticianSerializer(serializers.ModelSerializer):
+    text = serializers.SerializerMethodField('get_name')
+    class Meta:
+        model = Beautician
+        fields = ('text',
+                  'id'
+                  )
+    def get_name(self, obj):
+        return obj.name

@@ -20,7 +20,9 @@ function(
         },
 
         get_profile: function () {
-            return JSON.parse(window.localStorage.getItem('profile'));
+            var profile =  JSON.parse(window.localStorage.getItem('profile'));
+            if(profile)
+                return profile
         },
 
         set_profile: function (profile) {
@@ -29,7 +31,8 @@ function(
 
         get_name: function () {
             var profile = JSON.parse(window.localStorage.getItem('profile'));
-            return profile.name;
+            if(profile)
+                return profile.name;
         },
 
         logout: function () {

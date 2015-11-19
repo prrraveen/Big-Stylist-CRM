@@ -7,7 +7,12 @@ from django.core import serializers
 from django.utils.html import escape
 import json
 from agent.models import User
-
+from rest_framework.decorators import api_view
+from rest_framework.renderers import JSONRenderer
+from rest_framework.parsers import JSONParser
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from .models import ORDER_STATUS , ALLOCATION_STATUS
 
 def main(request):
     return render_to_response('index.html')
@@ -40,3 +45,10 @@ def logout(request):
         return HttpResponse(status=200)
     except Exception,e:
         return HttpResponse(status=500)
+
+@api_view(['GET'])
+def static_data(request):
+    payload = {}
+    payload['order_status'] =  dict(ORDER_STATUS)
+    payload['allocation_status'] =  dict(ALLOCATION_STATUS)
+    return Response(payload)

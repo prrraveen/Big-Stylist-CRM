@@ -10,8 +10,8 @@ from rest_framework.parsers import JSONParser
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
-from agent.models import Order , ORDER_STATUS
-from agent.serializers import OrderSerializer
+from agent.models import Order , ORDER_STATUS ,Beautician
+from agent.serializers import OrderSerializer, BeauticianSerializer
 
 @api_view(['GET'])
 def orders(request , typ):
@@ -38,3 +38,25 @@ def order_detail(request, order_id):
         return Response(payload.data)
     except ObjectDoesNotExist:
         return Response(status= 403)
+
+@api_view(['GET'])
+def search_beautician(request):
+    q = request.GET.get('q', '')
+    beauticians = Beautician.objects.filter(name__contains = q)
+    payload = BeauticianSerializer(beauticians, many=True)
+    return Response(payload.data)
+
+@api_view(['GET'])
+def allocate_manually(request):
+    order_id = request.GET.get('order_id')
+    beautician_id = request.GET.get('beautician_id')
+
+    order = Order.objects.get(id = order_id)
+    beautician = Beautician.objects.get(id = beautician_id)
+
+    order.beautician = beautician
+    order.allocation_status = 3
+    order.save()
+
+    payload = OrderSerializer(order)
+    return Response(payload.data)

@@ -5,7 +5,7 @@ obj || (obj = {});
 var __t, __p = '', __e = _.escape, __j = Array.prototype.join;
 function print() { __p += __j.call(arguments, '') }
 with (obj) {
-__p += '<div class="container">\n    <div class="row">\n        <div class=\'col-sm-5 well\'>\n            <h4>Customer Detail</h4>\n            <div class="row">\n                <div class=\'col-sm-3\'>\n                    <label for="Name">Name</label>\n                </div>\n                <div class=\'col-sm-9\'>\n                    ' +
+__p += '<div class="container">\n    <div class="row">\n        <div class=\'col-sm-6 well\'>\n            <h4>Customer Detail</h4>\n            <div class="row">\n                <div class=\'col-sm-3\'>\n                    <label for="Name">Name</label>\n                </div>\n                <div class=\'col-sm-9\'>\n                    ' +
 ((__t = ( customer.name )) == null ? '' : __t) +
 '\n                </div>\n            </div>\n            <div class="row">\n                <div class=\'col-sm-3\'>\n                    <label for="Name">Contact</label>\n                </div>\n                <div class=\'col-sm-9\'>\n                    ' +
 ((__t = ( customer.contact )) == null ? '' : __t) +
@@ -15,7 +15,7 @@ __p += '<div class="container">\n    <div class="row">\n        <div class=\'col
 ((__t = ( customer.address )) == null ? '' : __t) +
 '\n                </div>\n            </div>\n            <div class="row">\n                <div class=\'col-sm-12\'>\n                    <a href="/admin/agent/customer/' +
 ((__t = ( customer.id )) == null ? '' : __t) +
-'/">Edit customer details</a>\n                </div>\n            </div>\n        </div>\n        <div class=\'col-sm-6 col-sm-offset-1 well\'>\n            <h4>Order Detail</h4>\n            <div class="row">\n                <div class=\'col-sm-12\'>\n                <label for="">Services</label>\n                </div>\n                <ul>\n                    ';
+'/">Edit customer details</a>\n                </div>\n            </div>\n        </div>\n        <div class=\'col-sm-5 col-sm-offset-1 well\'>\n            <h4>Order Detail</h4>\n            <div class="row">\n                <div class=\'col-sm-12\'>\n                <label for="">Services</label>\n                </div>\n                <ul>\n                    ';
  _.each(services, function(service){ ;
 __p += '\n                        <a href="' +
 ((__t = ( service.lp )) == null ? '' : __t) +
@@ -23,25 +23,53 @@ __p += '\n                        <a href="' +
 ((__t = ( service.name )) == null ? '' : __t) +
 '</a>\n                    ';
  }) ;
-__p += '\n                </ul>\n            </div>\n            <div class="row">\n                <div class=\'col-sm-3\'>\n                    <label for="">Amount</label>\n                </div>\n                <div class=\'col-sm-9\'>\n                    ' +
+__p += '\n                </ul>\n            </div>\n            <div class="row">\n                <div class=\'col-sm-4\'>\n                    <label for="">Amount</label>\n                </div>\n                <div class=\'col-sm-8\'>\n                    ' +
 ((__t = ( amount )) == null ? '' : __t) +
-'\n                </div>\n            </div>\n            <div class="row">\n                <div class=\'col-sm-3\'>\n                    <label for="">Discount</label>\n                </div>\n                <div class=\'col-sm-9\'>\n                    ' +
+'\n                </div>\n            </div>\n            <div class="row">\n                <div class=\'col-sm-4\'>\n                    <label for="">Discount</label>\n                </div>\n                <div class=\'col-sm-8\'>\n                    ' +
 ((__t = ( discount )) == null ? '' : __t) +
-'\n                </div>\n            </div>\n            <div class="row">\n                <div class=\'col-sm-3\'>\n                    <label for="">Placed On</label>\n                </div>\n                <div class=\'col-sm-9\'>\n                    ';
+'\n                </div>\n            </div>\n            <div class="row">\n                <div class=\'col-sm-4\'>\n                    <label for="">Placed On</label>\n                </div>\n                <div class=\'col-sm-8\'>\n                    ';
  if(placedat != null) ;
 __p += '\n                        ' +
 ((__t = ( placedat )) == null ? '' : __t) +
-'\n                </div>\n            </div>\n            <div class="row">\n                <div class=\'col-sm-3\'>\n                    <label for="">Scheduled On</label>\n                </div>\n                <div class=\'col-sm-9\'>\n                    ';
+'\n                </div>\n            </div>\n            <div class="row">\n                <div class=\'col-sm-4\'>\n                    <label for="">Scheduled On</label>\n                </div>\n                <div class=\'col-sm-8\'>\n                    ';
  if(on != null) ;
 __p += '\n                        ' +
 ((__t = ( on )) == null ? '' : __t) +
-'\n                </div>\n            </div>\n            <div class="row">\n                <div class=\'col-sm-3\'>\n                    <label for="">Scheduled at</label>\n                </div>\n                <div class=\'col-sm-9\'>\n                    ';
+'\n                </div>\n            </div>\n            <div class="row">\n                <div class=\'col-sm-4\'>\n                    <label for="">Scheduled at</label>\n                </div>\n                <div class=\'col-sm-8\'>\n                    ';
  if(at != null) ;
 __p += '\n                        ' +
 ((__t = ( at )) == null ? '' : __t) +
 '\n                </div>\n            </div>\n            <div class="row">\n                <div class=\'col-sm-12\'>\n                    <a href="/admin/agent/order/' +
 ((__t = ( id )) == null ? '' : __t) +
-'/">Edit Order Details</a>\n                </div>\n            </div>\n        </div>\n    </div>\n\n    <div class="row">\n        <div class=\'col-sm-12 well\'>\n            <h4>Allocation</h4>\n        </div>\n    </div>\n\n</div>\n';
+'/">Edit Order Details</a>\n                </div>\n            </div>\n        </div>\n    </div>\n\n    <div class="row">\n        <div class=\'col-sm-6 well\'>\n            <h4>Status and Allocation</h4>\n            <div class="row">\n                <div class=\'col-sm-3\'>\n                    <label for="">Current Status</label>\n                </div>\n                <div class=\'col-sm-9\'>\n                    ' +
+((__t = ( status )) == null ? '' : __t) +
+'\n                </div>\n            </div>\n            <div class="row">\n                <div class=\'col-sm-3\'>\n                    <h5><label for="">Change To</label></h5>\n                </div>\n                <div class=\'col-sm-5\'>\n                    <select class="form-control">\n                        ';
+ for(var i in order_status) { ;
+__p += '\n                            <option value="' +
+((__t = ( i )) == null ? '' : __t) +
+'">' +
+((__t = ( order_status[i] )) == null ? '' : __t) +
+'</option>\n                        ';
+ } ;
+__p += '\n                    </select>\n                </div>\n            </div>\n            <div class="row">\n                <div class=\'col-sm-3\'>\n                    <label for="">Allocation Status</label>\n                </div>\n                <div class=\'col-sm-9\'>\n                    <h5>\n                        ' +
+((__t = ( allocation_status_dict[allocation_status] )) == null ? '' : __t) +
+'\n                    </h5>\n                </div>\n            </div>\n            <div class="row">\n                <div class=\'col-sm-3\'>\n                    <h5><label for="">Reallocation</label></h5>\n                </div>\n                <div class=\'col-sm-9\'>\n                    <button id=\'reallocation\' class=\'btn btn-primary\'>Next Best Reallocation</button>\n                </div>\n            </div>\n            <div class="row">\n                <div class=\'col-sm-3\'>\n                    <h5><label for="">Allocate Manually</label></h5>\n                </div>\n                <div class=\'col-sm-9\'>\n                    <select id="search-beautician" class=\'form-control form-input\'>\n                        <option id=\'-1\' selected="selected">Select a Beautician</option>\n                    </select>\n                </div>\n            </div>\n\n        </div>\n        <div class=\'col-sm-5 col-sm-offset-1 well\'>\n            <h4>Beautician</h4>\n            ';
+ if(beautician) {;
+__p += '\n            <div class="row">\n                <div class=\'col-sm-3\'>\n                    <label for="">Name</label>\n                </div>\n                <div class=\'col-sm-9\'>\n                    ' +
+((__t = ( beautician.name )) == null ? '' : __t) +
+'\n                </div>\n            </div>\n            <div class="row">\n                <div class=\'col-sm-3\'>\n                    <label for="">Contact</label>\n                </div>\n                <div class=\'col-sm-9\'>\n                    ' +
+((__t = ( beautician.phone_number )) == null ? '' : __t) +
+'\n                </div>\n            </div>\n            <div class="row">\n                <div class=\'col-sm-3\'>\n                    <label for="">Alternate</label>\n                </div>\n                <div class=\'col-sm-9\'>\n                    ' +
+((__t = ( beautician.alternate_number )) == null ? '' : __t) +
+'\n                </div>\n            </div>\n            <div class="row">\n                <div class=\'col-sm-3\'>\n                    <label for="">Locality</label>\n                </div>\n                <div class=\'col-sm-9\'>\n                    ' +
+((__t = ( beautician.locality )) == null ? '' : __t) +
+'\n                </div>\n            </div>\n            <div class="row">\n                <div class=\'col-sm-12\'>\n                    <a href="/admin/agent/beautician/' +
+((__t = ( beautician.id )) == null ? '' : __t) +
+'/">Edit Beautician details</a>\n                </div>\n            </div>\n\n            ';
+}else {;
+__p += '\n                <div class="row">\n                    <div class=\'col-sm-12\'>\n                        Not allocated yet\n                    </div>\n                </div>\n            ';
+};
+__p += '\n\n        </div>\n    </div>\n</div>\n';
 
 }
 return __p

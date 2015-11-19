@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row">
-        <div class='col-sm-5 well'>
+        <div class='col-sm-6 well'>
             <h4>Customer Detail</h4>
             <div class="row">
                 <div class='col-sm-3'>
@@ -40,7 +40,7 @@
                 </div>
             </div>
         </div>
-        <div class='col-sm-6 col-sm-offset-1 well'>
+        <div class='col-sm-5 col-sm-offset-1 well'>
             <h4>Order Detail</h4>
             <div class="row">
                 <div class='col-sm-12'>
@@ -53,44 +53,44 @@
                 </ul>
             </div>
             <div class="row">
-                <div class='col-sm-3'>
+                <div class='col-sm-4'>
                     <label for="">Amount</label>
                 </div>
-                <div class='col-sm-9'>
+                <div class='col-sm-8'>
                     <%= amount %>
                 </div>
             </div>
             <div class="row">
-                <div class='col-sm-3'>
+                <div class='col-sm-4'>
                     <label for="">Discount</label>
                 </div>
-                <div class='col-sm-9'>
+                <div class='col-sm-8'>
                     <%= discount %>
                 </div>
             </div>
             <div class="row">
-                <div class='col-sm-3'>
+                <div class='col-sm-4'>
                     <label for="">Placed On</label>
                 </div>
-                <div class='col-sm-9'>
+                <div class='col-sm-8'>
                     <% if(placedat != null) %>
                         <%= placedat %>
                 </div>
             </div>
             <div class="row">
-                <div class='col-sm-3'>
+                <div class='col-sm-4'>
                     <label for="">Scheduled On</label>
                 </div>
-                <div class='col-sm-9'>
+                <div class='col-sm-8'>
                     <% if(on != null) %>
                         <%= on %>
                 </div>
             </div>
             <div class="row">
-                <div class='col-sm-3'>
+                <div class='col-sm-4'>
                     <label for="">Scheduled at</label>
                 </div>
-                <div class='col-sm-9'>
+                <div class='col-sm-8'>
                     <% if(at != null) %>
                         <%= at %>
                 </div>
@@ -104,9 +104,107 @@
     </div>
 
     <div class="row">
-        <div class='col-sm-12 well'>
-            <h4>Allocation</h4>
+        <div class='col-sm-6 well'>
+            <h4>Status and Allocation</h4>
+            <div class="row">
+                <div class='col-sm-3'>
+                    <label for="">Current Status</label>
+                </div>
+                <div class='col-sm-9'>
+                    <%= status %>
+                </div>
+            </div>
+            <div class="row">
+                <div class='col-sm-3'>
+                    <h5><label for="">Change To</label></h5>
+                </div>
+                <div class='col-sm-5'>
+                    <select class="form-control">
+                        <% for(var i in order_status) { %>
+                            <option value="<%= i %>"><%= order_status[i] %></option>
+                        <% } %>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class='col-sm-3'>
+                    <label for="">Allocation Status</label>
+                </div>
+                <div class='col-sm-9'>
+                    <h5>
+                        <%= allocation_status_dict[allocation_status] %>
+                    </h5>
+                </div>
+            </div>
+            <div class="row">
+                <div class='col-sm-3'>
+                    <h5><label for="">Reallocation</label></h5>
+                </div>
+                <div class='col-sm-9'>
+                    <button id='reallocation' class='btn btn-primary'>Next Best Reallocation</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class='col-sm-3'>
+                    <h5><label for="">Allocate Manually</label></h5>
+                </div>
+                <div class='col-sm-9'>
+                    <select id="search-beautician" class='form-control form-input'>
+                        <option id='-1' selected="selected">Select a Beautician</option>
+                    </select>
+                </div>
+            </div>
+
+        </div>
+        <div class='col-sm-5 col-sm-offset-1 well'>
+            <h4>Beautician</h4>
+            <% if(beautician) {%>
+            <div class="row">
+                <div class='col-sm-3'>
+                    <label for="">Name</label>
+                </div>
+                <div class='col-sm-9'>
+                    <%= beautician.name %>
+                </div>
+            </div>
+            <div class="row">
+                <div class='col-sm-3'>
+                    <label for="">Contact</label>
+                </div>
+                <div class='col-sm-9'>
+                    <%= beautician.phone_number %>
+                </div>
+            </div>
+            <div class="row">
+                <div class='col-sm-3'>
+                    <label for="">Alternate</label>
+                </div>
+                <div class='col-sm-9'>
+                    <%= beautician.alternate_number %>
+                </div>
+            </div>
+            <div class="row">
+                <div class='col-sm-3'>
+                    <label for="">Locality</label>
+                </div>
+                <div class='col-sm-9'>
+                    <%= beautician.locality %>
+                </div>
+            </div>
+            <div class="row">
+                <div class='col-sm-12'>
+                    <a href="/admin/agent/beautician/<%= beautician.id %>/">Edit Beautician details</a>
+                </div>
+            </div>
+
+            <%}else {%>
+                <div class="row">
+                    <div class='col-sm-12'>
+                        Not allocated yet
+                    </div>
+                </div>
+            <%}%>
+
         </div>
     </div>
-
 </div>
