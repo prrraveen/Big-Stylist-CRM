@@ -25,12 +25,10 @@ admin.site.register(Service, ServiceAdmin)
 from .models import Beautician
 class BeauticianAdmin(admin.ModelAdmin):
     list_display = ('name', 'availability')
-    list_display = ('name', 'availability')
 admin.site.register(Beautician, BeauticianAdmin)
 
 from .models import Customer
 class CustomerAdmin(admin.ModelAdmin):
-    # list_display = ('name', 'gender', 'contact','locality' , 'address')
     list_display = ('name', 'gender', 'contact','address')
 admin.site.register(Customer, CustomerAdmin)
 
