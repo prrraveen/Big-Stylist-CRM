@@ -22,6 +22,7 @@
     "jquery": "~2.1.4",
     "underscore": "~1.8.3",
     "backbone.marionette": "marionette#~2.4.3",
-    "requirejs": "~2.1.21"
+    "requirejs": "~2.1.21",
+    "select2": "https://github.com/select2/select2.git#~4.0.0"
   }
 }
