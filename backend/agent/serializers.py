@@ -10,7 +10,7 @@ from .models import Service
 class ServiceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Service
-        fields = ('id','name', 'services','lp')
+        fields = ('id','name', 'packages','lp')
 
 
 from .models import Beautician
