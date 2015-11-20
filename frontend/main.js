@@ -74,6 +74,17 @@ function (  Mn,
             })
         }
     }
+    var add_ajax_loader = function(){
+        var $loading = $('#ajax-spinner').hide();
+        $(document)
+          .ajaxStart(function () {
+            $loading.show();
+          })
+          .ajaxStop(function () {
+            $loading.hide();
+          });
+    }
     get_static_data();
+    add_ajax_loader();
     app.start();
 });
