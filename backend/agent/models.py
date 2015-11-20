@@ -1,5 +1,11 @@
 from django.db import models
 
+# Create your models here.
+class User(models.Model):
+    name = models.CharField(max_length=80)
+    email = models.EmailField(primary_key=True)
+    password = models.CharField(max_length=80)
+
 class Pincode(models.Model):
     pincode = models.CharField(max_length=6)
     localities = models.ManyToManyField('Locality')
@@ -11,11 +17,16 @@ class Locality(models.Model):
     def __unicode__(self):
         return self.name
 
-# Create your models here.
-class User(models.Model):
-    name = models.CharField(max_length=80)
-    email = models.EmailField(primary_key=True)
-    password = models.CharField(max_length=80)
+
+class Service(models.Model):
+    name = models.CharField(max_length=100 , unique = True)
+    packages = models.CharField(max_length=500)
+    price = models.IntegerField()
+    source = models.CharField(max_length=100 , blank = True)
+    typ = models.CharField(max_length=20 , blank = True)
+    lp = models.URLField(blank = True)
+    def __unicode__(self):
+        return self.name
 
 GENDER_CHOICES = (
     ('M', 'Male'),
@@ -34,6 +45,7 @@ AVAILABLE = (
     ('NA', 'Single')
 )
 class Beautician(models.Model):
+    Services =          models.ManyToManyField('Service' , null=True , blank=True)
     name =              models.CharField(max_length=100)
     gender =            models.CharField(max_length=1 , choices=GENDER_CHOICES)
     marital_status =    models.CharField(max_length=1 , choices=MARITAL_STATUS)
@@ -45,25 +57,14 @@ class Beautician(models.Model):
     phone_number =      models.CharField(max_length=11 )
     alternate_number =  models.CharField(max_length=11 , blank = True)
     address =           models.CharField(max_length = 1000 , blank = True)
-    locality =          models.CharField(max_length=100)
-    services =          models.ManyToManyField('Service')
+    locality =          models.CharField(max_length=100, blank =True)
     employment_status = models.CharField(max_length = 1 , choices = EMPLOYMENT_STATUS , blank = True)
     availability =      models.CharField(max_length=2 , choices=AVAILABLE,blank=True)
-    # pincode =           models.ForeignKey('Pincode' , related_name='beautician_pincode')
-    # serving_in =        models.ManyToManyField('Pincode', related_name = 'beautician_pincode_server_in')
+    pincode =           models.ForeignKey('Pincode' , related_name='beautician_pincode' , null=True , blank=True)
+    serving_in =        models.ManyToManyField('Pincode', related_name = 'beautician_pincode_server_in' , null=True , blank=True)
     def __unicode__(self):
         return self.name + ', ' + self.locality
 
-
-class Service(models.Model):
-    name = models.CharField(max_length=100 , unique = True)
-    services = models.CharField(max_length=500)
-    price = models.IntegerField()
-    source = models.CharField(max_length=100 , blank = True)
-    typ = models.CharField(max_length=20 , blank = True)
-    lp = models.URLField(blank = True)
-    def __unicode__(self):
-        return self.name
 
 
 class Customer(models.Model):
@@ -71,8 +72,8 @@ class Customer(models.Model):
     gender   = models.CharField(max_length=1 , choices=GENDER_CHOICES,default = 'M')
     contact  = models.CharField(max_length=10 , blank = True)
     address  = models.CharField(max_length = 500 , blank = True)
-    # locality = models.ForeignKey('Locality')
-    # pincode  = models.ForeignKey('Pincode')
+    locality = models.ForeignKey('Locality' , null=True , blank =True)
+    pincode  = models.ForeignKey('Pincode',null=True , blank =True)
     def __unicode__(self):
         return self.name
 
