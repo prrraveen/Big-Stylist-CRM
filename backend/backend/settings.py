@@ -20,6 +20,7 @@ INSTALLED_APPS = (
     'rest_framework',
 
     'agent',
+    'example',
     'orders'
 )
 
@@ -118,5 +119,4 @@ REST_FRAMEWORK = {
     ),
 }
 
-# GEOS_LIBRARY_PATH = '/home/ubu12/Downloads/geos-3.3.8/capi/.libs/libgeos_c.so'
-# GDAL_LIBRARY_PATH = '/home/ubu12/Downloads/gdal-1.9.2/.libs/libgdal.so'
+TIME_BUFFER = 2 #2 hours time buffer for scheduling orders

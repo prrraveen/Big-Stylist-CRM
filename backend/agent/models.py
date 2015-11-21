@@ -115,4 +115,4 @@ class Order(models.Model):
     at =  models.TimeField(null = True , blank=True)
     allocation_status = models.IntegerField(choices = ALLOCATION_STATUS ,default = 1)
     beautician = models.ForeignKey('Beautician' , null = True , blank= True)
-    allocation_distance = models.DecimalField(max_digits=5, decimal_places=2 ,null =True)
+    allocation_distance = models.DecimalField(max_digits=5, decimal_places=2 ,null =True, blank=True)
