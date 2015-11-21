@@ -7,4 +7,5 @@ urlpatterns = patterns('',
     url(r'^search/beautician/$',  search_beautician),
     url(r'^allocation/manual/$',  allocate_manually),
     url(r'^allocate/auto/$',  allocate_auto),
+    url(r'^allocate/reallocate/$',  reallocate),
     )

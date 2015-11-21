@@ -71,15 +71,15 @@ def allocate_auto(request):
     lower_time_bound = lower_time_bound.time()
     upper_time_bound = datetime.combine(date.today(), order.at) + timedelta(hours=TIME_BUFFER)
     upper_time_bound = upper_time_bound.time()
-
+    skiped_beauticians_list = get_skiped_beautician(order=order)
     for kilometers in range_step(1, 20, 0.5):
         ids = get_beautician(user_lat = order.customer.lat,user_lng = order.customer.lng ,distance = kilometers)
-        for pk in ids:
+        selectable_id = [x for x in ids if x not in skiped_beauticians_list]
+        for pk in selectable_id:
             beautician = Beautician.objects.get(pk=pk)
             try:
                 scheduled_orders = Order.objects.get(beautician = beautician, on = order.on , at__gt = lower_time_bound , at__lt = upper_time_bound)
             except ObjectDoesNotExist:
-                print 'inside DoesNotExist'
                 order.beautician = beautician
                 order.allocation_status = 2
                 order.status = 2
@@ -109,3 +109,19 @@ def get_beautician(user_lat,user_lng,distance):
     cursor.execute(query)
     ids = [row[0] for row in cursor.fetchall()]
     return ids
+
+@api_view(['GET'])
+def reallocate(request):
+    order_id = request.GET.get('order_id')
+    order = Order.objects.get(id = order_id)
+    order.skiped_beautician.add(order.beautician)
+    order.save()
+    response = allocate_auto(request)
+    return response
+
+def get_skiped_beautician(order):
+    skiped_beauticians = order.skiped_beautician.all()
+    skiped_beauticians_list = []
+    for beautician in skiped_beauticians:
+        skiped_beauticians_list.append(beautician.id)
+    return skiped_beauticians_list

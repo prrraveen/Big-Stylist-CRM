@@ -78,10 +78,10 @@ function (  Mn,
         var $loading = $('#ajax-spinner').hide();
         $(document)
           .ajaxStart(function () {
-            $loading.show();
+              $loading.show();
           })
           .ajaxStop(function () {
-            $loading.hide();
+              $loading.hide();
           });
     }
     get_static_data();

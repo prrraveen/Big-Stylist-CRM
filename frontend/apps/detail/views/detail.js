@@ -17,10 +17,12 @@ function(
         ui : {
             search_beautician: '#search-beautician',
             status_change:     '#status-change',
+            reallocation:      '#reallocation',
         },
         events: {
             'change @ui.search_beautician': 'allocate_manually',
-            'change @ui.status_change':     'on_status_change'
+            'change @ui.status_change':     'on_status_change',
+            'click @ui.reallocation':       'reallocation',
         },
         onRender: function(){
             this.ui.search_beautician.select2({
@@ -90,9 +92,27 @@ function(
             })
             .fail(function(){
                 alert('Failed , try reallocation or manual allocation')
+                debugger
+                _this.ui.status_change.val(_this.model.get('status'))
             })
-
         },
+
+        reallocation: function(){
+            var _this = this
+            $.get('/allocate/reallocate/',
+            {
+                order_id : _this.model.id
+            })
+            .done(function(){
+                _this.model.attributes = data
+                _this.render();
+            })
+            .fail(function(){
+                alert('Failed , try reallocation or manual allocation')
+                _this.ui.status_change.val(_this.model.get('status'))
+            })
+        }
+
     })
     return Detail;
 });

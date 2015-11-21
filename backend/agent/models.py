@@ -114,5 +114,6 @@ class Order(models.Model):
     on =  models.DateField(null = True , blank=True)
     at =  models.TimeField(null = True , blank=True)
     allocation_status = models.IntegerField(choices = ALLOCATION_STATUS ,default = 1)
-    beautician = models.ForeignKey('Beautician' , null = True , blank= True)
+    beautician = models.ForeignKey('Beautician' , null = True , blank= True ,related_name='allocated')
     allocation_distance = models.DecimalField(max_digits=5, decimal_places=2 ,null =True, blank=True)
+    skiped_beautician = models.ManyToManyField('Beautician',null = True , blank= True , related_name='skiped_beautician')
