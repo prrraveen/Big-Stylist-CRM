@@ -144,3 +144,11 @@ def Haversin(origin, destination):
     d = radius * c
     # import pdb; pdb.set_trace()
     return d
+@api_view(['GET'])
+def change_status(request):
+    order_id = request.GET.get('order_id')
+    order = Order.objects.get(id = order_id)
+    order.status = request.GET.get('status')
+    order.save()
+    response = Response('',status=200)
+    return response

@@ -41,13 +41,15 @@ __p += '\n                        ' +
 ((__t = ( at )) == null ? '' : __t) +
 '\n                </div>\n            </div>\n            <div class="row">\n                <div class=\'col-sm-12\'>\n                    <a href="/admin/agent/order/' +
 ((__t = ( id )) == null ? '' : __t) +
-'/">Edit Order Details</a>\n                </div>\n            </div>\n        </div>\n    </div>\n\n    <div class="row">\n        <div class=\'col-sm-6 well\'>\n            <h4>Status and Allocation</h4>\n            <div class="row">\n                <div class=\'col-sm-3\'>\n                    <label for="">Current Status</label>\n                </div>\n                <div class=\'col-sm-9\'>\n                    ' +
-((__t = ( status )) == null ? '' : __t) +
-'\n                </div>\n            </div>\n            <div class="row">\n                <div class=\'col-sm-3\'>\n                    <h5><label for="">Change To</label></h5>\n                </div>\n                <div class=\'col-sm-5\'>\n                    <select class="form-control" id=\'status-change\'>\n                        ';
+'/">Edit Order Details</a>\n                </div>\n            </div>\n        </div>\n    </div>\n\n    <div class="row">\n        <div class=\'col-sm-6 well\'>\n            <h4>Allocation</h4>\n            <div class="row">\n                <div class=\'col-sm-3\'>\n                    <h5><label for="">Change To</label></h5>\n                </div>\n                <div class=\'col-sm-5\'>\n                    <select class="form-control" id=\'status-change\'>\n                        ';
  for(var i in order_status) { ;
 __p += '\n                            <option value="' +
 ((__t = ( i )) == null ? '' : __t) +
-'">' +
+'"\n                                ';
+ if(status== order_status[i]) {;
+__p += ' selected ';
+};
+__p += '\n\n                            >' +
 ((__t = ( order_status[i] )) == null ? '' : __t) +
 '</option>\n                        ';
  } ;

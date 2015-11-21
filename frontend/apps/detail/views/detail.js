@@ -68,6 +68,16 @@ function(
         on_status_change: function(){
             if(this.ui.status_change.val() ==  _.invert(this.get_order_status())['Confirmed'] )
                 this.auto_allocate()
+            else {
+                this.change_status()
+            }
+        },
+        change_status: function(){
+            $.get('/order/change/status',
+            {
+                order_id : this.model.id,
+                status:   this.ui.status_change.val()
+            })
         },
 
         static_data : JSON.parse(window.localStorage.getItem('static_data')),
@@ -92,7 +102,7 @@ function(
             })
             .fail(function(){
                 alert('Failed , try reallocation or manual allocation')
-                _this.ui.status_change.val(_this.model.get('status'))
+                _this.render()
             })
         },
 

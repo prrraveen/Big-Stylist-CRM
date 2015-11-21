@@ -8,4 +8,5 @@ urlpatterns = patterns('',
     url(r'^allocation/manual/$',  allocate_manually),
     url(r'^allocate/auto/$',  allocate_auto),
     url(r'^allocate/reallocate/$',  reallocate),
+    url(r'^order/change/status/$',  change_status),
     )

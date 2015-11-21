@@ -105,15 +105,7 @@
 
     <div class="row">
         <div class='col-sm-6 well'>
-            <h4>Status and Allocation</h4>
-            <div class="row">
-                <div class='col-sm-3'>
-                    <label for="">Current Status</label>
-                </div>
-                <div class='col-sm-9'>
-                    <%= status %>
-                </div>
-            </div>
+            <h4>Allocation</h4>
             <div class="row">
                 <div class='col-sm-3'>
                     <h5><label for="">Change To</label></h5>
@@ -121,7 +113,10 @@
                 <div class='col-sm-5'>
                     <select class="form-control" id='status-change'>
                         <% for(var i in order_status) { %>
-                            <option value="<%= i %>"><%= order_status[i] %></option>
+                            <option value="<%= i %>"
+                                <% if(status== order_status[i]) {%> selected <%}%>
+
+                            ><%= order_status[i] %></option>
                         <% } %>
                     </select>
                 </div>
