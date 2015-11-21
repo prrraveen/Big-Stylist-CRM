@@ -60,14 +60,25 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'mydb',
-        'USER': 'admin',
-         'PASSWORD': 'admin',
-         'HOST': 'localhost',
-         'PORT': '',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'myproject',
+        'USER': 'myprojectuser',
+        'PASSWORD': 'password',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'mydb',
+#         'USER': 'admin',
+#          'PASSWORD': 'admin',
+#          'HOST': 'localhost',
+#          'PORT': '',
+#     }
+# }
 
 
 # Internationalization
@@ -106,3 +117,6 @@ REST_FRAMEWORK = {
         'rest_framework.renderers.JSONRenderer',
     ),
 }
+
+# GEOS_LIBRARY_PATH = '/home/ubu12/Downloads/geos-3.3.8/capi/.libs/libgeos_c.so'
+# GDAL_LIBRARY_PATH = '/home/ubu12/Downloads/gdal-1.9.2/.libs/libgdal.so'

@@ -9,17 +9,18 @@ function(
     var Detail = Mn.ItemView.extend({
         template: JST['detail'],
         templateHelpers:function(){
-            var static_data = JSON.parse(window.localStorage.getItem('static_data'))
             return {
-                order_status: static_data.order_status,
-                allocation_status_dict: static_data.allocation_status
+                order_status: this.get_order_status(),
+                allocation_status_dict: this.get_allocation_data()
             }
         },
         ui : {
             search_beautician: '#search-beautician',
+            status_change:     '#status-change',
         },
         events: {
-            'change @ui.search_beautician' : 'allocate_manually'
+            'change @ui.search_beautician': 'allocate_manually',
+            'change @ui.status_change':     'on_status_change'
         },
         onRender: function(){
             this.ui.search_beautician.select2({
@@ -61,7 +62,28 @@ function(
             .fail(function(){
                 alert('Failed')
             })
-        }
+        },
+        on_status_change: function(){
+            if(this.ui.status_change.val() ==  _.invert(this.get_order_status())['Confirmed'] )
+                this.auto_allocate()
+        },
+
+        static_data : JSON.parse(window.localStorage.getItem('static_data')),
+
+        get_order_status : function(){
+            return this.static_data.order_status
+        },
+
+        get_allocation_data : function(){
+            return this.static_data.allocation_status
+        },
+
+        auto_allocate: function(){
+            $.get('/allocate/auto/',
+            {
+                order_id : this.model.id
+            })
+        },
     })
     return Detail;
 });

@@ -62,6 +62,8 @@ class Beautician(models.Model):
     availability =      models.CharField(max_length=2 , choices=AVAILABLE,blank=True)
     pincode =           models.ForeignKey('Pincode' , related_name='beautician_pincode' , null=True , blank=True)
     serving_in =        models.ManyToManyField('Pincode', related_name = 'beautician_pincode_server_in' , null=True , blank=True)
+    lat=                models.DecimalField(max_digits=10, decimal_places=6 ,null =True)
+    lng=                models.DecimalField(max_digits=10, decimal_places=6 ,null =True)
     def __unicode__(self):
         return self.name + ', ' + self.locality
 
@@ -74,6 +76,8 @@ class Customer(models.Model):
     address  = models.CharField(max_length = 500 , blank = True)
     locality = models.ForeignKey('Locality' , null=True , blank =True)
     pincode  = models.ForeignKey('Pincode',null=True , blank =True)
+    lat=                models.DecimalField(max_digits=10, decimal_places=6 ,null =True)
+    lng=                models.DecimalField(max_digits=10, decimal_places=6 ,null =True)
     def __unicode__(self):
         return self.name
 
@@ -111,3 +115,4 @@ class Order(models.Model):
     at =  models.TimeField(null = True , blank=True)
     allocation_status = models.IntegerField(choices = ALLOCATION_STATUS ,default = 1)
     beautician = models.ForeignKey('Beautician' , null = True , blank= True)
+    allocation_distance = models.DecimalField(max_digits=5, decimal_places=2 ,null =True)

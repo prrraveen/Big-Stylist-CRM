@@ -60,3 +60,24 @@ def allocate_manually(request):
 
     payload = OrderSerializer(order)
     return Response(payload.data)
+
+@api_view(['GET'])
+def allocate_auto(request):
+    order_id = request.GET.get('order_id')
+
+    order = Order.objects.get(id = order_id)
+    ids = get_beautician(user_lat = order.customer.lat,user_lng = order.customer.lng ,distance = 10)
+    # order.allocation_status = 3
+    # order.save()
+    # payload = OrderSerializer(order)
+    return Response(ids)
+
+
+def get_beautician(user_lat,user_lng,distance):
+    from django.db import connection, transaction
+    cursor = connection.cursor()
+    cursor.execute("""SELECT id (6371 * acos(cos(radians(19.111640)) * cos(radians(lat)) *
+                                     cos(radians(lng) - radians(72.908330)) +
+                                     sin(radians(19.111640)) * sin(radians(lng)))) AS distance FROM agent_beautician;""")
+    ids = [row[0] for row in cursor.fetchall()]
+    return ids
