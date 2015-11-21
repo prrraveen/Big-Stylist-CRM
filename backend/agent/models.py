@@ -6,17 +6,18 @@ class User(models.Model):
     email = models.EmailField(primary_key=True)
     password = models.CharField(max_length=80)
 
-class Pincode(models.Model):
-    pincode = models.CharField(max_length=6)
-    localities = models.ManyToManyField('Locality')
-    def __unicode__(self):
-        return self.pincode
-
 class Locality(models.Model):
     name =   models.CharField(max_length=60)
     def __unicode__(self):
         return self.name
 
+class Pincode(models.Model):
+    pincode = models.CharField(max_length=6)
+    localities = models.ManyToManyField('Locality')
+    lat = models.DecimalField(max_digits=10, decimal_places=6)
+    lng = models.DecimalField(max_digits=10, decimal_places=6)
+    def __unicode__(self):
+        return self.pincode
 
 class Service(models.Model):
     name = models.CharField(max_length=100 , unique = True)
@@ -60,10 +61,15 @@ class Beautician(models.Model):
     locality =          models.CharField(max_length=100, blank =True)
     employment_status = models.CharField(max_length = 1 , choices = EMPLOYMENT_STATUS , blank = True)
     availability =      models.CharField(max_length=2 , choices=AVAILABLE,blank=True)
-    pincode =           models.ForeignKey('Pincode' , related_name='beautician_pincode' , null=True , blank=True)
+    pincode =           models.ForeignKey('Pincode' , related_name='beautician_pincode')
     serving_in =        models.ManyToManyField('Pincode', related_name = 'beautician_pincode_server_in' , null=True , blank=True)
-    lat=                models.DecimalField(max_digits=10, decimal_places=6 ,null =True)
-    lng=                models.DecimalField(max_digits=10, decimal_places=6 ,null =True)
+    lat=                models.DecimalField(max_digits=10, decimal_places=6 ,null =True,blank=True)
+    lng=                models.DecimalField(max_digits=10, decimal_places=6 ,null =True,blank=True)
+    def save(self,*args,**kwargs):
+        if (self.lat == None or self.lng == None):
+            self.lat = self.pincode.lat
+            self.lng = self.pincode.lng
+        super(Beautician, self).save(*args, **kwargs)
     def __unicode__(self):
         return self.name + ', ' + self.locality
 
@@ -75,11 +81,18 @@ class Customer(models.Model):
     contact  = models.CharField(max_length=10 , blank = True)
     address  = models.CharField(max_length = 500 , blank = True)
     locality = models.ForeignKey('Locality' , null=True , blank =True)
-    pincode  = models.ForeignKey('Pincode',null=True , blank =True)
-    lat=                models.DecimalField(max_digits=10, decimal_places=6 ,null =True)
-    lng=                models.DecimalField(max_digits=10, decimal_places=6 ,null =True)
+    pincode  = models.ForeignKey('Pincode')
+    lat=       models.DecimalField(max_digits=10, decimal_places=6 ,null =True, blank=True)
+    lng=       models.DecimalField(max_digits=10, decimal_places=6 ,null =True , blank=True)
+
+    def save(self,*args,**kwargs):
+        if (self.lat == None or self.lng == None):
+            self.lat = self.pincode.lat
+            self.lng = self.pincode.lng
+        super(Customer, self).save(*args, **kwargs)
     def __unicode__(self):
         return self.name
+
 
 ORDER_STATUS = (
     (1, 'Received'),
