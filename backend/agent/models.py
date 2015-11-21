@@ -74,7 +74,6 @@ class Beautician(models.Model):
         return self.name + ', ' + self.locality
 
 
-
 class Customer(models.Model):
     name     = models.CharField(max_length=100 , blank = True)
     gender   = models.CharField(max_length=1 , choices=GENDER_CHOICES,default = 'M')
