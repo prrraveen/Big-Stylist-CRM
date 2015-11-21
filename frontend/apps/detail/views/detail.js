@@ -79,10 +79,19 @@ function(
         },
 
         auto_allocate: function(){
+            var _this = this
             $.get('/allocate/auto/',
             {
                 order_id : this.model.id
             })
+            .done(function(){
+                _this.model.attributes = data
+                _this.render();
+            })
+            .fail(function(){
+                alert('Failed , try reallocation or manual allocation')
+            })
+
         },
     })
     return Detail;

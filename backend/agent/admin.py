@@ -35,5 +35,5 @@ admin.site.register(Customer, CustomerAdmin)
 from .models import Order
 class OrderAdmin(admin.ModelAdmin):
     list_display = ('amount', 'status')
-    exclude=('allocation_distance', 'beautician')
+    # exclude=('allocation_distance', 'beautician')
 admin.site.register(Order, OrderAdmin)
