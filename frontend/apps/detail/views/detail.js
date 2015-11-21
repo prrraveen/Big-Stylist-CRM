@@ -86,13 +86,12 @@ function(
             {
                 order_id : this.model.id
             })
-            .done(function(){
+            .done(function(data){
                 _this.model.attributes = data
                 _this.render();
             })
             .fail(function(){
                 alert('Failed , try reallocation or manual allocation')
-                debugger
                 _this.ui.status_change.val(_this.model.get('status'))
             })
         },
@@ -103,7 +102,7 @@ function(
             {
                 order_id : _this.model.id
             })
-            .done(function(){
+            .done(function(data){
                 _this.model.attributes = data
                 _this.render();
             })

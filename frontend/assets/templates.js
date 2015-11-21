@@ -55,15 +55,17 @@ __p += '\n                    </select>\n                </div>\n            </d
 ((__t = ( allocation_status_dict[allocation_status] )) == null ? '' : __t) +
 '\n                    </h5>\n                </div>\n            </div>\n            <div class="row">\n                <div class=\'col-sm-3\'>\n                    <h5><label for="">Reallocation</label></h5>\n                </div>\n                <div class=\'col-sm-9\'>\n                    <button id=\'reallocation\' class=\'btn btn-primary\'>Next Best Reallocation</button>\n                </div>\n            </div>\n            <div class="row">\n                <div class=\'col-sm-3\'>\n                    <h5><label for="">Allocate Manually</label></h5>\n                </div>\n                <div class=\'col-sm-9\'>\n                    <select id="search-beautician" class=\'form-control form-input\'>\n                        <option id=\'-1\' selected="selected">Select a Beautician</option>\n                    </select>\n                </div>\n            </div>\n\n        </div>\n        <div class=\'col-sm-5 col-sm-offset-1 well\'>\n            <h4>Beautician</h4>\n            ';
  if(beautician) {;
-__p += '\n            <div class="row">\n                <div class=\'col-sm-3\'>\n                    <label for="">Name</label>\n                </div>\n                <div class=\'col-sm-9\'>\n                    ' +
+__p += '\n            <div class="row">\n                <div class=\'col-sm-4\'>\n                    <label for="">Name</label>\n                </div>\n                <div class=\'col-sm-8\'>\n                    ' +
 ((__t = ( beautician.name )) == null ? '' : __t) +
-'\n                </div>\n            </div>\n            <div class="row">\n                <div class=\'col-sm-3\'>\n                    <label for="">Contact</label>\n                </div>\n                <div class=\'col-sm-9\'>\n                    ' +
+'\n                </div>\n            </div>\n            <div class="row">\n                <div class=\'col-sm-4\'>\n                    <label for="">Contact</label>\n                </div>\n                <div class=\'col-sm-8\'>\n                    ' +
 ((__t = ( beautician.phone_number )) == null ? '' : __t) +
-'\n                </div>\n            </div>\n            <div class="row">\n                <div class=\'col-sm-3\'>\n                    <label for="">Alternate</label>\n                </div>\n                <div class=\'col-sm-9\'>\n                    ' +
+'\n                </div>\n            </div>\n            <div class="row">\n                <div class=\'col-sm-4\'>\n                    <label for="">Alternate</label>\n                </div>\n                <div class=\'col-sm-8\'>\n                    ' +
 ((__t = ( beautician.alternate_number )) == null ? '' : __t) +
-'\n                </div>\n            </div>\n            <div class="row">\n                <div class=\'col-sm-3\'>\n                    <label for="">Locality</label>\n                </div>\n                <div class=\'col-sm-9\'>\n                    ' +
+'\n                </div>\n            </div>\n            <div class="row">\n                <div class=\'col-sm-4\'>\n                    <label for="">Locality</label>\n                </div>\n                <div class=\'col-sm-8\'>\n                    ' +
 ((__t = ( beautician.locality )) == null ? '' : __t) +
-'\n                </div>\n            </div>\n            <div class="row">\n                <div class=\'col-sm-12\'>\n                    <a href="/admin/agent/beautician/' +
+'\n                </div>\n            </div>\n            <div class="row">\n                <div class=\'col-sm-4\'>\n                    <label for="">Allocation Distance</label>\n                </div>\n                <div class=\'col-sm-8\'>\n                    ' +
+((__t = ( allocation_distance )) == null ? '' : __t) +
+' Km\n                </div>\n            </div>\n            <div class="row">\n                <div class=\'col-sm-12\'>\n                    <a href="/admin/agent/beautician/' +
 ((__t = ( beautician.id )) == null ? '' : __t) +
 '/">Edit Beautician details</a>\n                </div>\n            </div>\n\n            ';
 }else {;

@@ -72,8 +72,10 @@ def allocate_auto(request):
     upper_time_bound = datetime.combine(date.today(), order.at) + timedelta(hours=TIME_BUFFER)
     upper_time_bound = upper_time_bound.time()
     skiped_beauticians_list = get_skiped_beautician(order=order)
+    customer_lat = order.customer.lat
+    customer_lng = order.customer.lng
     for kilometers in range_step(1, 20, 0.5):
-        ids = get_beautician(user_lat = order.customer.lat,user_lng = order.customer.lng ,distance = kilometers)
+        ids = get_beautician(customer_lat = customer_lat,customer_lng = customer_lng,distance = kilometers)
         selectable_id = [x for x in ids if x not in skiped_beauticians_list]
         for pk in selectable_id:
             beautician = Beautician.objects.get(pk=pk)
@@ -83,6 +85,7 @@ def allocate_auto(request):
                 order.beautician = beautician
                 order.allocation_status = 2
                 order.status = 2
+                order.allocation_distance = Haversin((customer_lat, customer_lng), (beautician.lat, beautician.lng))
                 order.save()
                 payload = OrderSerializer(order)
                 return Response(payload.data)
@@ -93,7 +96,7 @@ def range_step(start, end, step):
         yield start
         start += step
 
-def get_beautician(user_lat,user_lng,distance):
+def get_beautician(customer_lat,customer_lng,distance):
     ''' Please read Haversin formual before fiddline wiht it.
         This is to locate the closest beautician to the user
     '''
@@ -105,7 +108,7 @@ def get_beautician(user_lat,user_lng,distance):
                 HAVING distance < %s
                 ORDER BY distance
                 LIMIT 0 , 20
-           """ %(user_lat , user_lng , user_lat , distance)
+           """ %(customer_lat , customer_lng , customer_lat , distance)
     cursor.execute(query)
     ids = [row[0] for row in cursor.fetchall()]
     return ids
@@ -125,3 +128,19 @@ def get_skiped_beautician(order):
     for beautician in skiped_beauticians:
         skiped_beauticians_list.append(beautician.id)
     return skiped_beauticians_list
+
+import math
+
+def Haversin(origin, destination):
+    lat1, lon1 = origin
+    lat2, lon2 = destination
+    radius = 6371 # km
+
+    dlat = math.radians(lat2-lat1)
+    dlon = math.radians(lon2-lon1)
+    a = math.sin(dlat/2) * math.sin(dlat/2) + math.cos(math.radians(lat1)) \
+        * math.cos(math.radians(lat2)) * math.sin(dlon/2) * math.sin(dlon/2)
+    c = 2 * math.atan2(math.sqrt(a), math.sqrt(1-a))
+    d = radius * c
+    # import pdb; pdb.set_trace()
+    return d

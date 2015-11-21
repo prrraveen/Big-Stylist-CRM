@@ -160,35 +160,43 @@
             <h4>Beautician</h4>
             <% if(beautician) {%>
             <div class="row">
-                <div class='col-sm-3'>
+                <div class='col-sm-4'>
                     <label for="">Name</label>
                 </div>
-                <div class='col-sm-9'>
+                <div class='col-sm-8'>
                     <%= beautician.name %>
                 </div>
             </div>
             <div class="row">
-                <div class='col-sm-3'>
+                <div class='col-sm-4'>
                     <label for="">Contact</label>
                 </div>
-                <div class='col-sm-9'>
+                <div class='col-sm-8'>
                     <%= beautician.phone_number %>
                 </div>
             </div>
             <div class="row">
-                <div class='col-sm-3'>
+                <div class='col-sm-4'>
                     <label for="">Alternate</label>
                 </div>
-                <div class='col-sm-9'>
+                <div class='col-sm-8'>
                     <%= beautician.alternate_number %>
                 </div>
             </div>
             <div class="row">
-                <div class='col-sm-3'>
+                <div class='col-sm-4'>
                     <label for="">Locality</label>
                 </div>
-                <div class='col-sm-9'>
+                <div class='col-sm-8'>
                     <%= beautician.locality %>
+                </div>
+            </div>
+            <div class="row">
+                <div class='col-sm-4'>
+                    <label for="">Allocation Distance</label>
+                </div>
+                <div class='col-sm-8'>
+                    <%= allocation_distance %> Km
                 </div>
             </div>
             <div class="row">

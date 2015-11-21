@@ -37,7 +37,8 @@ class OrderSerializer(serializers.ModelSerializer):
                   'on',
                   'at',
                   'beautician',
-                  'allocation_status'
+                  'allocation_status',
+                  'allocation_distance'
                   )
     def get_status(self,obj):
         return obj.get_status_display()
