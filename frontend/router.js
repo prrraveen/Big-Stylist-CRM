@@ -3,6 +3,7 @@ define([
         'backbone',
         'apps/user/views/regi',
         'apps/user/views/login',
+        'apps/home/views/left_bar',
         'apps/home/views/navigation',
         'apps/home/views/dashboard',
         'apps/user/models/user',
@@ -18,6 +19,7 @@ function(
         Backbone,
         Regi,
         Login,
+        Left_bar,
         Navigation,
         Dashboard,
         User,
@@ -49,6 +51,7 @@ function(
 
         dashboard : function(){
             app.layout.navigation.show(new Navigation());
+            app.layout.left_bar.show(new Left_bar());
             app.layout.main_region.show(new Dashboard());
         },
 
@@ -60,14 +63,18 @@ function(
         },
         orders : function(type){
             app.layout.navigation.show(new Navigation());
+            app.layout.left_bar.show(new Left_bar());
+
             app.layout.main_region.show(new Orders({suffix : type}));
         },
         detail : function(order_id){
             app.layout.navigation.show(new Navigation());
+            app.layout.left_bar.show(new Left_bar());
+
             var order = new Order({id: order_id})
             order.fetch({
                 success : function(model, response ,options){
-                    app.layout.main_region.show(new Detail({model : order}));                    
+                    app.layout.main_region.show(new Detail({model : order}));
                 }
             })
         }

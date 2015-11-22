@@ -5,6 +5,7 @@ require.config({
         backbone:   'assets/libs/backbone/backbone',
         marionette: 'assets/libs/backbone.marionette/lib/backbone.marionette',
         bootstrap:  'assets/libs/bootstrap/dist/js/bootstrap',
+        jasny:      'assets/libs/jasny-bootstrap/dist/js/jasny-bootstrap.min',
         select2:    'assets/libs/select2/dist/js/select2.min',
         templates:  'assets/js/templates',
 
@@ -25,6 +26,10 @@ require.config({
         'bootstrap': {
             deps: ['jquery'],
             exports: 'bootstrap',
+        },
+        'jasny':{
+            deps: ['bootstrap'],
+            exports: 'jasny',
         },
         'select2':{
             deps: ['jquery'],

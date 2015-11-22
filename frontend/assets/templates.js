@@ -93,7 +93,17 @@ this["JST"]["layout"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<section id=\'navigation\'></section>\n\n<div class=\'row\'>\n    <div class="col-sm-12" id=\'main\'>\n    </div>\n</div>\n';
+__p += '<div id=\'left-bar\'></div>\n<div id=\'navigation\'></div>\n\n    <div class="navbar navbar-default navbar-fixed-top">\n      <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target=".navmenu" data-canvas="body">\n        <span class="icon-bar"></span>\n        <span class="icon-bar"></span>\n        <span class="icon-bar"></span>\n      </button>\n    </div>\n\n    <div class="container">\n      <div id=\'main\' class="page-header">\n      </div>\n    </div>\n';
+
+}
+return __p
+};
+
+this["JST"]["left_bar"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape;
+with (obj) {
+__p += '<div class="navmenu navmenu-default navmenu-fixed-left offcanvas">\n  <a class="navmenu-brand" href="#">Project name</a>\n  <ul class="nav navmenu-nav">\n      <li>\n          <a href="#orders/Received" >New</a>\n      </li>\n\n      <li>\n          <a href="#orders/Confirmed">Confirmed</a>\n      </li>\n      <li>\n          <a href="#orders/Allocated">Allocated</a>\n      </li>\n      <li>\n          <a href="#orders/Delievered" >Completed</a>\n      </li>\n      <li>\n          <a href="#orders/all" >All</a>\n      </li>\n      <li>\n          <a href="#lead" >Lead Data Table</a>\n      </li>\n      <li>\n          <a href="/admin/agent/order/" >Edit Order Details</a>\n      </li>\n      <li>\n          <a href="/admin/agent/beautician/" >Beauticians</a>\n      </li>\n      <li>\n          <a href="/admin/agent/service/" >Services</a>\n      </li>\n  </ul>\n</div>\n';
 
 }
 return __p
@@ -103,9 +113,7 @@ this["JST"]["navigation"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<nav class="navbar navbar-default">\n  <div class="container-fluid">\n    <!-- Brand and toggle get grouped for better mobile display -->\n    <div class="navbar-header">\n      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">\n        <span class="sr-only">Toggle navigation</span>\n        <span class="icon-bar"></span>\n        <span class="icon-bar"></span>\n        <span class="icon-bar"></span>\n      </button>\n      <a class="navbar-brand" href="#dashboard">\n          <img src="frontend/assets/images/logo.png" id=\'brand-logo\' alt="Responsive image" class=\'img img-responsive\'/>\n      </a>\n    </div>\n\n    <!-- Collect the nav links, forms, and other content for toggling -->\n    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">\n      <ul class="nav navbar-nav navbar-right">\n        <li class="dropdown">\n          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"\n            aria-expanded="false">' +
-((__t = ( user.get_name() )) == null ? '' : __t) +
-'<span class="caret"></span></a>\n          <ul class="dropdown-menu">\n            <li><a href="#logout">logout</a></li>\n          </ul>\n        </li>\n      </ul>\n    </div><!-- /.navbar-collapse -->\n  </div><!-- /.container-fluid -->\n</nav>\n\n<header class="main-header">\n  <!-- Logo -->\n  <a href="#dashboard" class="logo">\n    <!-- mini logo for sidebar mini 50x50 pixels -->\n    <span class="logo-mini"><b>B</b>S</span>\n    <!-- logo for regular state and mobile devices -->\n    <span class="logo-lg">\n        <img src="frontend/assets/images/logo.png" id=\'brand-logo\' alt="Responsive image" class=\'img img-responsive\'/></a>\n    </span>\n  </a>\n  <!-- Header Navbar: style can be found in header.less -->\n  <nav class="navbar navbar-static-top" role="navigation">\n    <!-- Sidebar toggle button-->\n    <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">\n      <span class="sr-only">Toggle navigation</span>\n    </a>\n    <div class="navbar-custom-menu">\n      <ul class="nav navbar-nav">\n          <li class="dropdown user user-menu">\n            <a href="#" class="dropdown-toggle" data-toggle="dropdown">\n              <span class="hidden-xs">' +
+__p += '\n<header class="main-header">\n  <!-- Logo -->\n  <a href="#dashboard" class="logo">\n    <!-- mini logo for sidebar mini 50x50 pixels -->\n    <span class="logo-mini"><b>B</b>S</span>\n    <!-- logo for regular state and mobile devices -->\n    <span class="logo-lg">\n        <img src="frontend/assets/images/logo.png" id=\'brand-logo\' alt="Responsive image" class=\'img img-responsive\'/></a>\n    </span>\n  </a>\n  <!-- Header Navbar: style can be found in header.less -->\n  <nav class="navbar navbar-static-top" role="navigation">\n    <!-- Sidebar toggle button-->\n    <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">\n      <span class="sr-only">Toggle navigation</span>\n    </a>\n    <div class="navbar-custom-menu">\n      <ul class="nav navbar-nav">\n          <li class="dropdown user user-menu">\n            <a href="#" class="dropdown-toggle" data-toggle="dropdown">\n              <span class="hidden-xs">' +
 ((__t = ( user.get_name() )) == null ? '' : __t) +
 '</span>\n            </a>\n            <ul class="dropdown-menu">\n              <li class="user-footer">\n                  <a href="#logout" class="btn btn-default btn-flat">Sign out</a>\n              </li>\n            </ul>\n          </li>\n\n      </ul>\n    </div>\n  </nav>\n</header>\n';
 

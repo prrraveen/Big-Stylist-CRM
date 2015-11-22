@@ -1,5 +1,5 @@
 define([
-        'marionette',
+        'marionette'
 ],
 function(
         Mn
@@ -11,6 +11,7 @@ function(
         // content area where the email list or contact list
         // is displayed.
         regions: {
+          left_bar: '#left-bar',
           navigation: "#navigation",
           main_region: "#main"
         },
