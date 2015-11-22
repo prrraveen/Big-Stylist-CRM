@@ -20,7 +20,6 @@ INSTALLED_APPS = (
     'rest_framework',
 
     'agent',
-    'example',
     'orders'
 )
 
