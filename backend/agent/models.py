@@ -13,7 +13,7 @@ class Locality(models.Model):
 
 class Pincode(models.Model):
     pincode = models.CharField(max_length=6)
-    localities = models.ManyToManyField('Locality')
+    localities = models.ManyToManyField('Locality',blank=True)
     lat = models.DecimalField(max_digits=10, decimal_places=6)
     lng = models.DecimalField(max_digits=10, decimal_places=6)
     def __unicode__(self):
