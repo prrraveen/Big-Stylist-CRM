@@ -93,7 +93,7 @@ this["JST"]["layout"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<div id=\'left-bar\'></div>\n<div id=\'navigation\'></div>\n\n    <div class="navbar navbar-default navbar-fixed-top">\n      <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target=".navmenu" data-canvas="body">\n        <span class="icon-bar"></span>\n        <span class="icon-bar"></span>\n        <span class="icon-bar"></span>\n      </button>\n    </div>\n\n    <div class="container">\n      <div id=\'main\' class="page-header">\n      </div>\n    </div>\n';
+__p += '<div id=\'navigation\'></div>\n<div id=\'left-bar\'></div>\n\n\n<div id=\'main\'></div>\n';
 
 }
 return __p
@@ -103,7 +103,7 @@ this["JST"]["left_bar"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<div class="navmenu navmenu-default navmenu-fixed-left offcanvas">\n  <a class="navmenu-brand" href="#">Project name</a>\n  <ul class="nav navmenu-nav">\n      <li>\n          <a href="#orders/Received" >New</a>\n      </li>\n\n      <li>\n          <a href="#orders/Confirmed">Confirmed</a>\n      </li>\n      <li>\n          <a href="#orders/Allocated">Allocated</a>\n      </li>\n      <li>\n          <a href="#orders/Delievered" >Completed</a>\n      </li>\n      <li>\n          <a href="#orders/all" >All</a>\n      </li>\n      <li>\n          <a href="#lead" >Lead Data Table</a>\n      </li>\n      <li>\n          <a href="/admin/agent/order/" >Edit Order Details</a>\n      </li>\n      <li>\n          <a href="/admin/agent/beautician/" >Beauticians</a>\n      </li>\n      <li>\n          <a href="/admin/agent/service/" >Services</a>\n      </li>\n  </ul>\n</div>\n';
+__p += '<aside class="main-sidebar">\n  <!-- sidebar: style can be found in sidebar.less -->\n  <section class="sidebar">\n    <!-- Sidebar user panel -->\n    <!-- sidebar menu: : style can be found in sidebar.less -->\n    <ul class="sidebar-menu">\n      <li class="header">MAIN NAVIGATION</li>\n      <li>\n        <a href="#orders/Received">\n          <i class="fa fa-th"></i> <span>New Orders</span> <small class="label pull-right bg-green">new</small>\n        </a>\n      </li>\n      <li>\n          <a href="#orders/Confirmed">\n            <i class="fa fa-th"></i> <span>Confirmed</span>\n          </a>\n      </li>\n      <li>\n          <a href="#orders/Allocated">\n            <i class="fa fa-th"></i> <span>Allocated</span>\n          </a>\n      </li>\n      <li>\n          <a href="#orders/Delievered">\n            <i class="fa fa-th"></i> <span>Completed</span>\n          </a>\n      </li>\n      <li>\n          <a href="#orders/all">\n            <i class="fa fa-th"></i> <span>All</span>\n          </a>\n      </li>\n      <li>\n          <a href="#lead">\n            <i class="fa fa-th"></i> <span>Leads</span>\n          </a>\n      </li>\n      <li>\n          <a href="/admin/agent/order/">\n            <i class="fa fa-th"></i> <span>Edit Order Details</span>\n          </a>\n      </li>\n      <li>\n          <a href="/admin/agent/beautician/">\n            <i class="fa fa-th"></i> <span>Beauticians</span>\n          </a>\n      </li>\n      <li>\n          <a href="/admin/agent/service/">\n            <i class="fa fa-th"></i> <span>Services</span>\n          </a>\n      </li>\n    </ul>\n  </section>\n  <!-- /.sidebar -->\n</aside>\n';
 
 }
 return __p

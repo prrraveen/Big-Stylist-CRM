@@ -68,8 +68,8 @@ function(
             app.layout.main_region.show(new Orders({suffix : type}));
         },
         detail : function(order_id){
-            app.layout.navigation.show(new Navigation());
-            app.layout.left_bar.show(new Left_bar());
+            // app.layout.navigation.show(new Navigation());
+            // app.layout.left_bar.show(new Left_bar());
 
             var order = new Order({id: order_id})
             order.fetch({

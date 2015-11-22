@@ -1,11 +1,10 @@
 define([
         'marionette',
-        'jquery',
-        'jasny',
-        'assets/libs/jasny-bootstrap/js/offcanvas'
 ],
 function(
-        Mn
+        Mn,
+        $,
+        Dashboard_theme
 ) {
     var Left_bar = Mn.ItemView.extend({
         template: JST['left_bar'],
