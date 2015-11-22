@@ -62,7 +62,7 @@ class Beautician(models.Model):
     employment_status = models.CharField(max_length = 1 , choices = EMPLOYMENT_STATUS , blank = True)
     availability =      models.CharField(max_length=2 , choices=AVAILABLE,blank=True)
     pincode =           models.ForeignKey('Pincode' , related_name='beautician_pincode')
-    serving_in =        models.ManyToManyField('Pincode', related_name = 'beautician_pincode_server_in' , null=True , blank=True)
+    # serving_in =        models.ManyToManyField('Pincode', related_name = 'beautician_pincode_server_in' , null=True , blank=True)
     lat=                models.DecimalField(max_digits=10, decimal_places=6 ,null =True,blank=True)
     lng=                models.DecimalField(max_digits=10, decimal_places=6 ,null =True,blank=True)
     def save(self,*args,**kwargs):
