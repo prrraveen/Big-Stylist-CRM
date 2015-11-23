@@ -5,6 +5,8 @@ class User(models.Model):
     name = models.CharField(max_length=80)
     email = models.EmailField(primary_key=True)
     password = models.CharField(max_length=80)
+    def __unicode__(self):
+        return self.name
 
 class Locality(models.Model):
     name =   models.CharField(max_length=60)
@@ -78,6 +80,7 @@ class Customer(models.Model):
     name     = models.CharField(max_length=100 , blank = True)
     gender   = models.CharField(max_length=1 , choices=GENDER_CHOICES,default = 'M')
     contact  = models.CharField(max_length=10 , blank = True)
+    email = models.EmailField(blank=True)
     address  = models.CharField(max_length = 500 , blank = True)
     locality = models.ForeignKey('Locality' , null=True , blank =True)
     pincode  = models.ForeignKey('Pincode')
@@ -129,3 +132,89 @@ class Order(models.Model):
     beautician = models.ForeignKey('Beautician' , null = True , blank= True ,related_name='allocated')
     allocation_distance = models.DecimalField(max_digits=5, decimal_places=2 ,null =True, blank=True)
     skiped_beautician = models.ManyToManyField('Beautician',null = True , blank= True , related_name='skiped_beautician')
+
+LEAD_STATUS= (
+    (1, 'Converted'),
+    (2, 'Canceled')
+)
+
+NEXT_STEP= (
+    (1, 'Call back'),
+)
+class Lead(models.Model):
+    customer = models.ForeignKey('Customer' , null = True , blank= True)
+    name = models.CharField(max_length=50 , blank = True)
+
+    contact  = models.CharField(max_length=10 , blank = True)
+    email = models.EmailField(blank = True)
+    gender =   models.CharField(max_length=1 , choices=GENDER_CHOICES)
+
+    address = models.CharField(max_length = 1000 , blank = True)
+    pincode  = models.ForeignKey('Pincode',null=True , blank =True)
+    locality = models.ForeignKey('Locality' , null=True , blank =True)
+    city= models.ForeignKey('City',null=True , blank =True)
+    state= models.ForeignKey('State',null=True , blank =True)
+    nearest_station = models.ForeignKey('Station',null=True , blank =True)
+
+    source = models.ForeignKey('Source',null=True , blank =True)
+    supplier = models.ForeignKey('Supplier',null=True , blank =True)
+
+
+    assigned_csr =   models.ForeignKey('User',null=True , blank =True)
+    action_required = models.CharField(max_length=50 , blank = True)
+
+    Services = models.ManyToManyField('Service' , null=True , blank=True)
+    mrp = models.DecimalField(max_digits=7, decimal_places=2,null = True, blank=True)
+    final_price = models.DecimalField(max_digits=7, decimal_places=2,null = True, blank=True)
+    discount = models.DecimalField(max_digits=7, decimal_places=2,null = True, blank=True)
+    discount_type = models.CharField(max_length=10 , blank = True)
+
+    lead_status = models.IntegerField(choices = LEAD_STATUS , blank = True,default = 1)
+    next_step = models.IntegerField(choices = NEXT_STEP , blank = True,default = 1)
+    cancellation_reason =   models.CharField(max_length=200 , blank = True)
+
+    placedat =  models.DateTimeField(null = True , blank=True)
+    on =  models.DateField(null = True , blank=True)
+    at =  models.TimeField(null = True , blank=True)
+    requirment = models.CharField(max_length=300 , blank = True)
+    # supplier_remark = CharField(max_length=100 , blank = True)
+    # bs_commission = models.DecimalField(max_digits=7, decimal_places=2,null = True, blank=True)
+    # supplier_commission = models.DecimalField(max_digits=7, decimal_places=2,null = True, blank=True)
+    # net_from_supplier_to_bs = models.DecimalField(max_digits=7, decimal_places=2 ,null = True, blank=True)
+    # collected =   CharField(max_length=20 , blank = True)
+    # supplier_feedback =   CharField(max_length=200 , blank = True)
+    # was_supplier_on_time =   CharField(max_length=20 , blank = True)
+    # quality_of_Service =   CharField(max_length=20 , blank = True)
+    # remarks = CharField(max_length=300 , blank = True)
+    # rate_supplier = models.IntegerField(null= True , blank = True)
+    # beautician_feedback = CharField(max_length=300 , blank = True)
+    # how_was_client = CharField(max_length=300 , blank = True)
+    # client_feedback = CharField(max_length=300 , blank = True)
+    # how_was_service = CharField(max_length=300 , blank = True)
+    # notes = CharField(max_length=100 , blank = True)
+
+class City(models.Model):
+    name = models.CharField(max_length=50)
+    def __unicode__(self):
+        return self.name
+
+class State(models.Model):
+    name = models.CharField(max_length=50)
+    def __unicode__(self):
+        return self.name
+
+class Station(models.Model):
+    name = models.CharField(max_length=50)
+    pincode  = models.ForeignKey('Pincode')
+    def __unicode__(self):
+        return self.name
+
+class Source(models.Model):
+    name = models.CharField(max_length=50)
+    def __unicode__(self):
+        return self.name
+
+class Supplier(models.Model):
+    name = models.CharField(max_length=80)
+    email = models.EmailField(primary_key=True)
+    contact = models.CharField(max_length=10 , blank = True)
