@@ -43,10 +43,6 @@ function(
             app.layout.main_region.show(new Login())
         },
 
-        dashboard : function(){
-            app.layout.navigation.show(new Navigation());
-        },
-
         logout : function(){
             new User().logout();
             app.layout.navigation.empty();
