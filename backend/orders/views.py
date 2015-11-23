@@ -11,7 +11,7 @@ from rest_framework.parsers import JSONParser
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
-from agent.models import Order , ORDER_STATUS ,Beautician
+from agent.models import Order , ORDER_STATUS ,Beautician, Lead
 from agent.serializers import OrderSerializer, BeauticianSerializer , LeadSerializer
 from backend.settings import TIME_BUFFER
 
