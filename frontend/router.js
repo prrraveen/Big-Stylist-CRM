@@ -8,6 +8,7 @@ define([
         'apps/orders/views/orders',
         'apps/detail/views/detail',
         'apps/orders/models/order',
+        'apps/leads/views/leads',
 
         'assets/templates',
         'bootstrap'
@@ -21,7 +22,8 @@ function(
         User,
         Orders,
         Detail,
-        Order
+        Order,
+        Leads
 ) {
     var Router = Marionette.AppRouter.extend({
         routes: {
@@ -30,6 +32,7 @@ function(
             'logout': 'logout',
             'orders/:type': 'orders',
             'detail/:order_id': 'detail',
+            'leads': 'leads',
         },
 
         regi : function(){
@@ -57,6 +60,10 @@ function(
             })
         },
 
+        leads: function(){
+            app.layout.navigation.show(new Navigation());
+            app.layout.main_region.show(new Leads());
+        },
         logout : function(){
             new User().logout();
             app.layout.navigation.empty();

@@ -9,4 +9,5 @@ urlpatterns = patterns('',
     url(r'^allocate/auto/$',  allocate_auto),
     url(r'^allocate/reallocate/$',  reallocate),
     url(r'^order/change/status/$',  change_status),
+    url(r'^leads/$',  leads),
     )

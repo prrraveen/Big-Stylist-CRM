@@ -43,6 +43,17 @@ class OrderSerializer(serializers.ModelSerializer):
     def get_status(self,obj):
         return obj.get_status_display()
 
+from .models import Lead
+class LeadSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Lead
+        fields = ('name',
+                  'contact',
+                  'lead_status',
+                  'next_step',
+                  'source'
+                  )
+
 class BeauticianSerializer(serializers.ModelSerializer):
     text = serializers.SerializerMethodField('get_name')
     class Meta:

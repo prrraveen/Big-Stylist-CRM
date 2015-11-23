@@ -12,7 +12,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
 from agent.models import Order , ORDER_STATUS ,Beautician
-from agent.serializers import OrderSerializer, BeauticianSerializer
+from agent.serializers import OrderSerializer, BeauticianSerializer , LeadSerializer
 from backend.settings import TIME_BUFFER
 
 @api_view(['GET'])
@@ -20,6 +20,16 @@ def orders(request , typ):
     try:
         dataset = Order.objects.filter(status = get_status_key(val =typ) )
         payload = OrderSerializer(dataset, many=True)
+        return Response(payload.data)
+    except Exception,e:
+        print e
+        return Response(status= 500)
+
+@api_view(['GET'])
+def leads(request):
+    try:
+        dataset = Lead.objects.all()
+        payload = LeadSerializer(dataset, many=True)
         return Response(payload.data)
     except Exception,e:
         print e
