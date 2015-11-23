@@ -17,7 +17,7 @@ function(
             this.collection.fetch();
         },
         childView: Order_itemView,
-        // emptyView: No_orders,
+        emptyView: No_orders,
         template: JST['orders'],
         childViewContainer: 'tbody',
     })

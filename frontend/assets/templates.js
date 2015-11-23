@@ -125,7 +125,7 @@ this["JST"]["no-order-for-now"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<div class="container">\n    <div class="row">\n        <div class=\'col-sm-12\'>\n            <h3>No Orders found in this category.</h3>\n        </div>\n    </div>\n</div>\n';
+__p += '<tr>\n    <td>\n        No Orders found in this category.\n    </td>\n</tr>\n';
 
 }
 return __p
