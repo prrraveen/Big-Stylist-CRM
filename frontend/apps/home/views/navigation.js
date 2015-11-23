@@ -23,10 +23,6 @@ function(
             'click @ui.toggle': 'toggle'
         },
 
-        onRender: function(){
-            this.ui.sidebar.offcanvas()
-        },
-
         toggle: function(){
             this.ui.sidebar.offcanvas('toggle')
         }
