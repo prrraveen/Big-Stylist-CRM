@@ -1,18 +1,34 @@
 define([
         'marionette',
         'apps/user/models/user',
-        'dashboard_theme',
+        'offcanvas',
 ],
 function(
         Mn,
         User,
-        Dashboard_theme
+        Offcanvas
 ) {
     var Navigation = Mn.ItemView.extend({
         model: new User(),
         template: JST['navigation'],
         templateHelpers: function() {
             return { user : this.model};
+        },
+        ui:{
+            sidebar : '.main-sidebar',
+            toggle:   '.sidebar-toggle'
+        },
+
+        events:{
+            'click @ui.toggle': 'toggle'
+        },
+
+        onRender: function(){
+            this.ui.sidebar.offcanvas()
+        },
+
+        toggle: function(){
+            this.ui.sidebar.offcanvas('toggle')
         }
     })
     return Navigation;

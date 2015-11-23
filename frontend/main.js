@@ -5,11 +5,9 @@ require.config({
         backbone:   'assets/libs/backbone/backbone',
         marionette: 'assets/libs/backbone.marionette/lib/backbone.marionette',
         bootstrap:  'assets/libs/bootstrap/dist/js/bootstrap',
-        dashboard_theme: 'assets/dashboard_theme',
-
         select2:    'assets/libs/select2/dist/js/select2.min',
         templates:  'assets/js/templates',
-
+        offcanvas:   'assets/libs/jasny-bootstrap/js/offcanvas'
     },
     shim: {
         'backbone': {
@@ -32,9 +30,9 @@ require.config({
             deps: ['jquery'],
             exports: 'select2'
         },
-        'dashboard_theme':{
+        'offcanvas':{
             deps:['jquery','bootstrap'],
-            exports: 'Dashboard_theme'
+            exports: 'Offcanvas'
         }
     },
 

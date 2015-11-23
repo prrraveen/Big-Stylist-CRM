@@ -24,8 +24,6 @@ function(
         Order
 ) {
     var Router = Marionette.AppRouter.extend({
-    // "someMethod" must exist at controller.someMethod
-        // controller:  ,
         routes: {
             'regi':  'regi',
             'login': 'login',
@@ -37,17 +35,16 @@ function(
 
         regi : function(){
             app.layout.navigation.empty();
-            // app.layout.main_region.show(new Regi())
+            app.layout.main_region.show(new Regi())
         },
 
         login : function(){
             app.layout.navigation.empty();
-            // app.layout.main_region.show(new Login())
+            app.layout.main_region.show(new Login())
         },
 
         dashboard : function(){
             app.layout.navigation.show(new Navigation());
-            // app.layout.main_region.show(new Dashboard());
         },
 
         logout : function(){
@@ -58,13 +55,10 @@ function(
         },
         orders : function(type){
             app.layout.navigation.show(new Navigation());
-
-            // app.layout.main_region.show(new Orders({suffix : type}));
+            app.layout.main_region.show(new Orders({suffix : type}));
         },
         detail : function(order_id){
             app.layout.navigation.show(new Navigation());
-            // app.layout.navigation.show(new Navigation());
-            // app.layout.left_bar.show(new Left_bar());
 
             var order = new Order({id: order_id})
             order.fetch({
