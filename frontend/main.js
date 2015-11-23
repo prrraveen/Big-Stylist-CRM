@@ -5,7 +5,6 @@ require.config({
         backbone:   'assets/libs/backbone/backbone',
         marionette: 'assets/libs/backbone.marionette/lib/backbone.marionette',
         bootstrap:  'assets/libs/bootstrap/dist/js/bootstrap',
-        jasny:      'assets/libs/jasny-bootstrap/dist/js/jasny-bootstrap.min',
         dashboard_theme: 'assets/dashboard_theme',
 
         select2:    'assets/libs/select2/dist/js/select2.min',
@@ -14,7 +13,9 @@ require.config({
     },
     shim: {
         'backbone': {
-            deps: ['jquery','backbone' , 'assets/extend'],
+            deps: ['underscore', 'jquery'],
+
+            //Once loaded, use the global 'Backbone' as the module value
             exports: 'Backbone',
         },
         'marionette': {
@@ -30,6 +31,7 @@ require.config({
         'select2':{
             deps: ['jquery'],
             exports: 'select2'
+
         }
     },
 
