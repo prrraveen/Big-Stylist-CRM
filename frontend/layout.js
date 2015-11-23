@@ -12,7 +12,7 @@ function(
         // is displayed.
         regions: {
           navigation: "#navigation",
-        //   main_region: "#main"
+          main_region: "#main"
         },
     });
 

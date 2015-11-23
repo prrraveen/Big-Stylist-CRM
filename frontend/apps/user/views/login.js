@@ -36,7 +36,7 @@ function(
                 var session = new Session().set_token(access_token = response.access_token )
                 _this.model.set_profile(profile = response.profile)
 
-                app.router.navigate('dashboard', { trigger : true})
+                app.router.navigate('orders/Received', { trigger : true})
             })
             .fail(function(response){
                 if(response.status == 503)

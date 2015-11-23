@@ -27,7 +27,6 @@ function(
         routes: {
             'regi':  'regi',
             'login': 'login',
-            'dashboard': 'dashboard',
             'logout': 'logout',
             'orders/:type': 'orders',
             'detail/:order_id': 'detail',
@@ -43,16 +42,6 @@ function(
             app.layout.main_region.show(new Login())
         },
 
-        dashboard : function(){
-            app.layout.navigation.show(new Navigation());
-        },
-
-        logout : function(){
-            new User().logout();
-            app.layout.navigation.empty();
-            app.layout.main_region.empty();
-            app.router.navigate('login', { trigger : true});
-        },
         orders : function(type){
             app.layout.navigation.show(new Navigation());
             app.layout.main_region.show(new Orders({suffix : type}));
@@ -66,7 +55,14 @@ function(
                     // app.layout.main_region.show(new Detail({model : order}));
                 }
             })
-        }
+        },
+
+        logout : function(){
+            new User().logout();
+            app.layout.navigation.empty();
+            app.layout.main_region.empty();
+            app.router.navigate('login', { trigger : true});
+        },
     })
     return Router;
 });

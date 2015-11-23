@@ -79,21 +79,11 @@ __p += '\n\n        </div>\n    </div>\n</div>\n';
 return __p
 };
 
-this["JST"]["dashboard"] = function(obj) {
-obj || (obj = {});
-var __t, __p = '', __e = _.escape;
-with (obj) {
-__p += '<div class="container">\n    <div class="row">\n        <div class=\'col-sm-6 col-sm-offset-3\'>\n            <div class="list-group">\n              <a href="#orders/Received" class="list-group-item">New</a>\n              <a href="#orders/Confirmed" class="list-group-item">Confirmed</a>\n              <a href="#orders/Allocated" class="list-group-item">Allocated</a>\n              <a href="#orders/Delievered" class="list-group-item">Completed</a>\n              <a href="#orders/all" class="list-group-item">All</a>\n              <a href="#lead" class="list-group-item">Lead Data Table</a>\n              <a href="/admin/agent/order/" class="list-group-item">Edit Order Details</a>\n              <a href="/admin/agent/beautician/" class="list-group-item">Beauticians</a>\n              <a href="/admin/agent/service/" class="list-group-item">Services</a>\n            </div>\n        </div>\n    </div>\n</div>\n';
-
-}
-return __p
-};
-
 this["JST"]["layout"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<div id=\'navigation\'></div>\n';
+__p += '<div id=\'navigation\'></div>\n<div id=\'main\'></div>\n';
 
 }
 return __p
@@ -115,7 +105,7 @@ var __t, __p = '', __e = _.escape;
 with (obj) {
 __p += '<header class="main-header">\n  <!-- Logo -->\n  <a href="#dashboard" class="logo">\n    <!-- mini logo for sidebar mini 50x50 pixels -->\n    <span class="logo-mini"><b>B</b>S</span>\n    <!-- logo for regular state and mobile devices -->\n    <span class="logo-lg">\n        <img src="frontend/assets/images/logo.png" id=\'brand-logo\' alt="Responsive image" class=\'img img-responsive\'/></a>\n    </span>\n  </a>\n  <!-- Header Navbar: style can be found in header.less -->\n  <nav class="navbar navbar-static-top" role="navigation">\n    <!-- Sidebar toggle button-->\n    <a class="sidebar-toggle"  role="button">\n      <span class="sr-only">Toggle navigation</span>\n    </a>\n    <div class="navbar-custom-menu">\n      <ul class="nav navbar-nav">\n          <li class="dropdown user user-menu">\n            <a href="#" class="dropdown-toggle" data-toggle="dropdown">\n              <span class="hidden-xs">' +
 ((__t = ( user.get_name() )) == null ? '' : __t) +
-'</span>\n            </a>\n            <ul class="dropdown-menu">\n              <li class="user-footer">\n                  <a href="#logout" class="btn btn-default btn-flat">Sign out</a>\n              </li>\n            </ul>\n          </li>\n\n      </ul>\n    </div>\n  </nav>\n</header>\n<aside class="main-sidebar offcanvas">\n  <!-- sidebar: style can be found in sidebar.less -->\n  <section class="sidebar">\n    <ul class="sidebar-menu">\n      <li class="header">MAIN NAVIGATION</li>\n      </li>\n      <li>\n        <a href="pages/widgets.html">\n          <i class="fa fa-th"></i> <span>Widgets</span> <small class="label pull-right bg-green">new</small>\n        </a>\n      </li>\n    </ul>\n  </section>\n  <!-- /.sidebar -->\n</aside>\n';
+'</span>\n            </a>\n            <ul class="dropdown-menu">\n              <li class="user-footer">\n                  <a href="#logout" class="btn btn-default btn-flat">Sign out</a>\n              </li>\n            </ul>\n          </li>\n\n      </ul>\n    </div>\n  </nav>\n</header>\n';
 
 }
 return __p
@@ -162,7 +152,7 @@ this["JST"]["orders"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<div class="container">\n    <div class="row">\n        <div class=\'col-sm-12\'>\n            <table class=\'table table-hover table-bordered\'>\n                <thead>\n                    <tr>\n                        <td>\n                            Customer\n                        </td>\n                        <td>\n                            Contact\n                        </td>\n                        <td>\n                            Date\n                        </td>\n                        <td>\n                            Time\n                        </td>\n                        <td>\n                            Beautician\n                        </td>\n                        <td>\n                            Status\n                        </td>\n                    </tr>\n                </thead>\n                <tbody>\n\n                </tbody>\n            </table>\n        </div>\n    </div>\n</div>\n';
+__p += '<div class="container">\n    <div class="row">\n        <div class=\'col-sm-6\'>\n            <table class=\'table table-hover table-bordered\'>\n                <thead>\n                    <tr>\n                        <td>\n                            Customer\n                        </td>\n                        <td>\n                            Contact\n                        </td>\n                        <td>\n                            Date\n                        </td>\n                        <td>\n                            Time\n                        </td>\n                        <td>\n                            Beautician\n                        </td>\n                        <td>\n                            Status\n                        </td>\n                    </tr>\n                </thead>\n                <tbody>\n\n                </tbody>\n            </table>\n        </div>\n    </div>\n</div>\n';
 
 }
 return __p
