@@ -89,5 +89,9 @@ function (  Mn,
     }
     get_static_data();
     add_ajax_loader();
+
+    app.static_data = JSON.parse(window.localStorage.getItem('static_data')),
+
     app.start();
+
 });

@@ -122,9 +122,9 @@ __p += '<td>\n    ' +
 '\n</td>\n<td>\n    ' +
 ((__t = ( contact )) == null ? '' : __t) +
 '\n</td>\n<td>\n    ' +
-((__t = ( lead_status )) == null ? '' : __t) +
+((__t = ( app.static_data.lead_status[lead_status] )) == null ? '' : __t) +
 '\n</td>\n<td>\n    ' +
-((__t = ( next_step )) == null ? '' : __t) +
+((__t = ( app.static_data.next_step[next_step] )) == null ? '' : __t) +
 '\n</td>\n';
 
 }

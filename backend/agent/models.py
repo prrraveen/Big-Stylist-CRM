@@ -134,12 +134,14 @@ class Order(models.Model):
     skiped_beautician = models.ManyToManyField('Beautician',null = True , blank= True , related_name='skiped_beautician')
 
 LEAD_STATUS= (
-    (1, 'Converted'),
-    (2, 'Canceled')
+    (1,'No lead status yet'),
+    (2, 'Converted'),
+    (3, 'Canceled')
 )
 
 NEXT_STEP= (
-    (1, 'Call back'),
+    (1, 'No next step yet'),
+    (2, 'Call back'),
 )
 class Lead(models.Model):
     customer = models.ForeignKey('Customer' , null = True , blank= True)
@@ -169,8 +171,8 @@ class Lead(models.Model):
     discount = models.DecimalField(max_digits=7, decimal_places=2,null = True, blank=True)
     discount_type = models.CharField(max_length=10 , blank = True)
 
-    lead_status = models.IntegerField(choices = LEAD_STATUS , blank = True,default = 1)
-    next_step = models.IntegerField(choices = NEXT_STEP , blank = True,default = 1)
+    lead_status = models.IntegerField(choices = LEAD_STATUS ,default = 1)
+    next_step = models.IntegerField(choices = NEXT_STEP ,default = 1)
     cancellation_reason =   models.CharField(max_length=200 , blank = True)
 
     placedat =  models.DateTimeField(null = True , blank=True)

@@ -12,7 +12,7 @@ from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .models import ORDER_STATUS , ALLOCATION_STATUS
+from .models import ORDER_STATUS , ALLOCATION_STATUS ,LEAD_STATUS , NEXT_STEP
 
 def main(request):
     return render_to_response('index.html')
@@ -51,4 +51,6 @@ def static_data(request):
     payload = {}
     payload['order_status'] =  dict(ORDER_STATUS)
     payload['allocation_status'] =  dict(ALLOCATION_STATUS)
+    payload['lead_status'] =  dict(LEAD_STATUS)
+    payload['next_step'] =  dict(NEXT_STEP)
     return Response(payload)
