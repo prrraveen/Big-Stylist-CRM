@@ -31,7 +31,10 @@ require.config({
         'select2':{
             deps: ['jquery'],
             exports: 'select2'
-
+        },
+        'dashboard_theme':{
+            deps:['jquery','bootstrap'],
+            exports: 'Dashboard_theme'
         }
     },
 
