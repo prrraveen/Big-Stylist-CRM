@@ -37,3 +37,33 @@ class OrderAdmin(admin.ModelAdmin):
     list_display = ('amount', 'status')
     # exclude=('allocation_distance', 'beautician')
 admin.site.register(Order, OrderAdmin)
+
+from .models import City
+class CityAdmin(admin.ModelAdmin):
+    list_display = ('name',)
+admin.site.register(City, CityAdmin)
+
+from .models import State
+class StateAdmin(admin.ModelAdmin):
+    list_display = ('name',)
+admin.site.register(State, StateAdmin)
+
+from .models import Station
+class StationAdmin(admin.ModelAdmin):
+    list_display = ('name','pincode')
+admin.site.register(Station, StationAdmin)
+
+from .models import Source
+class SourceAdmin(admin.ModelAdmin):
+    list_display = ('name',)
+admin.site.register(Source, SourceAdmin)
+
+from .models import Supplier
+class SupplierAdmin(admin.ModelAdmin):
+    list_display = ('name','email')
+admin.site.register(Supplier, SupplierAdmin)
+
+from .models import Lead
+class LeadAdmin(admin.ModelAdmin):
+    list_display = ('name','contact')
+admin.site.register(Lead, LeadAdmin)

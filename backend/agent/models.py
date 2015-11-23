@@ -5,6 +5,8 @@ class User(models.Model):
     name = models.CharField(max_length=80)
     email = models.EmailField(primary_key=True)
     password = models.CharField(max_length=80)
+    def __unicode__(self):
+        return self.name
 
 class Locality(models.Model):
     name =   models.CharField(max_length=60)
@@ -131,10 +133,17 @@ class Order(models.Model):
     allocation_distance = models.DecimalField(max_digits=5, decimal_places=2 ,null =True, blank=True)
     skiped_beautician = models.ManyToManyField('Beautician',null = True , blank= True , related_name='skiped_beautician')
 
-class Leads(models.Model):
+LEAD_STATUS= (
+    (1, 'Converted'),
+    (2, 'Canceled')
+)
+
+NEXT_STEP= (
+    (1, 'Call back'),
+)
+class Lead(models.Model):
     customer = models.ForeignKey('Customer' , null = True , blank= True)
-    first_name = models.CharField(max_length=20 , blank = True)
-    last_name = models.CharField(max_length=20 , blank = True)
+    name = models.CharField(max_length=50 , blank = True)
 
     contact  = models.CharField(max_length=10 , blank = True)
     email = models.EmailField(blank = True)
@@ -160,13 +169,14 @@ class Leads(models.Model):
     discount = models.DecimalField(max_digits=7, decimal_places=2,null = True, blank=True)
     discount_type = models.CharField(max_length=10 , blank = True)
 
-    lead_status = models.IntegerField(choices = ORDER_STATUS , default = 1)
+    lead_status = models.IntegerField(choices = LEAD_STATUS , blank = True,default = 1)
+    next_step = models.IntegerField(choices = NEXT_STEP , blank = True,default = 1)
     cancellation_reason =   models.CharField(max_length=200 , blank = True)
 
     placedat =  models.DateTimeField(null = True , blank=True)
     on =  models.DateField(null = True , blank=True)
     at =  models.TimeField(null = True , blank=True)
-
+    requirment = models.CharField(max_length=300 , blank = True)
     # supplier_remark = CharField(max_length=100 , blank = True)
     # bs_commission = models.DecimalField(max_digits=7, decimal_places=2,null = True, blank=True)
     # supplier_commission = models.DecimalField(max_digits=7, decimal_places=2,null = True, blank=True)
@@ -175,7 +185,6 @@ class Leads(models.Model):
     # supplier_feedback =   CharField(max_length=200 , blank = True)
     # was_supplier_on_time =   CharField(max_length=20 , blank = True)
     # quality_of_Service =   CharField(max_length=20 , blank = True)
-    # requirment = CharField(max_length=300 , blank = True)
     # remarks = CharField(max_length=300 , blank = True)
     # rate_supplier = models.IntegerField(null= True , blank = True)
     # beautician_feedback = CharField(max_length=300 , blank = True)
