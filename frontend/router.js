@@ -46,10 +46,19 @@ function(
         },
 
         orders : function(type){
+            if(!new User().logged_in()){
+                this.navigate('login',{trigger:true})
+                return
+            }
             app.layout.navigation.show(new Navigation());
             app.layout.main_region.show(new Orders({suffix : type}));
         },
         detail : function(order_id){
+            if(!new User().logged_in()){
+                this.navigate('login',{trigger:true})
+                return
+            }
+
             app.layout.navigation.show(new Navigation());
 
             var order = new Order({id: order_id})
@@ -61,6 +70,10 @@ function(
         },
 
         leads: function(){
+            if(!new User().logged_in()){
+                this.navigate('login',{trigger:true})
+                return
+            }
             app.layout.navigation.show(new Navigation());
             app.layout.main_region.show(new Leads());
         },

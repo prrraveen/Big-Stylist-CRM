@@ -12,7 +12,7 @@ function(
         },
 
         logged_in: function () {
-            if (this.session.authenticated() && this.get_profile() !== undefined) {
+            if (this.get_profile() !== undefined) {
                 return true;
             } else {
                 return false;
