@@ -1,5 +1,6 @@
 from django.contrib import admin
-
+from django import forms
+from django.core.exceptions import ObjectDoesNotExist
 
 from .models import User
 class UserAdmin(admin.ModelAdmin):
@@ -64,6 +65,90 @@ class SupplierAdmin(admin.ModelAdmin):
 admin.site.register(Supplier, SupplierAdmin)
 
 from .models import Lead
+class LeadForm(forms.ModelForm):
+    class Meta:
+        model = Lead
+        fields = '__all__'
+    def clean(self):
+        if self.cleaned_data.get('lead_status') == 2:
+            order = Order()
+            customer = self.cleaned_data.get('customer')
+            if not customer:
+                customer = Customer();
+
+                customer.name =  self.cleaned_data.get('name')
+                if not customer.name:
+                    raise forms.ValidationError("please select existing customer or add customer name field")
+
+                customer.email =  self.cleaned_data.get('email')
+                if customer.email:
+                    try:
+                        # import pdb; pdb.set_trace()
+                        customer = Customer.objects.get(email=customer.email)
+                        if customer:
+                            raise forms.ValidationError("Customer with this email id exits, Please select the existing customers")
+                    except ObjectDoesNotExist:
+                        pass
+                else:
+                    raise forms.ValidationError("Add Email or select existing customer")
+
+                customer.gender =  self.cleaned_data.get('gender')
+                if not customer.gender:
+                    raise forms.ValidationError("Add gender or select existing customer")
+
+                customer.address =  self.cleaned_data.get('address')
+                if not customer.address:
+                    raise forms.ValidationError("Add address or select existing customer")
+
+                customer.locality =  self.cleaned_data.get('locality')
+                if not customer.locality:
+                    raise forms.ValidationError("Add locality or select existing customer")
+
+                pincode =  self.cleaned_data.get('pincode')
+                if not pincode:
+                    raise forms.ValidationError("Add pincode or select existing customer")
+                else:
+                    customer.pincode = pincode
+
+
+                customer.city =  self.cleaned_data.get('city')
+                customer.state =  self.cleaned_data.get('state')
+                customer.nearest_station =  self.cleaned_data.get('nearest_station')
+                customer.save()
+                order.customer = customer
+            order.source = self.cleaned_data.get('source')
+            order.supplier = self.cleaned_data.get('supplier')
+            order.assigned_csr = self.cleaned_data.get('assigned_csr')
+            order.amount = self.cleaned_data.get('final_price')
+            order.discount = self.cleaned_data.get('discount')
+            order.discount_type = self.cleaned_data.get('discount_type')
+            order.placedat = self.cleaned_data.get('placedat')
+            if not order.placedat:
+                raise forms.ValidationError("placedat field is must")
+
+            order.on = self.cleaned_data.get('on')
+            if not order.on:
+                raise forms.ValidationError("On(date) field is must")
+
+            order.at = self.cleaned_data.get('at')
+            if not order.at:
+                raise forms.ValidationError("at(time) field is must ")
+
+            try:
+                O = Order.objects.get(customer = order.customer,
+                                      placedat = order.placedat,
+                                      on = order.on,
+                                      at = order.at
+                                     )
+                raise forms.ValidationError("An order with same customer at same time exists, Please delete that to proceed")
+            except ObjectDoesNotExist:
+                pass
+            order.save()
+            order.services = self.cleaned_data.get('services')
+            order.save()
+        return self.cleaned_data
+
 class LeadAdmin(admin.ModelAdmin):
+    form = LeadForm
     list_display = ('name','contact')
 admin.site.register(Lead, LeadAdmin)

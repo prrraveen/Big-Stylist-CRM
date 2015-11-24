@@ -84,6 +84,9 @@ class Customer(models.Model):
     address  = models.CharField(max_length = 500 , blank = True)
     locality = models.ForeignKey('Locality' , null=True , blank =True)
     pincode  = models.ForeignKey('Pincode')
+    city= models.ForeignKey('City',null=True , blank =True)
+    state= models.ForeignKey('State',null=True , blank =True)
+    nearest_station = models.ForeignKey('Station',null=True , blank =True)
     lat=       models.DecimalField(max_digits=10, decimal_places=6 ,null =True, blank=True)
     lng=       models.DecimalField(max_digits=10, decimal_places=6 ,null =True , blank=True)
 
@@ -132,6 +135,23 @@ class Order(models.Model):
     beautician = models.ForeignKey('Beautician' , null = True , blank= True ,related_name='allocated')
     allocation_distance = models.DecimalField(max_digits=5, decimal_places=2 ,null =True, blank=True)
     skiped_beautician = models.ManyToManyField('Beautician',null = True , blank= True , related_name='skiped_beautician')
+    supplier_remark = models.CharField(max_length=100 , blank = True)
+    bs_commission = models.DecimalField(max_digits=7, decimal_places=2,null = True, blank=True)
+    supplier_commission = models.DecimalField(max_digits=7, decimal_places=2,null = True, blank=True)
+    net_from_supplier_to_bs = models.DecimalField(max_digits=7, decimal_places=2 ,null = True, blank=True)
+    collected =   models.CharField(max_length=20 , blank = True)
+    supplier_feedback =   models.CharField(max_length=200 , blank = True)
+    was_supplier_on_time =   models.CharField(max_length=20 , blank = True)
+    quality_of_Service =   models.CharField(max_length=20 , blank = True)
+    remarks = models.CharField(max_length=300 , blank = True)
+    rate_supplier = models.IntegerField(null= True , blank = True)
+    beautician_feedback = models.CharField(max_length=300 , blank = True)
+    how_was_client = models.CharField(max_length=300 , blank = True)
+    client_feedback = models.CharField(max_length=300 , blank = True)
+    how_was_service = models.CharField(max_length=300 , blank = True)
+    notes = models.CharField(max_length=100 , blank = True)
+    source = models.ForeignKey('Source',null=True , blank =True)
+    supplier = models.ForeignKey('Supplier',null=True , blank =True)
 
 LEAD_STATUS= (
     (1,'No lead status yet'),
@@ -144,6 +164,7 @@ NEXT_STEP= (
     (2, 'Call back'),
 )
 class Lead(models.Model):
+    lead_status = models.IntegerField(choices = LEAD_STATUS ,default = 1)
     customer = models.ForeignKey('Customer' , null = True , blank= True)
     name = models.CharField(max_length=50 , blank = True)
 
@@ -163,15 +184,12 @@ class Lead(models.Model):
 
 
     assigned_csr =   models.ForeignKey('User',null=True , blank =True)
-    action_required = models.CharField(max_length=50 , blank = True)
-
-    Services = models.ManyToManyField('Service' , null=True , blank=True)
-    mrp = models.DecimalField(max_digits=7, decimal_places=2,null = True, blank=True)
-    final_price = models.DecimalField(max_digits=7, decimal_places=2,null = True, blank=True)
-    discount = models.DecimalField(max_digits=7, decimal_places=2,null = True, blank=True)
+    services = models.ManyToManyField('Service' , null=True , blank=True)
+    mrp = models.DecimalField(max_digits=7, decimal_places=2,default=0,null = True, blank=True)
+    final_price = models.DecimalField(max_digits=7, decimal_places=2,default=0,null = True, blank=True)
+    discount = models.DecimalField(max_digits=7, decimal_places=2,null = True, blank=True,default=0)
     discount_type = models.CharField(max_length=10 , blank = True)
 
-    lead_status = models.IntegerField(choices = LEAD_STATUS ,default = 1)
     next_step = models.IntegerField(choices = NEXT_STEP ,default = 1)
     cancellation_reason =   models.CharField(max_length=200 , blank = True)
 
@@ -179,21 +197,9 @@ class Lead(models.Model):
     on =  models.DateField(null = True , blank=True)
     at =  models.TimeField(null = True , blank=True)
     requirment = models.CharField(max_length=300 , blank = True)
-    # supplier_remark = CharField(max_length=100 , blank = True)
-    # bs_commission = models.DecimalField(max_digits=7, decimal_places=2,null = True, blank=True)
-    # supplier_commission = models.DecimalField(max_digits=7, decimal_places=2,null = True, blank=True)
-    # net_from_supplier_to_bs = models.DecimalField(max_digits=7, decimal_places=2 ,null = True, blank=True)
-    # collected =   CharField(max_length=20 , blank = True)
-    # supplier_feedback =   CharField(max_length=200 , blank = True)
-    # was_supplier_on_time =   CharField(max_length=20 , blank = True)
-    # quality_of_Service =   CharField(max_length=20 , blank = True)
-    # remarks = CharField(max_length=300 , blank = True)
-    # rate_supplier = models.IntegerField(null= True , blank = True)
-    # beautician_feedback = CharField(max_length=300 , blank = True)
-    # how_was_client = CharField(max_length=300 , blank = True)
-    # client_feedback = CharField(max_length=300 , blank = True)
-    # how_was_service = CharField(max_length=300 , blank = True)
-    # notes = CharField(max_length=100 , blank = True)
+    def __unicode__(self):
+        return self.name
+
 
 class City(models.Model):
     name = models.CharField(max_length=50)
