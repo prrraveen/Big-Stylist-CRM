@@ -47,8 +47,13 @@ AVAILABLE = (
     ('A', 'Available'),
     ('NA', 'Single')
 )
+BEAUTICIAN_TYPE = (
+    ('1', 'Free Agent'),
+    ('2', 'Minimum Guarantee')
+)
 class Beautician(models.Model):
     Services =          models.ManyToManyField('Service' , null=True , blank=True)
+    employee_id=        models.CharField(max_length=30,blank=True)
     name =              models.CharField(max_length=100)
     gender =            models.CharField(max_length=1 , choices=GENDER_CHOICES)
     marital_status =    models.CharField(max_length=1 , choices=MARITAL_STATUS)
@@ -61,8 +66,10 @@ class Beautician(models.Model):
     alternate_number =  models.CharField(max_length=11 , blank = True)
     address =           models.CharField(max_length = 1000 , blank = True)
     locality =          models.CharField(max_length=100, blank =True)
+    station =           models.ForeignKey('Station',null=True , blank =True)
     employment_status = models.CharField(max_length = 1 , choices = EMPLOYMENT_STATUS , blank = True)
     availability =      models.CharField(max_length=2 , choices=AVAILABLE,blank=True)
+    type  =             models.CharField(max_length=2 , choices=BEAUTICIAN_TYPE,blank=True)
     pincode =           models.ForeignKey('Pincode' , related_name='beautician_pincode')
     # serving_in =        models.ManyToManyField('Pincode', related_name = 'beautician_pincode_server_in' , null=True , blank=True)
     lat=                models.DecimalField(max_digits=10, decimal_places=6 ,null =True,blank=True)

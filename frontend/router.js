@@ -27,6 +27,7 @@ function(
 ) {
     var Router = Marionette.AppRouter.extend({
         routes: {
+            '':     'login',
             'regi':  'regi',
             'login': 'login',
             'logout': 'logout',
