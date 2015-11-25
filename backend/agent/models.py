@@ -81,14 +81,14 @@ class Beautician(models.Model):
     lat=                models.DecimalField(max_digits=10, decimal_places=6 ,null =True,blank=True)
     lng=                models.DecimalField(max_digits=10, decimal_places=6 ,null =True,blank=True)
     def save(self,*args,**kwargs):
-        if (self.lat == None or self.lng == None):
-            self.lat = self.pincode.lat
-            self.lng = self.pincode.lng
+        # if (self.lat == None or self.lng == None):
+        self.lat = self.pincode.lat
+        self.lng = self.pincode.lng
         super(Beautician, self).save(*args, **kwargs)
     def __unicode__(self):
         return self.name + ', ' + self.locality
 
-
+# from model_utils import FieldTracker
 class Customer(models.Model):
     name     = models.CharField(max_length=100 , blank = True)
     gender   = models.CharField(max_length=1 , choices=GENDER_CHOICES,default = 'M')
@@ -104,9 +104,8 @@ class Customer(models.Model):
     lng=       models.DecimalField(max_digits=10, decimal_places=6 ,null =True , blank=True)
 
     def save(self,*args,**kwargs):
-        if (self.lat == None or self.lng == None):
-            self.lat = self.pincode.lat
-            self.lng = self.pincode.lng
+        self.lat = self.pincode.lat
+        self.lng = self.pincode.lng
         super(Customer, self).save(*args, **kwargs)
     def __unicode__(self):
         return self.name
@@ -194,7 +193,6 @@ class Lead(models.Model):
 
     source = models.ForeignKey('Source')
     supplier = models.ForeignKey('Supplier',null=True , blank =True)
-
 
     assigned_csr =   models.ForeignKey('User',null=True , blank =True)
     services = models.ManyToManyField('Service' , null=True , blank=True)
