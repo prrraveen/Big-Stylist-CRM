@@ -192,7 +192,7 @@ class Lead(models.Model):
     state= models.ForeignKey('State',null=True , blank =True)
     nearest_station = models.ForeignKey('Station',null=True , blank =True)
 
-    source = models.ForeignKey('Source',null=True , blank =True)
+    source = models.ForeignKey('Source')
     supplier = models.ForeignKey('Supplier',null=True , blank =True)
 
 

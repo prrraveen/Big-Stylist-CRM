@@ -154,5 +154,5 @@ class LeadForm(forms.ModelForm):
 
 class LeadAdmin(admin.ModelAdmin):
     form = LeadForm
-    list_display = ('name','contact')
+    list_display = ('source','customer','name','contact')
 admin.site.register(Lead, LeadAdmin)
