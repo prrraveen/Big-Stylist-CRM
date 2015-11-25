@@ -33,7 +33,7 @@ function(
             'logout': 'logout',
             'orders/:type': 'orders',
             'detail/:order_id': 'detail',
-            'leads': 'leads',
+            'leads/:type': 'leads',
         },
 
         regi : function(){
@@ -54,6 +54,16 @@ function(
             app.layout.navigation.show(new Navigation());
             app.layout.main_region.show(new Orders({suffix : type}));
         },
+
+        leads: function(type){
+            if(!new User().logged_in()){
+                this.navigate('login',{trigger:true})
+                return
+            }
+            app.layout.navigation.show(new Navigation());
+            app.layout.main_region.show(new Leads({suffix: type}));
+        },
+
         detail : function(order_id){
             if(!new User().logged_in()){
                 this.navigate('login',{trigger:true})
@@ -70,14 +80,6 @@ function(
             })
         },
 
-        leads: function(){
-            if(!new User().logged_in()){
-                this.navigate('login',{trigger:true})
-                return
-            }
-            app.layout.navigation.show(new Navigation());
-            app.layout.main_region.show(new Leads());
-        },
         logout : function(){
             new User().logout();
             app.layout.navigation.empty();

@@ -16,6 +16,7 @@ function(
         templateHelpers: function() {
             return { user : this.model};
         },
+
         ui:{
             sidebar : '.main-sidebar',
             toggle:   '.sidebar-toggle',

@@ -1,5 +1,8 @@
 <td>
-    <%= source %>
+    <% if(source != null){%>
+        <%= source.name %>
+    <%}%>
+
 </td>
 <td>
     <% if(customer != null){%>

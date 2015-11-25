@@ -13,10 +13,12 @@ function(
     return Orders = Mn.CompositeView.extend({
         initialize: function(options){
             this.collection = new Lead_collection();
+            this.collection.bind('reset', this.render);
+            this.collection.set_url(suffix = options.suffix)
             var _this = this
             this.collection.fetch().then(function() {
                _this.render();
-             });
+            });
         },
         childView: Lead_itemView,
         emptyView: No_orders,

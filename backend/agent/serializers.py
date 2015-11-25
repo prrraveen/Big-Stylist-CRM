@@ -43,9 +43,16 @@ class OrderSerializer(serializers.ModelSerializer):
     def get_status(self,obj):
         return obj.get_status_display()
 
+from .models import Source
+class SourceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Source
+        fields = ('name',)
+        
 from .models import Lead
 class LeadSerializer(serializers.ModelSerializer):
     customer = CustomerSerializer(read_only = True)
+    source = SourceSerializer(read_only = True)
     class Meta:
         model = Lead
         fields = ('id',

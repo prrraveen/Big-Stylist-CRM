@@ -12,7 +12,7 @@ from rest_framework.parsers import JSONParser
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
-from agent.models import Order , ORDER_STATUS ,Beautician, Lead
+from agent.models import Order , ORDER_STATUS ,Beautician, Lead , Source
 from agent.serializers import OrderSerializer, BeauticianSerializer , LeadSerializer
 from backend.settings import TIME_BUFFER
 
@@ -36,15 +36,24 @@ def orders(request , typ):
         return Response(status= 500)
 
 @api_view(['GET'])
-def leads(request):
+def leads(request, typ):
     try:
         current_page = int(request.GET.get('current_page'))
         per_page = int(request.GET.get('per_page'))
         offset = (current_page-1)*per_page
         limit = offset+per_page
-        count = dataset = Lead.objects.all().count()
-
-        dataset = Lead.objects.all()[offset : limit]
+        if typ == 'facebook':
+            count = dataset = Lead.objects.filter(source__name__contains = typ).count()
+            dataset = Lead.objects.filter(source__name__contains = typ)[offset : limit]
+        else:
+            try:
+                facebook = Source.objects.get(name__contains='facebook')
+                count = dataset = Lead.objects.exclude(source = facebook.id).count()
+                dataset = Lead.objects.exclude(source = facebook.id)[offset : limit]
+            except Exception,e:
+                print e
+                count = dataset = Lead.objects.exclude(source__name__contains = typ).count()
+                dataset = Lead.objects.exclude(source__name__contains = typ)[offset : limit]
         payload = LeadSerializer(dataset, many=True)
         response = {}
         response['state'] = {'totalRecords' : count}
