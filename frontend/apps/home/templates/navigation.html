@@ -1,6 +1,6 @@
 <header class="main-header">
   <!-- Logo -->
-  <a href="#dashboard" class="logo">
+  <a href="#leads" class="logo">
     <!-- mini logo for sidebar mini 50x50 pixels -->
     <span class="logo-mini"><b>B</b>S</span>
     <!-- logo for regular state and mobile devices -->
@@ -37,25 +37,25 @@
        <li class="header">MAIN NAVIGATION</li>
        </li>
        <li class="treeview">
-         <a href="#">
+         <a role="button" data-toggle="collapse" href="#lead" aria-expanded="false" aria-controls="lead">
            <i class="fa fa-laptop"></i>
            <span>Leads</span>
            <i class="fa fa-angle-left pull-right"></i>
          </a>
-         <ul class="treeview-menu">
-           <li><a href="#leads"><i class="fa fa-circle-o"></i> CSV Download Here</a></li>
+         <ul class="collapse" id="lead">
+           <li><a href="#leads" class=""><i class="fa fa-circle-o"></i> CSV Download Here</a></li>
            <li><a href="#leads"><i class="fa fa-circle-o"></i> Lead Facebook</a></li>
            <li><a href="#leads"><i class="fa fa-circle-o"></i> Lead Others</a></li>
            <li><a href="/admin/agent/lead/add/"><i class="fa fa-circle-o"></i> Add Lead</a></li>
          </ul>
        </li>
        <li class="treeview">
-         <a>
+         <a role="button" data-toggle="collapse" href="#orders" aria-expanded="false" aria-controls="orders">
            <i class="fa fa-laptop"></i>
            <span>Orders</span>
            <i class="fa fa-angle-left pull-right"></i>
          </a>
-         <ul class="treeview-menu">
+         <ul class="collapse" id='orders'>
            <li><a href="#orders/Received"><i class="fa fa-circle-o"></i> New/Received Orders</a></li>
            <li><a href="#orders/Confirmed"><i class="fa fa-circle-o"></i> Confirmed Orders</a></li>
            <li><a href="#orders/Allocated"><i class="fa fa-circle-o"></i> Allocated Orders</a></li>
@@ -76,12 +76,12 @@
            </a>
        </li>
        <li class="treeview">
-         <a href="#">
+         <a role="button" data-toggle="collapse" href="#user" aria-expanded="false" aria-controls="user">
            <i class="fa fa-laptop"></i>
            <span>System</span>
            <i class="fa fa-angle-left pull-right"></i>
          </a>
-         <ul class="treeview-menu">
+         <ul class="collapse" id='user'>
            <li><a href="/admin/agent/user/"><i class="fa fa-circle-o"></i> Manage Users</a></li>
          </ul>
        </li>

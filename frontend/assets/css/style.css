@@ -10,3 +10,17 @@
     margin-top: 2%;
     margin-left: 7%;
 }
+
+.collapse > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+    /*background-color: #FFFF00;*/
+    color: white;
+}
+
+.collapse {
+    margin: 0 1px;
+    background: #2c3b41;
+}
+
+.collapse > li {
+    margin-top: 1%
+}

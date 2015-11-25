@@ -103,7 +103,7 @@ def allocate_auto(request):
     skiped_beauticians_list = get_skiped_beautician(order=order)
     customer_lat = order.customer.lat
     customer_lng = order.customer.lng
-    for kilometers in range_step(1, 20, 0.5):
+    for kilometers in range_step(1, 50, 1):
         ids = get_beautician(customer_lat = customer_lat,customer_lng = customer_lng,distance = kilometers)
         selectable_id = [x for x in ids if x not in skiped_beauticians_list]
         for pk in selectable_id:

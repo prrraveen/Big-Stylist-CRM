@@ -25,7 +25,7 @@ require.config({
         },
         'bootstrap': {
             deps: ['jquery'],
-            exports: 'bootstrap',
+            exports: 'Bootstrap',
         },
         'select2':{
             deps: ['jquery'],
