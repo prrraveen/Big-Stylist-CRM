@@ -113,13 +113,22 @@ return __p
 
 this["JST"]["lead_itemView"] = function(obj) {
 obj || (obj = {});
-var __t, __p = '', __e = _.escape;
+var __t, __p = '', __e = _.escape, __j = Array.prototype.join;
+function print() { __p += __j.call(arguments, '') }
 with (obj) {
 __p += '<td>\n    ' +
 ((__t = ( source )) == null ? '' : __t) +
-'\n</td>\n<td>\n    ' +
+'\n</td>\n<td>\n    ';
+ if(customer != null){;
+__p += '\n        ' +
+((__t = ( customer.name )) == null ? '' : __t) +
+'\n    ';
+}else{;
+__p += '\n        ' +
 ((__t = ( name )) == null ? '' : __t) +
-'\n</td>\n<td>\n    ' +
+'\n    ';
+};
+__p += '\n</td>\n<td>\n    ' +
 ((__t = ( contact )) == null ? '' : __t) +
 '\n</td>\n<td>\n    ' +
 ((__t = ( app.static_data.lead_status[lead_status] )) == null ? '' : __t) +
@@ -135,7 +144,7 @@ this["JST"]["leads"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<div class="container">\n    <div class="row">\n        <div class=\'col-sm-12\'>\n            <table class=\'table table-hover table-bordered\'>\n                <thead>\n                    <tr>\n                        <td>\n                            Source\n                        </td>\n                        <td>\n                            Name\n                        </td>\n                        <td>\n                            Contact\n                        </td>\n                        <td>\n                            Lead Status\n                        </td>\n                        <td>\n                            Next Step\n                        </td>\n                    </tr>\n                </thead>\n                <tbody>\n\n                </tbody>\n            </table>\n        </div>\n    </div>\n</div>\n';
+__p += '<div class="container">\n    <div class="row">\n        <div class=\'col-sm-4\'>\n            <div class="input-group">\n                <span class="input-group-addon" id="basic-addon1">\n                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>\n                </span>\n                <input type="text" id=\'name\' class=\'form-control\' placeholder="Search leads by customer name" />\n                <span class="input-group-btn">\n                    <button id=\'search-name\' class="search btn btn-default">Search</button>\n                </span>\n            </div>\n        </div>\n        <div class=\'col-sm-4\'>\n            <div class="input-group">\n                <span class="input-group-addon" id="basic-addon1">\n                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>\n                </span>\n                <input type="text" class=\'form-control\' id=\'contact\' placeholder="Search leads by customer contact" />\n                <span class="input-group-btn">\n                    <button type="button" id=\'search-contact\'class="search btn btn-default">Search</button>\n                </span>\n            </div>\n        </div>\n        <div class=\'col-sm-1\'>\n            <button type="button" id=\'remove-filters\' class="btn btn-default">Remove filters</button>\n        </div>\n    </div>\n    <br>\n    <div class="row">\n        <div class=\'col-sm-12\'>\n            <table class=\'table table-hover table-bordered\'>\n                <thead>\n                    <tr>\n                        <td>\n                            Source\n                        </td>\n                        <td>\n                            Name\n                        </td>\n                        <td>\n                            Contact\n                        </td>\n                        <td>\n                            Lead Status\n                        </td>\n                        <td>\n                            Next Step\n                        </td>\n                    </tr>\n                </thead>\n                <tbody>\n\n                </tbody>\n            </table>\n        </div>\n    </div>\n</div>\n';
 
 }
 return __p

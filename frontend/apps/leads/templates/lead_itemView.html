@@ -2,7 +2,11 @@
     <%= source %>
 </td>
 <td>
-    <%= name %>
+    <% if(customer != null){%>
+        <%= customer.name %>
+    <%}else{%>
+        <%= name %>
+    <%}%>
 </td>
 <td>
     <%= contact %>

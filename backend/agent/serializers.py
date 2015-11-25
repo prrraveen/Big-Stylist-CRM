@@ -45,14 +45,16 @@ class OrderSerializer(serializers.ModelSerializer):
 
 from .models import Lead
 class LeadSerializer(serializers.ModelSerializer):
+    customer = CustomerSerializer(read_only = True)
     class Meta:
         model = Lead
-        fields = ('id', 
+        fields = ('id',
                   'name',
                   'contact',
                   'lead_status',
                   'next_step',
-                  'source'
+                  'source',
+                  'customer'
                   )
 
 class BeauticianSerializer(serializers.ModelSerializer):
