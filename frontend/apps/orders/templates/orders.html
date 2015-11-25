@@ -60,11 +60,12 @@
     </div>
     <br>
     <div class="row">
-        <div class='col-sm-6 col-sm-offset-3'>
-            <% console.log(state.totalPages)%>
-            <% for(var i =1; i <= state.totalPages; i++){%>
-                <%= i %>
-            <%}%>
+        <div class='col-sm-12'>
+            <h4>
+                <% for(var i =1; i <= state.totalPages; i++){%>
+                    <a class="page pointer" id='<%= i %>' ><%= i %></a>
+                <%}%>
+            </h4>
         </div>
     </div>
 </div>

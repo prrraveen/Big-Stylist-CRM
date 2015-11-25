@@ -19,10 +19,16 @@ from backend.settings import TIME_BUFFER
 @api_view(['GET'])
 def orders(request , typ):
     try:
-        dataset = Order.objects.filter(status = get_status_key(val =typ) )
+        current_page = int(request.GET.get('current_page'))
+        per_page = int(request.GET.get('per_page'))
+        offset = (current_page-1)*per_page
+        limit = offset+per_page
+        count =  Order.objects.all().count()
+
+        dataset = Order.objects.filter(status = get_status_key(val =typ) )[offset : limit]
         payload = OrderSerializer(dataset, many=True)
         response = {}
-        response['state'] = {'totalRecords' : len(payload.data)}
+        response['state'] = {'totalRecords' : count}
         response['payload'] = payload.data
         return Response(response)
     except Exception,e:
@@ -37,6 +43,7 @@ def leads(request):
         offset = (current_page-1)*per_page
         limit = offset+per_page
         count = dataset = Lead.objects.all().count()
+
         dataset = Lead.objects.all()[offset : limit]
         payload = LeadSerializer(dataset, many=True)
         response = {}

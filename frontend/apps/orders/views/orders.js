@@ -27,7 +27,8 @@ function(
 
         templateHelpers: function(){
             return {
-                state : this.collection.state
+                state : this.collection.state,
+                collection: this.collection
             }
         },
 
@@ -36,12 +37,15 @@ function(
             search_contact : '#search-contact',
             name:    'input#name',
             contact: 'input#contact',
-            remove_filters : '#remove-filters'
+            remove_filters : '#remove-filters',
+            page: '.page',
         },
         events:{
             'click @ui.search_name' : 'search_name',
             'click @ui.search_contact' : 'search_contact',
             'click @ui.remove_filters' : 'remove_filters',
+            'click @ui.page' : 'get_page',
+
         },
 
         search_name: function(){
@@ -82,7 +86,15 @@ function(
             debugger
             this.collection.fetch()
             this.render()
+        },
+        get_page: function(e){
+            page = +e.target.id
+            var _this = this
+            this.collection.getPage(page).done(function(){
+                _this.render()
+            })
         }
+
     })
 
     return Orders;
