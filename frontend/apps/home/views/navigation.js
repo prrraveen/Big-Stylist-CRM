@@ -27,6 +27,7 @@ function(
             this.ui.sidebar.offcanvas('toggle')
         },
         onRender: function(){
+            this.ui.sidebar.offcanvas('show')
             this.tree('.sidebar')
         },
 
