@@ -91,6 +91,10 @@ class LeadForm(forms.ModelForm):
                         pass
                 else:
                     raise forms.ValidationError("Add Email or select existing customer")
+                # import pdb; pdb.set_trace()                
+                customer.contact =  self.cleaned_data.get('contact')
+                if not customer.contact:
+                    raise forms.ValidationError("Add contact or select existing customer")
 
                 customer.gender =  self.cleaned_data.get('gender')
                 if not customer.gender:
@@ -114,8 +118,6 @@ class LeadForm(forms.ModelForm):
                 customer.city =  self.cleaned_data.get('city')
                 customer.state =  self.cleaned_data.get('state')
                 customer.nearest_station =  self.cleaned_data.get('nearest_station')
-                customer.save()
-                order.customer = customer
             order.source = self.cleaned_data.get('source')
             order.supplier = self.cleaned_data.get('supplier')
             order.assigned_csr = self.cleaned_data.get('assigned_csr')
@@ -143,7 +145,9 @@ class LeadForm(forms.ModelForm):
                 raise forms.ValidationError("An order with same customer at same time exists, Please delete that to proceed")
             except ObjectDoesNotExist:
                 pass
+            customer.save()
             order.save()
+            order.customer = customer
             order.services = self.cleaned_data.get('services')
             order.save()
         return self.cleaned_data

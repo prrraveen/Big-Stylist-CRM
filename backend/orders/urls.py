@@ -13,4 +13,6 @@ urlpatterns = patterns('',
     url(r'^leads/$',  leads),
     url(r'^search/leads/name/$',  search_name),
     url(r'^search/leads/contact/$',  search_contact),
+    url(r'^search/orders/name/$',  search_orders_name),
+    url(r'^search/orders/contact/$',  search_orders_contact),
     )

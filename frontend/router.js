@@ -64,7 +64,7 @@ function(
             var order = new Order({id: order_id})
             order.fetch({
                 success : function(model, response ,options){
-                    // app.layout.main_region.show(new Detail({model : order}));
+                    app.layout.main_region.show(new Detail({model : order}));
                 }
             })
         },

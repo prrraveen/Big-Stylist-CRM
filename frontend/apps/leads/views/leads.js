@@ -72,6 +72,5 @@ function(
             this.render()
         }
     })
-
-
+    
 });

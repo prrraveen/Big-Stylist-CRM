@@ -170,7 +170,7 @@ class Lead(models.Model):
 
     contact  = models.CharField(max_length=10 , blank = True)
     email = models.EmailField(blank = True)
-    gender =   models.CharField(max_length=1 , choices=GENDER_CHOICES)
+    gender =   models.CharField(max_length=1 , blank=True,choices=GENDER_CHOICES)
 
     address = models.CharField(max_length = 1000 , blank = True)
     pincode  = models.ForeignKey('Pincode',null=True , blank =True)

@@ -3,6 +3,7 @@ from django.shortcuts import render_to_response
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.core.exceptions import ObjectDoesNotExist
+from django.db.models import Q
 
 from rest_framework import status
 from rest_framework.decorators import api_view
@@ -162,3 +163,17 @@ def change_status(request):
     order.save()
     response = Response('',status=200)
     return response
+
+@api_view(['GET'])
+def search_orders_name(request):
+    name = request.GET.get('name')
+    orders = Order.objects.filter(customer__name__istartswith = name)
+    payload = OrderSerializer(orders, many=True)
+    return Response(payload.data)
+
+@api_view(['GET'])
+def search_orders_contact(request):
+    contact  = request.GET.get('contact')
+    orders = Order.objects.filter(customer__contact__contains = contact)
+    payload = OrderSerializer(orders, many=True)
+    return Response(payload.data)
