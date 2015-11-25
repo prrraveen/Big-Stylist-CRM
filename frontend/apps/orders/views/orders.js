@@ -13,13 +13,23 @@ function(
     var Orders = Mn.CompositeView.extend({
         initialize: function(options){
             this.collection = new Orders_collection();
+            this.collection.bind('reset', this.render);
             this.collection.set_url(suffix = options.suffix)
-            this.collection.fetch();
+            var _this = this
+            this.collection.fetch().then(function() {
+               _this.render();
+             });
         },
         childView: Order_itemView,
         emptyView: No_orders,
         template: JST['orders'],
         childViewContainer: 'tbody',
+
+        templateHelpers: function(){
+            return {
+                state : this.collection.state
+            }
+        },
 
         ui:{
             search_name : '#search-name',
@@ -69,9 +79,10 @@ function(
         },
 
         remove_filters: function(){
+            debugger
             this.collection.fetch()
             this.render()
-        }        
+        }
     })
 
     return Orders;

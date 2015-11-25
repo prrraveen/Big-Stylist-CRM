@@ -21,7 +21,10 @@ def orders(request , typ):
     try:
         dataset = Order.objects.filter(status = get_status_key(val =typ) )
         payload = OrderSerializer(dataset, many=True)
-        return Response(payload.data)
+        response = {}
+        response['state'] = {'totalRecords' : len(payload.data)}
+        response['payload'] = payload.data
+        return Response(response)
     except Exception,e:
         print e
         return Response(status= 500)
@@ -29,9 +32,17 @@ def orders(request , typ):
 @api_view(['GET'])
 def leads(request):
     try:
-        dataset = Lead.objects.all()
+        current_page = int(request.GET.get('current_page'))
+        per_page = int(request.GET.get('per_page'))
+        offset = (current_page-1)*per_page
+        limit = offset+per_page
+        count = dataset = Lead.objects.all().count()
+        dataset = Lead.objects.all()[offset : limit]
         payload = LeadSerializer(dataset, many=True)
-        return Response(payload.data)
+        response = {}
+        response['state'] = {'totalRecords' : count}
+        response['payload'] = payload.data
+        return Response(response)
     except Exception,e:
         print e
         return Response(status= 500)
@@ -169,7 +180,10 @@ def search_orders_name(request):
     name = request.GET.get('name')
     orders = Order.objects.filter(customer__name__istartswith = name)
     payload = OrderSerializer(orders, many=True)
-    return Response(payload.data)
+    response = Response()
+    response['state'] = {'totalPages' : 100}
+    # response['payload'] = payload.data
+    return response
 
 @api_view(['GET'])
 def search_orders_contact(request):

@@ -13,24 +13,35 @@ function(
     return Orders = Mn.CompositeView.extend({
         initialize: function(options){
             this.collection = new Lead_collection();
-            this.collection.fetch();
+            var _this = this
+            this.collection.fetch().then(function() {
+               _this.render();
+             });
         },
         childView: Lead_itemView,
         emptyView: No_orders,
         template: JST['leads'],
         childViewContainer: 'tbody',
+        templateHelpers: function(){
+            return {
+                state : this.collection.state,
+                collection: this.collection
+            }
+        },
 
         ui:{
             search_name : '#search-name',
             search_contact : '#search-contact',
             name:    'input#name',
             contact: 'input#contact',
-            remove_filters : '#remove-filters'
+            remove_filters : '#remove-filters',
+            page: '.page',
         },
         events:{
             'click @ui.search_name' : 'search_name',
             'click @ui.search_contact' : 'search_contact',
             'click @ui.remove_filters' : 'remove_filters',
+            'click @ui.page' : 'get_page',
         },
 
         search_name: function(){
@@ -70,7 +81,15 @@ function(
         remove_filters: function(){
             this.collection.fetch()
             this.render()
+        },
+
+        get_page: function(e){
+            page = +e.target.id
+            var _this = this
+            this.collection.getPage(page).done(function(){
+                _this.render()
+            })
         }
     })
-    
+
 });

@@ -7,7 +7,8 @@ require.config({
         bootstrap:  'assets/libs/bootstrap/dist/js/bootstrap',
         select2:    'assets/libs/select2/dist/js/select2.min',
         templates:  'assets/js/templates',
-        offcanvas:   'assets/libs/jasny-bootstrap/js/offcanvas'
+        offcanvas:  'assets/libs/jasny-bootstrap/js/offcanvas',
+        paginator:  'assets/libs/backbone.paginator/lib/backbone.paginator.min',
     },
     shim: {
         'backbone': {
