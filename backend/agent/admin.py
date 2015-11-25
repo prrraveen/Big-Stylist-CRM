@@ -4,7 +4,7 @@ from django.core.exceptions import ObjectDoesNotExist
 
 from .models import User
 class UserAdmin(admin.ModelAdmin):
-    list_display = ('name', 'email')
+    list_display = ('name', 'email','contact')
 admin.site.register(User,UserAdmin)
 
 from .models import Pincode
@@ -91,7 +91,7 @@ class LeadForm(forms.ModelForm):
                         pass
                 else:
                     raise forms.ValidationError("Add Email or select existing customer")
-                # import pdb; pdb.set_trace()                
+                # import pdb; pdb.set_trace()
                 customer.contact =  self.cleaned_data.get('contact')
                 if not customer.contact:
                     raise forms.ValidationError("Add contact or select existing customer")

@@ -5,6 +5,12 @@ class User(models.Model):
     name = models.CharField(max_length=80)
     email = models.EmailField(primary_key=True)
     password = models.CharField(max_length=80)
+    contact  = models.CharField(max_length=10 , blank = True)
+    alternate_number = models.CharField(max_length=10 , blank = True)
+    address =  models.CharField(max_length = 1000 , blank = True)
+    pincode  = models.ForeignKey('Pincode', null=True , blank=True)
+    emergencyname = models.CharField(max_length=50 , blank = True)
+    emergency_contact = models.CharField(max_length=50 , blank = True)
     def __unicode__(self):
         return self.name
 
