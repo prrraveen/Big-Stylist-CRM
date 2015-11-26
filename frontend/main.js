@@ -9,6 +9,7 @@ require.config({
         templates:  'assets/js/templates',
         offcanvas:  'assets/libs/jasny-bootstrap/js/offcanvas',
         paginator:  'assets/libs/backbone.paginator/lib/backbone.paginator.min',
+        tocsv:      'assets/html_to_CSV',
     },
     shim: {
         'backbone': {
@@ -34,6 +35,10 @@ require.config({
         'offcanvas':{
             deps:['jquery','bootstrap'],
             exports: 'Offcanvas'
+        },
+        'tocsv': {
+            deps: ['jquery',],
+            exports: 'Tocsv'
         }
     },
 

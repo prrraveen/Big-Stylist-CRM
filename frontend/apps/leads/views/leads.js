@@ -3,12 +3,14 @@ define([
         'apps/leads/views/lead_itemView',
         'apps/orders/views/no_orders',
         'apps/leads/collections/lead_collections',
+        // 'tocsv',
 ],
 function(
         Mn,
         Lead_itemView,
         No_orders,
         Lead_collection
+        // Tocsv
 ) {
     return Orders = Mn.CompositeView.extend({
         initialize: function(options){
@@ -40,12 +42,15 @@ function(
             contact: 'input#contact',
             remove_filters : '#remove-filters',
             page: '.page',
+            // to_csv: '#to-csv'
+            table: '#table'
         },
         events:{
             'click @ui.search_name' : 'search_name',
             'click @ui.search_contact' : 'search_contact',
             'click @ui.remove_filters' : 'remove_filters',
             'click @ui.page' : 'get_page',
+            // 'click @ui.to_csv' : 'to_csv',
         },
 
         search_name: function(){
@@ -93,6 +98,9 @@ function(
             this.collection.getPage(page).done(function(){
                 _this.render()
             })
+        },
+        to_csv: function(){
+            // this.ui.table.table2CSV({header:['prefix','Employee Name','Contact']})
         }
     })
 

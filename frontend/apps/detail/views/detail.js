@@ -62,7 +62,7 @@ function(
                 _this.render();
             })
             .fail(function(){
-                alert('Failed')
+                alert('Failed, Beautican is not available at this time slot')
             })
         },
         on_status_change: function(){

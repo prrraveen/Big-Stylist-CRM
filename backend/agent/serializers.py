@@ -1,10 +1,25 @@
 from rest_framework import serializers
 
+from .models import Pincode
+class PincodeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Pincode
+        fields = ('pincode',)
+
+from .models import Locality
+class LocalitySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Locality
+        fields = ('name',)
+
 from .models import Customer
 class CustomerSerializer(serializers.ModelSerializer):
+    pincode = PincodeSerializer(read_only = True)
+    locality = LocalitySerializer(read_only = True)
+
     class Meta:
         model = Customer
-        fields = ('id','name', 'locality','contact' ,'address')
+        fields = ('id','name', 'locality','contact' ,'address','pincode')
 
 from .models import Service
 class ServiceSerializer(serializers.ModelSerializer):
@@ -48,7 +63,7 @@ class SourceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Source
         fields = ('name',)
-        
+
 from .models import Lead
 class LeadSerializer(serializers.ModelSerializer):
     customer = CustomerSerializer(read_only = True)

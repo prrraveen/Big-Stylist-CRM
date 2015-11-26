@@ -5,37 +5,44 @@ from django.core.exceptions import ObjectDoesNotExist
 from .models import User
 class UserAdmin(admin.ModelAdmin):
     list_display = ('name', 'email','contact')
+    search_fields = ['name','email', 'contact']
 admin.site.register(User,UserAdmin)
 
 from .models import Pincode
 class PincodeAdmin(admin.ModelAdmin):
     list_display = ['pincode']
+    search_fields = ['pincode']
 admin.site.register(Pincode, PincodeAdmin)
 
 from .models import Locality
 class LocalityAdmin(admin.ModelAdmin):
     list_display = ['name']
+    search_fields = ['name']
 admin.site.register(Locality, LocalityAdmin)
 
 from .models import Service
 class ServiceAdmin(admin.ModelAdmin):
-    list_display = ('name', 'packages', 'price' , 'typ')
+    list_display = ('name', 'packages', 'price' , 'typ','source')
+    search_fields = ['name','packages','typ','source']
 admin.site.register(Service, ServiceAdmin)
 
 
 from .models import Beautician
 class BeauticianAdmin(admin.ModelAdmin):
-    list_display = ('name', 'availability')
+    list_display = ('name', 'phone_number','pincode','type','availability','station')
+    search_fields = ['name','phone_number','pincode__pincode','station__name']
 admin.site.register(Beautician, BeauticianAdmin)
 
 from .models import Customer
 class CustomerAdmin(admin.ModelAdmin):
-    list_display = ('name', 'gender', 'contact','address')
+    list_display = ('name', 'gender', 'contact','pincode','address','locality' ,'city','state')
+    search_fields = ['name','gender','email','locality__name', 'contact','address','pincode__pincode','city__name','state__name']
 admin.site.register(Customer, CustomerAdmin)
 
 from .models import Order
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ('amount', 'status')
+    list_display = ('customer','amount', 'status')
+    search_fields = ['customer__name','status']
     # exclude=('allocation_distance', 'beautician')
 admin.site.register(Order, OrderAdmin)
 

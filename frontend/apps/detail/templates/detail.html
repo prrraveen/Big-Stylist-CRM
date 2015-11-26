@@ -23,7 +23,17 @@
                     <label for="Name">Locality</label>
                 </div>
                 <div class='col-sm-9'>
-                    <%= customer.locality %>
+                    <% if(customer.locality != null) {%>
+                    <%= customer.locality.name %>
+                    <% } %>
+                </div>
+            </div>
+            <div class="row">
+                <div class='col-sm-3'>
+                    <label for="Name">Pincode</label>
+                </div>
+                <div class='col-sm-9'>
+                    <%= customer.pincode.pincode %>
                 </div>
             </div>
             <div class="row">

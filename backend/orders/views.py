@@ -94,12 +94,19 @@ def allocate_manually(request):
     order = Order.objects.get(id = order_id)
     beautician = Beautician.objects.get(id = beautician_id)
 
-    order.beautician = beautician
-    order.allocation_status = 3
-    order.save()
-
-    payload = OrderSerializer(order)
-    return Response(payload.data)
+    lower_time_bound = datetime.combine(date.today(), order.at) - timedelta(hours=TIME_BUFFER)
+    lower_time_bound = lower_time_bound.time()
+    upper_time_bound = datetime.combine(date.today(), order.at) + timedelta(hours=TIME_BUFFER)
+    upper_time_bound = upper_time_bound.time()
+    try:
+        scheduled_orders = Order.objects.get(beautician = beautician, on = order.on , at__gt = lower_time_bound , at__lt = upper_time_bound)
+        return Response(status=503)
+    except ObjectDoesNotExist:
+        order.beautician = beautician
+        order.allocation_status = 3
+        order.save()
+        payload = OrderSerializer(order)
+        return Response(payload.data)
 
 @api_view(['GET'])
 def allocate_auto(request):

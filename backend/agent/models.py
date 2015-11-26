@@ -51,7 +51,7 @@ EMPLOYMENT_STATUS = (
 )
 AVAILABLE = (
     ('A', 'Available'),
-    ('NA', 'Single')
+    ('NA', 'Not Available')
 )
 BEAUTICIAN_TYPE = (
     ('1', 'Free Agent'),
