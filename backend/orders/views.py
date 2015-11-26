@@ -43,8 +43,11 @@ def leads(request, typ):
         offset = (current_page-1)*per_page
         limit = offset+per_page
         if typ == 'facebook':
-            count = dataset = Lead.objects.filter(source__name__contains = typ).count()
+            count = Lead.objects.filter(source__name__contains = typ).count()
             dataset = Lead.objects.filter(source__name__contains = typ)[offset : limit]
+        elif typ == 'all':
+            count = Lead.objects.all().count()
+            dataset = Lead.objects.all()[offset : limit]
         else:
             try:
                 facebook = Source.objects.get(name__contains='facebook')

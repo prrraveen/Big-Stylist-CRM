@@ -27,7 +27,7 @@ function(
 ) {
     var Router = Marionette.AppRouter.extend({
         routes: {
-            '':     'login',
+            '':     'home',
             'regi':  'regi',
             'login': 'login',
             'logout': 'logout',
@@ -36,6 +36,11 @@ function(
             'leads/:type': 'leads',
         },
 
+        home: function(){
+            this.navigate('leads/all',{trigger:true})
+            return
+        },
+        
         regi : function(){
             app.layout.navigation.empty();
             app.layout.main_region.show(new Regi())
