@@ -14,6 +14,7 @@ function(
         initialize: function(options){
             this.collection = new Lead_collection();
             this.collection.bind('reset', this.render);
+            this.suffix = options.suffix
             this.collection.set_url(suffix = options.suffix)
             var _this = this
             this.collection.fetch().then(function() {
@@ -27,7 +28,8 @@ function(
         templateHelpers: function(){
             return {
                 state : this.collection.state,
-                collection: this.collection
+                collection: this.collection,
+                page: this.suffix,
             }
         },
 
