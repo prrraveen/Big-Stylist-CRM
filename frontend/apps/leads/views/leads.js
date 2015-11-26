@@ -42,15 +42,17 @@ function(
             contact: 'input#contact',
             remove_filters : '#remove-filters',
             page: '.page',
-            // to_csv: '#to-csv'
-            table: '#table'
+            table: '#table',
+            modal: '#myModal',
+            modal_body: '#modal-body',
+
         },
         events:{
             'click @ui.search_name' : 'search_name',
             'click @ui.search_contact' : 'search_contact',
             'click @ui.remove_filters' : 'remove_filters',
             'click @ui.page' : 'get_page',
-            // 'click @ui.to_csv' : 'to_csv',
+            'shown.bs.modal @ui.modal': 'show_add_lead_iframe',
         },
 
         search_name: function(){
@@ -99,9 +101,10 @@ function(
                 _this.render()
             })
         },
-        to_csv: function(){
-            // this.ui.table.table2CSV({header:['prefix','Employee Name','Contact']})
-        }
+
+        show_add_lead_iframe: function(){
+            // this.ui.modal_body.html('')
+        },
     })
 
 });

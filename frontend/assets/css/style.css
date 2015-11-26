@@ -24,3 +24,6 @@
 .collapse > li {
     margin-top: 1%
 }
+thead{
+background: #ddd;    
+}

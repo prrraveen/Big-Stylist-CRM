@@ -31,7 +31,7 @@
             <button type="button" id='remove-filters' class="btn btn-default">Remove filters</button>
         </div>
         <div class='col-sm-2'>
-            <!-- <button type="button" id='to-csv' class="btn btn-default">Export to CSV</button> -->
+            <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-default">+ Add Lead</button>
         </div>
     </div>
     <br>
@@ -74,4 +74,21 @@
         </div>
     </div>
 
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-body" id='modal-body'>
+          <div class="embed-responsive embed-responsive-16by9">
+            <!-- <iframe class="embed-responsive-item" src="…"></iframe> -->
+            <iframe class="embed-responsive-item"src="/admin/agent/lead/add/">
+                <p>Your browser does not support iframes.</p>
+            </iframe>
+          </div>
+
+      </div>
+    </div>
+  </div>
 </div>
