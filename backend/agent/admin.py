@@ -20,9 +20,14 @@ class LocalityAdmin(admin.ModelAdmin):
     search_fields = ['name']
 admin.site.register(Locality, LocalityAdmin)
 
+from .models import Services_Type
+class Services_TypeAdmin(admin.ModelAdmin):
+    list_display = ('name',)
+admin.site.register(Services_Type, Services_TypeAdmin)
+
 from .models import Service
 class ServiceAdmin(admin.ModelAdmin):
-    list_display = ('name','price','source')
+    list_display = ('name','price','type','duration_in_min')
     search_fields = ['name','source']
 admin.site.register(Service, ServiceAdmin)
 
@@ -77,6 +82,11 @@ class LeadForm(forms.ModelForm):
         model = Lead
         fields = '__all__'
     def clean(self):
+        mrp = 0
+        for service in self.cleaned_data.get('services'):
+            mrp += service.price
+        self.cleaned_data['mrp']  = mrp 
+
         if self.cleaned_data.get('lead_status') == 2:
             order = Order()
             customer = self.cleaned_data.get('customer')

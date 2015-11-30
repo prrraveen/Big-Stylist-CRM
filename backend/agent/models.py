@@ -41,14 +41,15 @@ class Services_Type(models.Model):
 
 class Service(models.Model):
     name = models.CharField(max_length=100 , unique = True,primary_key=True)
-    type = models.ManyToManyField('Services_Type',null=True,blank=True)
+    type = models.ForeignKey('Services_Type',null=True,blank=True)
     gender = models.CharField(max_length=1 , blank=True,choices=SERVICE_GENDER_CHOICES)
     price = models.IntegerField()
     duration_in_min = models.IntegerField(default=0)
     source = models.CharField(max_length=100 , blank = True)
     lp = models.URLField(blank = True)
     def __unicode__(self):
-        return self.name
+        say = self.name + ' - ' + str(self.price)
+        return say
 
 class Packages(models.Model):
     name = models.CharField(max_length=50, unique=True)
@@ -198,6 +199,15 @@ NEXT_STEP= (
 )
 class Lead(models.Model):
     lead_status = models.IntegerField(choices = LEAD_STATUS ,default = 1)
+    source = models.ForeignKey('Source')
+    placedat =  models.DateTimeField(null = True , blank=True)
+    on =  models.DateField(null = True , blank=True)
+    at =  models.TimeField(null = True , blank=True)
+    services = models.ManyToManyField('Service' , null=True , blank=True)
+    mrp = models.DecimalField(max_digits=7, decimal_places=2,default=0,null = True, blank=True)
+    final_price = models.DecimalField(max_digits=7, decimal_places=2,default=0,null = True, blank=True)
+    discount = models.DecimalField(max_digits=7, decimal_places=2,null = True, blank=True,default=0)
+    discount_type = models.CharField(max_length=10 , blank = True)
     customer = models.ForeignKey('Customer' , null = True , blank= True)
     name = models.CharField(max_length=50 , blank = True)
 
@@ -212,22 +222,13 @@ class Lead(models.Model):
     state= models.ForeignKey('State',null=True , blank =True)
     nearest_station = models.ForeignKey('Station',null=True , blank =True)
 
-    source = models.ForeignKey('Source')
     supplier = models.ForeignKey('Supplier',null=True , blank =True)
 
     assigned_csr =   models.ForeignKey('User',null=True , blank =True)
-    services = models.ManyToManyField('Service' , null=True , blank=True)
-    mrp = models.DecimalField(max_digits=7, decimal_places=2,default=0,null = True, blank=True)
-    final_price = models.DecimalField(max_digits=7, decimal_places=2,default=0,null = True, blank=True)
-    discount = models.DecimalField(max_digits=7, decimal_places=2,null = True, blank=True,default=0)
-    discount_type = models.CharField(max_length=10 , blank = True)
 
     next_step = models.IntegerField(choices = NEXT_STEP ,default = 1)
     cancellation_reason =   models.CharField(max_length=200 , blank = True)
 
-    placedat =  models.DateTimeField(null = True , blank=True)
-    on =  models.DateField(null = True , blank=True)
-    at =  models.TimeField(null = True , blank=True)
     requirment = models.CharField(max_length=300 , blank = True)
     def __unicode__(self):
         return self.name
