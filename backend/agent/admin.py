@@ -22,8 +22,8 @@ admin.site.register(Locality, LocalityAdmin)
 
 from .models import Service
 class ServiceAdmin(admin.ModelAdmin):
-    list_display = ('name', 'packages', 'price' , 'typ','source')
-    search_fields = ['name','packages','typ','source']
+    list_display = ('name','price','source')
+    search_fields = ['name','source']
 admin.site.register(Service, ServiceAdmin)
 
 

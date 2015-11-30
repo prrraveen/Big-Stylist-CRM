@@ -27,13 +27,34 @@ class Pincode(models.Model):
     def __unicode__(self):
         return self.pincode
 
+SERVICE_GENDER_CHOICES = (
+    ('M', 'Male'),
+    ('F', 'Female'),
+    ('U', 'Unisex')
+)
+
+
+class Services_Type(models.Model):
+    name = models.CharField(max_length=30 ,primary_key=True)
+    def __unicode__(self):
+        return self.name
+
 class Service(models.Model):
-    name = models.CharField(max_length=100 , unique = True)
-    packages = models.CharField(max_length=500)
+    name = models.CharField(max_length=100 , unique = True,primary_key=True)
+    type = models.ManyToManyField('Services_Type',null=True,blank=True)
+    gender = models.CharField(max_length=1 , blank=True,choices=SERVICE_GENDER_CHOICES)
     price = models.IntegerField()
+    duration_in_min = models.IntegerField(default=0)
     source = models.CharField(max_length=100 , blank = True)
-    typ = models.CharField(max_length=20 , blank = True)
     lp = models.URLField(blank = True)
+    def __unicode__(self):
+        return self.name
+
+class Packages(models.Model):
+    name = models.CharField(max_length=50, unique=True)
+    Service = models.ManyToManyField('Service' , null=True , blank=True)
+    weekday = models.DecimalField(max_digits=10, decimal_places=2 ,null =True ,default = 0)
+    weekend = models.DecimalField(max_digits=10, decimal_places=2 ,null =True ,default = 0)
     def __unicode__(self):
         return self.name
 
