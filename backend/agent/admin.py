@@ -31,6 +31,12 @@ class ServiceAdmin(admin.ModelAdmin):
     search_fields = ['name','source']
 admin.site.register(Service, ServiceAdmin)
 
+from .models import Package
+class PackageAdmin(admin.ModelAdmin):
+    list_display = ('name','weekday','weekend')
+    search_fields = ['name',]
+admin.site.register(Package, PackageAdmin)
+
 
 from .models import Beautician
 class BeauticianAdmin(admin.ModelAdmin):
@@ -85,7 +91,7 @@ class LeadForm(forms.ModelForm):
         mrp = 0
         for service in self.cleaned_data.get('services'):
             mrp += service.price
-        self.cleaned_data['mrp']  = mrp 
+        self.cleaned_data['mrp']  = mrp
 
         if self.cleaned_data.get('lead_status') == 2:
             order = Order()

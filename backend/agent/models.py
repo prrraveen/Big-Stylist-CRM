@@ -51,7 +51,7 @@ class Service(models.Model):
         say = self.name + ' - ' + str(self.price)
         return say
 
-class Packages(models.Model):
+class Package(models.Model):
     name = models.CharField(max_length=50, unique=True)
     Service = models.ManyToManyField('Service' , null=True , blank=True)
     weekday = models.DecimalField(max_digits=10, decimal_places=2 ,null =True ,default = 0)
