@@ -127,13 +127,26 @@ def allocate_auto(request):
     customer_lat = order.customer.lat
     customer_lng = order.customer.lng
     for kilometers in range_step(1, 50, 1):
+        # print 'searchin in %s km' % kilometers
         ids = get_beautician(customer_lat = customer_lat,customer_lng = customer_lng,distance = kilometers)
+        # print ids
         selectable_id = [x for x in ids if x not in skiped_beauticians_list]
         for pk in selectable_id:
             beautician = Beautician.objects.get(pk=pk)
+
+            beautician_services = beautician.Services.all().values_list('id', flat =True)
+            order_services = order.services.all().values_list('id', flat =True)
+            # print beautician_services
+            # print order_services
+            if not (set(order_services).issubset(set(beautician_services))):
+                continue
+
             try:
                 scheduled_orders = Order.objects.get(beautician = beautician, on = order.on , at__gt = lower_time_bound , at__lt = upper_time_bound)
+                # print 'i think I got the beautican with these services but it has order schedules'
+                # print beautician.name
             except ObjectDoesNotExist:
+                # print 'I think I got the beautican with these services'
                 order.beautician = beautician
                 order.allocation_status = 2
                 order.status = 2
@@ -159,7 +172,6 @@ def get_beautician(customer_lat,customer_lng,distance):
                 FROM agent_beautician
                 HAVING distance < %s
                 ORDER BY distance
-                LIMIT 0 , 20
            """ %(customer_lat , customer_lng , customer_lat , distance)
     cursor.execute(query)
     ids = [row[0] for row in cursor.fetchall()]
@@ -180,6 +192,7 @@ def unallocate(request):
     order = Order.objects.get(id = order_id)
     order.status = request.GET.get('status')
     order.beautician = None
+    order.skiped_beautician.clear()
     order.save()
     payload = OrderSerializer(order)
     return Response(payload.data)

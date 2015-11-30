@@ -53,6 +53,7 @@ function(
             'click @ui.remove_filters' : 'remove_filters',
             'click @ui.page' : 'get_page',
             'shown.bs.modal @ui.modal': 'show_add_lead_iframe',
+            'hidden.bs.modal @ui.modal': 'fetch_collection',
         },
 
         search_name: function(){
@@ -101,10 +102,9 @@ function(
                 _this.render()
             })
         },
-
-        show_add_lead_iframe: function(){
-            // this.ui.modal_body.html('')
-        },
+        fetch_collection: function(){
+            this.collection.fetch()
+        }
     })
 
 });
