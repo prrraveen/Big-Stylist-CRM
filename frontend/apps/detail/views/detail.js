@@ -68,15 +68,29 @@ function(
         on_status_change: function(){
             if(this.ui.status_change.val() ==  _.invert(this.get_order_status())['Confirmed'] )
                 this.auto_allocate()
-            else {
-                this.change_status()
-            }
+            else if(this.ui.status_change.val() ==  _.invert(this.get_order_status())['Received'] )
+                this.unallocate()
+            else
+                this.change_status();
         },
         change_status: function(){
             $.get('/order/change/status',
             {
                 order_id : this.model.id,
                 status:   this.ui.status_change.val()
+            })
+        },
+
+        unallocate: function(){
+            var _this = this
+            $.get('/allocate/unallocate/',
+            {
+                order_id : this.model.id,
+                status:   this.ui.status_change.val()
+            })
+            .done(function(data){
+                _this.model.attributes = data
+                _this.render();
             })
         },
 

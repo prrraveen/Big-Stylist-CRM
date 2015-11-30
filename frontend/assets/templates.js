@@ -27,7 +27,7 @@ __p += '\n                        <a href="' +
 ((__t = ( service.lp )) == null ? '' : __t) +
 '">' +
 ((__t = ( service.name )) == null ? '' : __t) +
-'</a>\n                    ';
+'</a> ,\n                    ';
  }) ;
 __p += '\n                </ul>\n            </div>\n            <div class="row">\n                <div class=\'col-sm-4\'>\n                    <label for="">Amount</label>\n                </div>\n                <div class=\'col-sm-8\'>\n                    ' +
 ((__t = ( amount )) == null ? '' : __t) +

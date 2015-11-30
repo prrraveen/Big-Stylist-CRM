@@ -96,11 +96,7 @@ def allocate_manually(request):
 
     order = Order.objects.get(id = order_id)
     beautician = Beautician.objects.get(id = beautician_id)
-
-    lower_time_bound = datetime.combine(date.today(), order.at) - timedelta(hours=TIME_BUFFER)
-    lower_time_bound = lower_time_bound.time()
-    upper_time_bound = datetime.combine(date.today(), order.at) + timedelta(hours=TIME_BUFFER)
-    upper_time_bound = upper_time_bound.time()
+    lower_time_bound , upper_time_bound = calc_time_bound(order=order)
     try:
         scheduled_orders = Order.objects.get(beautician = beautician, on = order.on , at__gt = lower_time_bound , at__lt = upper_time_bound)
         return Response(status=503)
@@ -111,14 +107,22 @@ def allocate_manually(request):
         payload = OrderSerializer(order)
         return Response(payload.data)
 
+def calc_time_bound(order):
+    time_required = 0
+    services = order.services.all()
+    for service in services:
+        time_required += service.duration_in_min
+    lower_time_bound = datetime.combine(date.today(), order.at) - timedelta(minutes=time_required) - timedelta(hours=TIME_BUFFER)
+    lower_time_bound = lower_time_bound.time()
+    upper_time_bound = datetime.combine(date.today(), order.at) + timedelta(minutes=time_required) + timedelta(hours=TIME_BUFFER)
+    upper_time_bound = upper_time_bound.time()
+    return [lower_time_bound , upper_time_bound]
+
 @api_view(['GET'])
 def allocate_auto(request):
     order_id = request.GET.get('order_id')
     order = Order.objects.get(id = order_id)
-    lower_time_bound = datetime.combine(date.today(), order.at) - timedelta(hours=TIME_BUFFER)
-    lower_time_bound = lower_time_bound.time()
-    upper_time_bound = datetime.combine(date.today(), order.at) + timedelta(hours=TIME_BUFFER)
-    upper_time_bound = upper_time_bound.time()
+    lower_time_bound , upper_time_bound = calc_time_bound(order=order)
     skiped_beauticians_list = get_skiped_beautician(order=order)
     customer_lat = order.customer.lat
     customer_lng = order.customer.lng
@@ -169,6 +173,18 @@ def reallocate(request):
     order.save()
     response = allocate_auto(request)
     return response
+
+@api_view(['GET'])
+def unallocate(request):
+    order_id = request.GET.get('order_id')
+    order = Order.objects.get(id = order_id)
+    order.status = request.GET.get('status')
+    order.beautician = None
+    order.save()
+    payload = OrderSerializer(order)
+    return Response(payload.data)
+
+
 
 def get_skiped_beautician(order):
     skiped_beauticians = order.skiped_beautician.all()

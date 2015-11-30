@@ -120,4 +120,4 @@ REST_FRAMEWORK = {
     ),
 }
 
-TIME_BUFFER = 2 #2 hours time buffer for scheduling orders
+TIME_BUFFER = 0 #2 hours time buffer for scheduling orders

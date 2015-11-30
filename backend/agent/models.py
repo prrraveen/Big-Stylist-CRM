@@ -40,7 +40,7 @@ class Services_Type(models.Model):
         return self.name
 
 class Service(models.Model):
-    name = models.CharField(max_length=100 , unique = True,primary_key=True)
+    name = models.CharField(max_length=100 , unique = True)
     type = models.ForeignKey('Services_Type',null=True,blank=True)
     gender = models.CharField(max_length=1 , blank=True,choices=SERVICE_GENDER_CHOICES)
     price = models.IntegerField()
