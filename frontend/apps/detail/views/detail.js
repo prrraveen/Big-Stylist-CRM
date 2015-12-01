@@ -62,7 +62,7 @@ function(
                 _this.render();
             })
             .fail(function(){
-                alert('Failed, Beautican is not available at this time slot')
+                alert('Failed, Beautican is not available at this time slot or day of the week')
             })
         },
         on_status_change: function(){

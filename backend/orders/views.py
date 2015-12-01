@@ -96,6 +96,13 @@ def allocate_manually(request):
 
     order = Order.objects.get(id = order_id)
     beautician = Beautician.objects.get(id = beautician_id)
+
+    if(beautician.availability == 'NA' ):
+        return Response(status=503)
+
+    if(beautician.unavailable_on.filter(name= order.on.strftime("%A")).count() > 0):
+        return Response(status=503)
+
     lower_time_bound , upper_time_bound = calc_time_bound(order=order)
     try:
         scheduled_orders = Order.objects.get(beautician = beautician, on = order.on , at__gt = lower_time_bound , at__lt = upper_time_bound)
