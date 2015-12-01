@@ -134,6 +134,12 @@ def allocate_auto(request):
         for pk in selectable_id:
             beautician = Beautician.objects.get(pk=pk)
 
+            if(beautician.availability == 'NA' ):
+                continue
+
+            if(beautician.unavailable_on.filter(name= order.on.strftime("%A")).count() > 0):
+                continue
+
             beautician_services = beautician.Services.all().values_list('id', flat =True)
             order_services = order.services.all().values_list('id', flat =True)
             # print beautician_services
@@ -142,7 +148,12 @@ def allocate_auto(request):
                 continue
 
             try:
-                scheduled_orders = Order.objects.get(beautician = beautician, on = order.on , at__gt = lower_time_bound , at__lt = upper_time_bound)
+                scheduled_orders = Order.objects.get(beautician = beautician,
+                                                    on = order.on,
+                                                    at__gt = lower_time_bound,
+                                                    at__lt = upper_time_bound,
+                                                    )
+
                 # print 'i think I got the beautican with these services but it has order schedules'
                 # print beautician.name
             except ObjectDoesNotExist:

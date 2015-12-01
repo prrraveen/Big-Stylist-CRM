@@ -82,6 +82,11 @@ class SupplierAdmin(admin.ModelAdmin):
     list_display = ('name','email')
 admin.site.register(Supplier, SupplierAdmin)
 
+from .models import Day
+class DayAdmin(admin.ModelAdmin):
+    list_display = ('name',)
+admin.site.register(Day, DayAdmin)
+
 from .models import Lead
 class LeadForm(forms.ModelForm):
     class Meta:

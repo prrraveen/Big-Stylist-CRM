@@ -79,6 +79,14 @@ BEAUTICIAN_TYPE = (
     ('1', 'Free Agent'),
     ('2', 'Minimum Guarantee')
 )
+
+
+class Day(models.Model):
+    name = models.CharField(max_length=100)
+    def __unicode__(self):
+        say = str(self.id) +'  '+ self.name
+        return say
+
 class Beautician(models.Model):
     Services =          models.ManyToManyField('Service' , null=True , blank=True)
     employee_id=        models.CharField(max_length=30,blank=True)
@@ -96,6 +104,7 @@ class Beautician(models.Model):
     locality =          models.CharField(max_length=100, blank =True)
     station =           models.ForeignKey('Station',null=True , blank =True)
     employment_status = models.CharField(max_length = 1 , choices = EMPLOYMENT_STATUS , blank = True)
+    unavailable_on=     models.ManyToManyField('Day' , null=True , blank=True)
     availability =      models.CharField(max_length=2 , choices=AVAILABLE,blank=True)
     type  =             models.CharField(max_length=2 , choices=BEAUTICIAN_TYPE,blank=True)
     pincode =           models.ForeignKey('Pincode' , related_name='beautician_pincode')
