@@ -19,6 +19,7 @@ INSTALLED_APPS = (
     'rest_framework',
     'grappelli',
     'django.contrib.admin',
+    'smuggler',
     'agent',
     'orders'
 )
