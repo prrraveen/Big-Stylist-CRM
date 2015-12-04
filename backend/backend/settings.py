@@ -11,14 +11,14 @@ SECRET_KEY = ')(amwwwu%)j=#5zt52s5pooo03+c@-3(01id1-r8ev0hn9c@45'
 # Application definition
 
 INSTALLED_APPS = (
-    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-
+    'grappelli',
+    'django.contrib.admin',
     'agent',
     'orders'
 )
@@ -49,6 +49,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                "django.core.context_processors.request",
             ],
         },
     },
@@ -96,12 +97,12 @@ USE_L10N = True
 USE_TZ = True
 
 STATIC_URL = '/frontend/'
-
+STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 
 FRONTEND = os.path.join(BASE_DIR, "../frontend")
 
 STATICFILES_DIRS = (
-    FRONTEND,
+    # FRONTEND,
 )
 
 

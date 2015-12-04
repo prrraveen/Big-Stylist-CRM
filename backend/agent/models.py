@@ -18,6 +18,9 @@ class Locality(models.Model):
     name =   models.CharField(max_length=60)
     def __unicode__(self):
         return self.name
+    @staticmethod
+    def autocomplete_search_fields():
+        return ("name__icontains",)
 
 class Pincode(models.Model):
     pincode = models.CharField(max_length=6)
@@ -26,6 +29,9 @@ class Pincode(models.Model):
     lng = models.DecimalField(max_digits=10, decimal_places=6)
     def __unicode__(self):
         return self.pincode
+    @staticmethod
+    def autocomplete_search_fields():
+        return ("pincode__icontains",)
 
 SERVICE_GENDER_CHOICES = (
     ('M', 'Male'),
@@ -50,6 +56,9 @@ class Service(models.Model):
     def __unicode__(self):
         say = self.name + ' - ' + str(self.price)
         return say
+    @staticmethod
+    def autocomplete_search_fields():
+        return ("name__icontains",)
 
 class Package(models.Model):
     name = models.CharField(max_length=50, unique=True)
@@ -86,6 +95,9 @@ class Day(models.Model):
     def __unicode__(self):
         say = str(self.id) +'  '+ self.name
         return say
+    @staticmethod
+    def autocomplete_search_fields():
+        return ("name__icontains",)
 
 class Beautician(models.Model):
     Services =          models.ManyToManyField('Service' , null=True , blank=True)
@@ -118,6 +130,9 @@ class Beautician(models.Model):
         super(Beautician, self).save(*args, **kwargs)
     def __unicode__(self):
         return self.name + ', ' + self.locality
+    @staticmethod
+    def autocomplete_search_fields():
+        return ("name__icontains",)
 
 # from model_utils import FieldTracker
 class Customer(models.Model):
@@ -140,6 +155,9 @@ class Customer(models.Model):
         super(Customer, self).save(*args, **kwargs)
     def __unicode__(self):
         return self.name
+    @staticmethod
+    def autocomplete_search_fields():
+        return ("name__icontains","email__icontains","contact__icontains")
 
 
 ORDER_STATUS = (
@@ -258,6 +276,9 @@ class Station(models.Model):
     pincode  = models.ForeignKey('Pincode')
     def __unicode__(self):
         return self.name
+    @staticmethod
+    def autocomplete_search_fields():
+        return ("name__icontains",)
 
 class Source(models.Model):
     name = models.CharField(max_length=50)

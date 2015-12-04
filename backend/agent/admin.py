@@ -35,6 +35,12 @@ from .models import Package
 class PackageAdmin(admin.ModelAdmin):
     list_display = ('name','weekday','weekend')
     search_fields = ['name',]
+    raw_id_fields = ('Service',)
+    # define the autocomplete_lookup_fields
+    autocomplete_lookup_fields = {
+        # 'fk': ['pincode',],
+        'm2m': ['Service'],
+    }
 admin.site.register(Package, PackageAdmin)
 
 
@@ -42,19 +48,38 @@ from .models import Beautician
 class BeauticianAdmin(admin.ModelAdmin):
     list_display = ('name', 'phone_number','pincode','type','availability','station')
     search_fields = ['name','phone_number','pincode__pincode','station__name']
+    exclude=('locality',)
+    raw_id_fields = ('pincode','Services','station','unavailable_on')
+    # define the autocomplete_lookup_fields
+    autocomplete_lookup_fields = {
+        'fk': ['pincode','station'],
+        'm2m': ['Services','unavailable_on'],
+    }
 admin.site.register(Beautician, BeauticianAdmin)
 
 from .models import Customer
 class CustomerAdmin(admin.ModelAdmin):
     list_display = ('name', 'gender', 'contact','pincode','address','locality' ,'city','state')
     search_fields = ['name','gender','email','locality__name', 'contact','address','pincode__pincode','city__name','state__name']
+    raw_id_fields = ('locality','pincode','nearest_station')
+    # define the autocomplete_lookup_fields
+    autocomplete_lookup_fields = {
+        'fk': ['pincode','nearest_station'],
+        'm2m': ['locality'],
+    }
 admin.site.register(Customer, CustomerAdmin)
 
 from .models import Order
 class OrderAdmin(admin.ModelAdmin):
     list_display = ('customer','amount', 'status')
     search_fields = ['customer__name','status']
-    # exclude=('allocation_distance', 'beautician')
+    exclude=('allocation_distance', 'skiped_beautician')
+    raw_id_fields = ('services','customer','beautician')
+    # define the autocomplete_lookup_fields
+    autocomplete_lookup_fields = {
+        'fk': ['customer',],
+        'm2m': ['services','beautician'],
+    }
 admin.site.register(Order, OrderAdmin)
 
 from .models import City
@@ -70,6 +95,12 @@ admin.site.register(State, StateAdmin)
 from .models import Station
 class StationAdmin(admin.ModelAdmin):
     list_display = ('name','pincode')
+    raw_id_fields = ('pincode',)
+    # define the autocomplete_lookup_fields
+    autocomplete_lookup_fields = {
+        'fk': ['pincode',],
+        # 'm2m': [''],
+    }
 admin.site.register(Station, StationAdmin)
 
 from .models import Source
@@ -183,4 +214,10 @@ class LeadForm(forms.ModelForm):
 class LeadAdmin(admin.ModelAdmin):
     form = LeadForm
     list_display = ('source','customer','name','contact')
+    raw_id_fields = ('locality','pincode','services','customer','nearest_station')
+    # define the autocomplete_lookup_fields
+    autocomplete_lookup_fields = {
+        'fk': ['pincode','locality','customer','nearest_station'],
+        'm2m': ['services'],
+    }
 admin.site.register(Lead, LeadAdmin)
