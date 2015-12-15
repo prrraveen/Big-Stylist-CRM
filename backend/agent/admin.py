@@ -3,6 +3,7 @@ from django import forms
 from django.core.exceptions import ObjectDoesNotExist
 from import_export import resources
 from import_export.admin import ImportExportModelAdmin
+from import_export.admin import ImportExportModelAdmin
 
 
 from .models import User
@@ -12,13 +13,25 @@ class UserAdmin(admin.ModelAdmin):
 admin.site.register(User,UserAdmin)
 
 from .models import Pincode
-class PincodeAdmin(admin.ModelAdmin):
+class PincodeResource(resources.ModelResource):
+    class Meta:
+        model = Pincode
+        skip_unchanged = True
+        report_skipped = False
+
+class PincodeAdmin(ImportExportModelAdmin):
     list_display = ['pincode']
     search_fields = ['pincode']
 admin.site.register(Pincode, PincodeAdmin)
 
 from .models import Locality
-class LocalityAdmin(admin.ModelAdmin):
+class LocalityResource(resources.ModelResource):
+    class Meta:
+        model = Locality
+        skip_unchanged = True
+        report_skipped = False
+
+class LocalityAdmin(ImportExportModelAdmin):
     list_display = ['name']
     search_fields = ['name']
 admin.site.register(Locality, LocalityAdmin)
@@ -29,13 +42,23 @@ class Services_TypeAdmin(admin.ModelAdmin):
 admin.site.register(Services_Type, Services_TypeAdmin)
 
 from .models import Service
-class ServiceAdmin(admin.ModelAdmin):
+class LocalityResource(resources.ModelResource):
+    class Meta:
+        model = Service
+        skip_unchanged = True
+        report_skipped = False
+class ServiceAdmin(ImportExportModelAdmin):
     list_display = ('name','price','type','duration_in_min')
     search_fields = ['name','source']
 admin.site.register(Service, ServiceAdmin)
 
 from .models import Package
-class PackageAdmin(admin.ModelAdmin):
+class LocalityResource(resources.ModelResource):
+    class Meta:
+        model = Package
+        skip_unchanged = True
+        report_skipped = False
+class PackageAdmin(ImportExportModelAdmin):
     list_display = ('name','weekday','weekend')
     search_fields = ['name',]
     # raw_id_fields = ('Service',)
@@ -106,7 +129,12 @@ class StateAdmin(admin.ModelAdmin):
 admin.site.register(State, StateAdmin)
 
 from .models import Station
-class StationAdmin(admin.ModelAdmin):
+class LocalityResource(resources.ModelResource):
+    class Meta:
+        model = Station
+        skip_unchanged = True
+        report_skipped = False
+class StationAdmin(ImportExportModelAdmin):
     list_display = ('name','pincode')
     raw_id_fields = ('pincode',)
     # define the autocomplete_lookup_fields
