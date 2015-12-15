@@ -1,6 +1,9 @@
 from django.contrib import admin
 from django import forms
 from django.core.exceptions import ObjectDoesNotExist
+from import_export import resources
+from import_export.admin import ImportExportModelAdmin
+
 
 from .models import User
 class UserAdmin(admin.ModelAdmin):
@@ -46,7 +49,14 @@ admin.site.register(Package, PackageAdmin)
 
 
 from .models import Beautician
-class BeauticianAdmin(admin.ModelAdmin):
+class BeauticianResource(resources.ModelResource):
+    class Meta:
+        model = Beautician
+        skip_unchanged = True
+        report_skipped = False
+from import_export.admin import ImportExportModelAdmin
+# class BeauticianAdmin(admin.ModelAdmin):
+class BeauticianAdmin(ImportExportModelAdmin):
     list_display = ('name', 'phone_number','pincode','type','availability','station')
     search_fields = ['name','phone_number','pincode__pincode','station__name']
     exclude=('locality',)
